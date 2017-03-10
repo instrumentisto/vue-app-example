@@ -1,7 +1,18 @@
 <template>
-  <div id="app">
-    <img src="./assets/logo.png">
-    <p>helloMsg: {{message}}</p>
+  <div id="signin">
+    <form>
+      <div class="form-group">
+        <input type="email" class="form-control" placeholder="Email">
+      </div>
+      <div class="form-group">
+        <input type="password" class="form-control" placeholder="Password">
+      </div>
+      <button type="submit" class="btn btn-default">Log In</button>
+    </form>
+
+    <router-link to="/sign_up">Don't have an account?</router-link>
+    <br/>
+    <router-link to="/forgot_password">Forgot password?</router-link>
   </div>
 </template>
 
@@ -15,7 +26,7 @@
         template: '<button @click="onClick">Click!</button>'
     })
 
-    export default class App extends Vue {
+    export default class SignIn extends Vue {
         // Initial data can be declared as instance properties
         message: string = 'Hello!'
         // Component methods can be declared as instance methods
@@ -25,7 +36,7 @@
     }
 </script>
 
-<style>
+<style scoped>
 #app {
   font-family: 'Avenir', Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
