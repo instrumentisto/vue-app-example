@@ -1,11 +1,11 @@
 <template>
   <div id="signin">
-    <form>
+    <form method="post" v-on:submit.prevent="onSubmit">
       <div class="form-group">
-        <input type="email" class="form-control" placeholder="Email">
+        <input v-model="email" type="email" class="form-control" placeholder="Email">
       </div>
       <div class="form-group">
-        <input type="password" class="form-control" placeholder="Password">
+        <input v-model="password" type="password" class="form-control" placeholder="Password">
       </div>
       <button type="submit" class="btn btn-default">Log In</button>
     </form>
@@ -20,18 +20,20 @@
     import Vue from 'vue'
     import Component from 'vue-class-component'
 
-    // The @Component decorator indicates the class is a Vue component
-    @Component({
-        // All component options are allowed in here
-        template: '<button @click="onClick">Click!</button>'
-    })
-
+    @Component({})
     export default class SignIn extends Vue {
-        // Initial data can be declared as instance properties
-        message: string = 'Hello!'
-        // Component methods can be declared as instance methods
-        onClick (): void {
-            window.alert(this.message)
+        email: string
+
+        password: string
+
+        onSubmit(): void {
+            // TODO: implement password checking
+            if (this.email !== 'roman@dragan.com.ua' && this.password !== '123123') {
+                // TODO: return error
+                return;
+            }
+//            console.log(this.$root.$router);
+            this.$root.$router.push('profile');
         }
     }
 </script>
