@@ -17,17 +17,19 @@
 </template>
 
 <script lang="ts">
-    import Vue from 'vue'
     import Component from 'vue-class-component'
+    import Page from '../Page.vue'
+    import Domain from '../domain.ts'
 
     @Component({})
-    export default class SignIn extends Vue {
+    export default class SignIn extends Page {
         email: string
 
         password: string
 
         onSubmit(): void {
             // TODO: implement password checking
+            console.log(Domain.getAll())
             if (this.email !== 'roman@dragan.com.ua' && this.password !== '123123') {
                 // TODO: return error
                 return;
@@ -38,4 +40,12 @@
 </script>
 
 <style scoped>
+  #signin {
+    width: 300px;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    text-align: center;
+  }
 </style>
