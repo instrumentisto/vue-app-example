@@ -1,5 +1,7 @@
 <template>
-  <div id="signup">
+  <div>
+    <h1>Sign Up</h1>
+
     <form>
       <div class="form-group">
         <input type="text" class="form-control" placeholder="Name">
