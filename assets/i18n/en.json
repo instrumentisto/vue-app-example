@@ -1,0 +1,20 @@
+{
+  "user": {
+    "name": "Name",
+    "email": "Email",
+    "password": "Password"
+  },
+  "validation": {
+    "required": "Required",
+    "email_format": "Wrong email format"
+  },
+  "errors": {
+    "access_denied": "Access denied"
+  },
+  "sign_in": {
+    "title": "Sign In",
+    "login": "Log In",
+    "do_not_have_account": "Don't have an account?",
+    "forgot_password": "Forgot password?"
+  }
+}

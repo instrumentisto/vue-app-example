@@ -1,5 +1,6 @@
 var path = require('path')
 var webpack = require('webpack')
+var CopyWebpackPlugin = require('copy-webpack-plugin')
 var HtmlWebpackPlugin = require('html-webpack-plugin')
 
 module.exports = {
@@ -63,9 +64,14 @@ module.exports = {
         hints: false
     },
     devtool: '#eval-source-map',
-    plugins: [new HtmlWebpackPlugin({
-        template: 'src/templates/index.hbs'
-    })]
+    plugins: [
+        new HtmlWebpackPlugin({
+            template: 'src/templates/index.hbs'
+        }),
+        new CopyWebpackPlugin([
+            { from: 'assets/i18n', to: 'i18n' },
+        ])
+    ]
 }
 
 if (process.env.NODE_ENV === 'production') {

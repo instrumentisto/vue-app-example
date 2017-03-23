@@ -1,3 +1,5 @@
+import Util from '../util/util.ts'
+
 export const STORAGE_KEY = 'vue-app-example-users'
 
 export const INITIAL_USERS = [
@@ -16,7 +18,7 @@ export const INITIAL_USERS = [
 ];
 
 export const state = {
-    all: JSON.parse(window.localStorage.getItem(STORAGE_KEY) || JSON.stringify(INITIAL_USERS))
+    all: INITIAL_USERS
 }
 
 export const getters = {
@@ -25,8 +27,18 @@ export const getters = {
         return new Promise((resolve, reject) => {
             setTimeout(() => {
                 rootState.loading = false
+                console.log('getAll', state.all)
                 resolve(state.all)
             }, 1000)
+        })
+    },
+    getById: (state, getters) => (id) => {
+        return getters.getAll.then((users) => {
+            let user = users.find(user => user.id === id)
+            if (!user) {
+                return Promise.reject('User not found')
+            }
+            return user
         })
     }
 }
@@ -34,6 +46,7 @@ export const getters = {
 export const actions = {
     login ({getters, rootState}, {email, password}) {
         return getters.getAll.then((users) => {
+            console.log('login', users)
             let user = users.find(user => {
                 return (user.email === email && user.password === password)
             })
@@ -46,34 +59,11 @@ export const actions = {
 }
 
 export const mutations = {
-    add (state, email) {
-        state.all.push({
-            id: 123213,
-            email: email
-        })
-    },
-
-    // deleteTodo (state, { todo }) {
-    //     state.todos.splice(state.todos.indexOf(todo), 1)
-    // },
-    //
-    // toggleTodo (state, { todo }) {
-    //     todo.done = !todo.done
-    // },
-
-    // editTodo (state, { todo, value }) {
-    //     todo.text = value
-    // },
-
-    // toggleAll (state, { done }) {
-    //     state.todos.forEach((todo) => {
-    //         todo.done = done
-    //     })
-    // },
-    //
-    // clearCompleted (state) {
-    //     state.todos = state.todos.filter(todo => !todo.done)
-    // }
+    add (state, user) {
+        console.log('add', state.all)
+        user.id = Util.randomString(32)
+        state.all.push(user)
+    }
 }
 
 export default {
