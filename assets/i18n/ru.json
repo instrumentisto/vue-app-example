@@ -1,0 +1,20 @@
+{
+  "user": {
+    "name": "Имя",
+    "email": "Email",
+    "password": "Пароль"
+  },
+  "validation": {
+    "required": "Обязательное",
+    "email_format": "Не верный формат Email"
+  },
+  "errors": {
+    "access_denied": "Не правильный логин/пароль"
+  },
+  "sign_in": {
+    "title": "Авторизация",
+    "login": "Войти",
+    "do_not_have_account": "Еще нет аккаунта?",
+    "forgot_password": "Забыли пароль?"
+  }
+}

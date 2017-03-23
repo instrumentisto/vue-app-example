@@ -7,6 +7,10 @@
                     Webmasters Test App
                 </a>
             </div>
+
+            <div class="collapse navbar-collapse">
+                <language-switcher container-classes="nav navbar-nav navbar-right" />
+            </div>
         </div>
     </nav>
 </template>
@@ -14,8 +18,13 @@
 <script lang="ts">
     import Vue from 'vue'
     import Component from 'vue-class-component'
+    import LanguageSwitcher from './LanguageSwitcher.vue'
 
-    @Component({})
+    @Component({
+        components: {
+            LanguageSwitcher
+        }
+    })
     export default class Header extends Vue {
         // Header logic
     }

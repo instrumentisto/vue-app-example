@@ -1,63 +1,66 @@
 <template>
   <div>
-    <h1>Sign In</h1>
+    <h1>{{ $t('sign_in.title') }}</h1>
 
-    <form method="post" v-on:submit.prevent="onSubmit">
-      <div class="form-group" v-bind:class="{ 'has-error': validationErrors.email }">
-        <input v-model="email" type="email" class="form-control" placeholder="Email">
-        <span class="help-block" v-show="validationErrors.email">{{ validationErrors.email }}</span>
-      </div>
-      <div class="form-group" v-bind:class="{ 'has-error': validationErrors.password }">
-        <input v-model="password" type="password" class="form-control" placeholder="Password">
-        <span class="help-block" v-show="validationErrors.password">{{ validationErrors.password }}</span>
-      </div>
-      <button type="submit" class="btn btn-default">Log In</button>
-    </form>
+    <vue-form :state="formstate" method="post" v-on:submit.prevent="onSubmit">
+      <validate class="form-group" :class="fieldClassName(formstate.email)">
+          <input v-model="email" name="email" type="email" required class="form-control" :placeholder="$t('user.email')">
+          <field-messages auto-label name="email" show="$submitted && $invalid">
+            <span class="help-block" slot="required">{{ $t('validation.required') }}</span>
+            <span class="help-block" slot="email">{{ $t('validation.email_format') }}</span>
+          </field-messages>
+      </validate>
+      <validate class="form-group" :class="fieldClassName(formstate.password)">
+        <input v-model="password" name="password" type="password" required class="form-control" :placeholder="$t('user.password')">
+        <field-messages auto-label name="password" show="$submitted && $invalid">
+          <span class="help-block" slot="required">{{ $t('validation.required') }}</span>
+        </field-messages>
+      </validate>
+      <button type="submit" class="btn btn-default">{{ $t('sign_in.login') }}</button>
+    </vue-form>
 
-    <p>{{ error }}</p>
-
-    <router-link to="/sign_up">Don't have an account?</router-link>
+    <router-link to="/sign_up">{{ $t('sign_in.do_not_have_account') }}</router-link>
     <br/>
-    <router-link to="/forgot_password">Forgot password?</router-link>
+    <router-link to="/forgot_password">{{ $t('sign_in.forgot_password') }}</router-link>
   </div>
 </template>
 
 <script lang="ts">
     import Vue from 'vue'
     import Component from 'vue-class-component'
-    import { mapGetters, mapActions } from 'vuex'
 
-    @Component({})
+    @Component
     export default class SignIn extends Vue {
-        email: string
 
-        password: string
+        email: string = ''
+
+        password: string = ''
 
         error: string = ''
 
-        users = this.$store.state.users.all
+        formstate: Object = {}
 
-        validationErrors: string[] = []
+        fieldClassName(field): string {
+            if (!field) {
+                return ''
+            }
+            if ((field.$touched || field.$submitted) && field.$invalid) {
+                return 'has-error'
+            }
+        }
 
         onSubmit(): void {
-            this.validationErrors = []
-            if (!this.email) {
-                this.validationErrors['email'] = 'Required'
-            }
-            if (!this.password) {
-                this.validationErrors['password'] = 'Required'
-            }
-            if (this.validationErrors.length > 0) {
-                return;
+            if (this.formstate['$invalid']) {
+                return
             }
 
             this.$store.dispatch('users/login', {email: this.email, password: this.password})
                 .then((user: any) => {
-                    // TODO: set cookie
+                    this['$cookie'].set('token', user.id)
                     this.$root.$router.push('/profile')
                 })
                 .catch((error) => {
-                    this.error = 'Access denied'
+                    this.error = this['$t']('errors.access_denied')
                 })
         }
     }
