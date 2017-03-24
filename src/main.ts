@@ -2,9 +2,9 @@ import Vue from 'vue'
 import VueCookie from 'vue-cookie'
 import VueForm from 'vue-form'
 
-import store from './store/index.ts'
-import i18n from './i18n/locales.ts'
-import router from './router/index.ts'
+import store from './store/index'
+import i18n from './i18n/locales'
+import router from './router/index'
 import App from './components/App.vue'
 
 Vue.use(VueCookie)

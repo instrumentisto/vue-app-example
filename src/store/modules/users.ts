@@ -1,5 +1,5 @@
-import Api from '../../api/users.ts'
-import types from '../mutation-types.ts'
+import Api from '../../api/users'
+import types from '../mutation-types'
 
 export const state = {
     all: [],
