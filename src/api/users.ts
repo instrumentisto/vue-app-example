@@ -1,4 +1,4 @@
-import Util from '../util/util.ts'
+import Util from '../util/util'
 
 export default class Users {
 
