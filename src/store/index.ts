@@ -1,23 +1,24 @@
 import Vue from 'vue'
 import Vuex from 'vuex'
-import users from './users.ts'
-// import plugins from './plugins.ts'
-// import createLogger from '../../../src/plugins/logger'
+import createPersistedState from 'vuex-persistedstate'
+
+import users from './modules/users.ts'
 
 Vue.use(Vuex)
 
-// const debug = process.env.NODE_ENV !== 'production'
-
 const state = {
-    loading: false
+    loading: false,
 }
 
 export default new Vuex.Store({
-  state,
-  modules: {
-      users
-  },
-  // plugins
-  // strict: debug,
-  // plugins: debug ? [createLogger()] : []
+    state,
+    modules: {
+        users
+    },
+    plugins: [createPersistedState({
+        key: 'vue-app-example-vuex',
+        paths: [
+            'users.authorized'
+        ]
+    })]
 })

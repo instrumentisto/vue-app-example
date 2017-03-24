@@ -28,21 +28,26 @@
 <script lang="ts">
     import Vue from 'vue'
     import Component from 'vue-class-component'
+    import { Action, namespace } from 'vuex-class'
+
+    const UsersAction = namespace('users', Action);
 
     @Component({})
     export default class SignUp extends Vue {
 
-      name: string = ''
+      @UsersAction('register') register;
 
-      email: string = ''
+      name: string = '';
 
-      password: string = ''
+      email: string = '';
 
-      passwordRepeat: string = ''
+      password: string = '';
 
-      image: string = ''
+      passwordRepeat: string = '';
 
-      formstate: Object = {}
+      image: string = '';
+
+      formstate: Object = {};
 
       fieldClassName(field): string {
         if (!field) {
@@ -74,21 +79,21 @@
           }
 
           // TODO: check image and set default if it's empty
-          this.$store.commit('users/add', {
-              name: this.name,
-              email: this.email,
-              password: this.password,
-              image: this.image
-          });
-
-//        this.$store.dispatch('users/login', {email: this.email, password: this.password})
-//            .then((user: any) => {
-//              this['$cookie'].set('token', user.id)
-//              this.$root.$router.push('/profile')
-//            })
-//            .catch((error) => {
-//              this.error = 'Access denied'
-//            })
+          this.register({
+              user: {
+                  name: this.name,
+                  email: this.email,
+                  password: this.password,
+                  image: this.image
+              }
+          })
+              .then((user: any) => {
+                this.$router.push('/profile');
+              })
+              .catch((error) => {
+                  console.log('signup error', error);
+//                this.error = this.$t('errors.access_denied');
+              });
       }
     }
 </script>

@@ -19,6 +19,8 @@
       <button type="submit" class="btn btn-default">{{ $t('sign_in.login') }}</button>
     </vue-form>
 
+    <p>{{ error }}</p>
+
     <router-link to="/sign_up">{{ $t('sign_in.do_not_have_account') }}</router-link>
     <br/>
     <router-link to="/forgot_password">{{ $t('sign_in.forgot_password') }}</router-link>
@@ -28,9 +30,14 @@
 <script lang="ts">
     import Vue from 'vue'
     import Component from 'vue-class-component'
+    import { Action, namespace } from 'vuex-class'
+
+    const UsersAction = namespace('users', Action);
 
     @Component
     export default class SignIn extends Vue {
+
+        @UsersAction('login') login;
 
         email: string = ''
 
@@ -51,17 +58,16 @@
 
         onSubmit(): void {
             if (this.formstate['$invalid']) {
-                return
+                return;
             }
 
-            this.$store.dispatch('users/login', {email: this.email, password: this.password})
+            this.login({ email: this.email, password: this.password })
                 .then((user: any) => {
-                    this['$cookie'].set('token', user.id)
-                    this.$root.$router.push('/profile')
+                    this.$router.push('/profile');
                 })
                 .catch((error) => {
-                    this.error = this['$t']('errors.access_denied')
-                })
+                    this.error = this.$t('errors.access_denied');
+                });
         }
     }
 </script>
