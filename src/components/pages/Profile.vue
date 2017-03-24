@@ -31,30 +31,33 @@
 <script lang="ts">
     import Vue from 'vue'
     import Component from 'vue-class-component'
+    import { Getter, Mutation, namespace } from 'vuex-class'
+
+    import mutationTypes from '../../store/mutation-types.ts'
+
+    const UsersGetter = namespace('users', Getter);
+    const UsersMutation = namespace('users', Mutation);
 
     @Component({})
     export default class Profile extends Vue {
 
-        user: Object = {}
+        @UsersGetter('authorized') authorizedUser;
+
+        @UsersMutation(mutationTypes.RESET_AUTHORIZED_USER) resetAuthorizedUser;
+
+        user = {};
 
         created(): void {
-            this.fetchData()
-        }
-
-        fetchData(): void {
-            let token = this['$cookie'].get('token')
-            this.$store.getters['users/getById'](token)
-                .then((user: any) => {
-                    this.user = user
-                })
-                .catch((error) => {
-                    this.logout()
-                })
+            let user = this.authorizedUser;
+            if (user === null) {
+                this.logout();
+            }
+            this.user = user;
         }
 
         logout(): void {
-            this['$cookie'].delete('token')
-            this.$root.$router.push('/sign_in')
+            this.resetAuthorizedUser();
+            this.$router.push('/sign_in');
         }
     }
 </script>
