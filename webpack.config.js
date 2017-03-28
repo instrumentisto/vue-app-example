@@ -4,11 +4,16 @@ var CopyWebpackPlugin = require('copy-webpack-plugin')
 var HtmlWebpackPlugin = require('html-webpack-plugin')
 
 module.exports = {
-    entry: './src/main.ts',
+    entry: [
+        'webpack/hot/only-dev-server',
+        './src/main.ts'
+    ],
     output: {
         path: path.resolve(__dirname, './_build'),
-        publicPath: '/',
-        filename: 'build.js'
+        // publicPath: '/',
+        filename: 'build.js',
+        hotUpdateChunkFilename: 'hot/[id].[hash].hot-update.js',
+        hotUpdateMainFilename: 'hot/[hash].hot-update.json'
     },
     module: {
         rules: [
@@ -17,22 +22,20 @@ module.exports = {
                 exclude: /node_modules|vue\/src/,
                 loader: 'ts-loader',
                 options: {
-                    appendTsSuffixTo: [/\.vue$/]
+                    appendTsSuffixTo: [/\.vue$/],
+                    transpileOnly: true,
+                    isolatedModules: true
                 }
             },
             {
                 test: /\.vue$/,
                 loader: 'vue-loader',
                 options: {
+                    esModule: true,
                     loaders: {
                     }
                     // other vue-loader options go here
                 }
-            },
-            {
-                test: /\.js$/,
-                loader: 'babel-loader',
-                exclude: /node_modules/
             },
             {
                 test: /\.(png|jpg|gif|svg)$/,
@@ -57,10 +60,6 @@ module.exports = {
         },
         extensions: [".tsx", ".ts", ".js"]
     },
-    devServer: {
-        historyApiFallback: true,
-        noInfo: true
-    },
     performance: {
         hints: false
     },
@@ -71,7 +70,9 @@ module.exports = {
         }),
         new CopyWebpackPlugin([
             { from: 'assets/i18n', to: 'i18n' },
-        ])
+        ]),
+        new webpack.HotModuleReplacementPlugin(),
+        new webpack.NamedModulesPlugin(),
     ]
 }
 
