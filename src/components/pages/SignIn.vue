@@ -31,6 +31,7 @@
     import Vue from 'vue'
     import Component from 'vue-class-component'
     import { Action, namespace } from 'vuex-class'
+    import HotReloadApi from 'vue-hot-reload-api'
 
     const UsersAction = namespace('users', Action);
 
@@ -68,6 +69,19 @@
                 .catch((error) => {
                     this.error = this.$t('errors.access_denied');
                 });
+        }
+    }
+
+    if (module.hot) {
+        HotReloadApi.install(Vue);
+        if (!module.hot.data) {
+            console.log(SignIn.toString());
+            HotReloadApi.createRecord('SignIn', SignIn.options)
+        } else {
+            /*if (module.hot.data.cssModules && JSON.stringify(module.hot.data.cssModules) !== JSON.stringify(cssModules)) {
+                delete Component.options._Ctor;
+            }*/
+            HotReloadApi.reload('SignIn', SignIn.options)
         }
     }
 </script>
