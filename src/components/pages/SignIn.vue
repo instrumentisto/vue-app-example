@@ -75,13 +75,12 @@
     if (module.hot) {
         HotReloadApi.install(Vue);
         if (!module.hot.data) {
-            console.log(SignIn.toString());
-            HotReloadApi.createRecord('SignIn', SignIn.options)
+            HotReloadApi.createRecord('SignIn', SignIn.options);
         } else {
             /*if (module.hot.data.cssModules && JSON.stringify(module.hot.data.cssModules) !== JSON.stringify(cssModules)) {
                 delete Component.options._Ctor;
             }*/
-            HotReloadApi.reload('SignIn', SignIn.options)
+            HotReloadApi.reload('SignIn', SignIn.options);
         }
     }
 </script>

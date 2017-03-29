@@ -15,6 +15,8 @@ module.exports = {
         hotUpdateChunkFilename: 'hot/[id].[hash].hot-update.js',
         hotUpdateMainFilename: 'hot/[hash].hot-update.json'
     },
+    recordsInputPath: path.resolve(__dirname, 'webpack.records.json'),
+    recordsOutputPath: path.resolve(__dirname, './_build/webpack.records.json'),
     module: {
         rules: [
             {
