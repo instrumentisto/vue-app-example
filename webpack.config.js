@@ -33,10 +33,9 @@ module.exports = {
                 test: /\.vue$/,
                 loader: 'vue-loader',
                 options: {
-                    esModule: true,
+                    // esModule: true,
                     loaders: {
                     }
-                    // other vue-loader options go here
                 }
             },
             {
