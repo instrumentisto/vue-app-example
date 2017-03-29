@@ -1,20 +1,12 @@
-import Vue from 'vue'
-import Router from 'vue-router'
-import SignIn from '../components/pages/SignIn.vue'
+import Vue from 'vue';
+import Router from 'vue-router';
 
-Vue.use(Router)
+import SignIn from '../components/pages/SignIn.vue';
+import SignUp from '../components/pages/SignUp.vue';
 
-const SignUp = resolve => {
-    require.ensure(['../components/pages/SignUp.vue'], () => {
-        resolve(require('../components/pages/SignUp.vue'))
-    })
-}
+Vue.use(Router);
 
-const Profile = resolve => {
-    require.ensure(['../components/pages/Profile.vue'], () => {
-        resolve(require('../components/pages/Profile.vue'))
-    })
-}
+const Profile = resolve => require(['../components/pages/Profile.vue'], resolve);
 
 export default new Router({
     mode: 'history',
@@ -24,4 +16,4 @@ export default new Router({
         { path: '/sign_up', component: SignUp },
         { path: '/profile', component: Profile },
     ]
-})
+});
