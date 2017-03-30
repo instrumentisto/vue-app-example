@@ -11,7 +11,7 @@ Vue.use(VueCookie);
 Vue.use(VueForm);
 Vue.use(i18n);
 
-var app = new Vue({
+let app = new Vue({
   router,
   store,
   render: h => h(App),
