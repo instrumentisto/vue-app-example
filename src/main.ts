@@ -11,12 +11,27 @@ Vue.use(VueCookie);
 Vue.use(VueForm);
 Vue.use(i18n);
 
-const app = new Vue({
+var app = new Vue({
   router,
   store,
-  render: h => h(App)
+  render: h => h(App),
 }).$mount('#app');
 
 if (module.hot) {
-  module.hot.accept();
+  module.hot.status((status) => {
+    console.log('status', status);
+    if (status === 'abort') {
+      alert('hot checking aborted, reloading...');
+      window.location.reload();
+    }
+  });
+  module.hot.accept((errHandler) => {
+    console.log('main accept error', errHandler);
+  });
+  module.hot.dispose(() => {
+    console.log('main disposed');
+    console.log(module.hot.data);
+    app.$destroy();
+    app = null;
+  });
 }

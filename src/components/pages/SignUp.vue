@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <section>
     <h1>Sign Up</h1>
 
     <vue-form :state="formstate" method="post" v-on:submit.prevent="onSubmit">
@@ -22,7 +22,7 @@
     </vue-form>
 
     <router-link to="/sign_in">Already have an account?</router-link>
-  </div>
+  </section>
 </template>
 
 <script lang="ts">

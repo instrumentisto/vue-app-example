@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <section>
     <h1>Profile</h1>
 
     <form class="form-horizontal">
@@ -25,7 +25,7 @@
 
       <button type="button" class="btn btn-default" v-on:click="logout">Logout</button>
     </form>
-  </div>
+  </section>
 </template>
 
 <script lang="ts">
