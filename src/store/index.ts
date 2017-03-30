@@ -1,16 +1,16 @@
-import Vue from 'vue'
-import Vuex from 'vuex'
-import createPersistedState from 'vuex-persistedstate'
+import Vue from 'vue';
+import Vuex from 'vuex';
+import createPersistedState from 'vuex-persistedstate';
 
-import users from './modules/users'
+import users from './modules/users';
 
-Vue.use(Vuex)
+Vue.use(Vuex);
 
 const state = {
     loading: false,
-}
+};
 
-export default new Vuex.Store({
+const store = new Vuex.Store({
     state,
     modules: {
         users
@@ -21,4 +21,21 @@ export default new Vuex.Store({
             'users.authorized'
         ]
     })]
-})
+});
+
+if (module.hot) {
+    module.hot.accept(['./modules/users'], (updatedDependencies) => {
+        const newModuleUsers = require('./modules/users').default;
+        store.hotUpdate({
+            modules: {
+                users: newModuleUsers
+            }
+        });
+    });
+
+    module.hot.dispose(() => {
+        console.log('dispose store');
+    });
+}
+
+export default store;

@@ -1,9 +1,14 @@
 <style src="../../bower_components/bootstrap/dist/css/bootstrap.css"></style>
 
 <template>
-    <div>
-        <app-header/>
-        <router-view class="container"></router-view>
+    <div id="app">
+        <header>
+            <app-header/>
+        </header>
+        <main>
+            <router-view></router-view>
+        </main>
+        <footer></footer>
     </div>
 </template>
 
@@ -26,5 +31,11 @@
     html, body {
         height: 100%;
         width: 100%;
+    }
+
+    main > section {
+        width: 400px;
+        margin: 0 auto;
+        text-align: center;
     }
 </style>

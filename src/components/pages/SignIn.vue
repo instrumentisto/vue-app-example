@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <section>
     <h1>{{ $t('sign_in.title') }}</h1>
 
     <vue-form :state="formstate" method="post" v-on:submit.prevent="onSubmit">
@@ -24,7 +24,7 @@
     <router-link to="/sign_up">{{ $t('sign_in.do_not_have_account') }}</router-link>
     <br/>
     <router-link to="/forgot_password">{{ $t('sign_in.forgot_password') }}</router-link>
-  </div>
+  </section>
 </template>
 
 <script lang="ts">
