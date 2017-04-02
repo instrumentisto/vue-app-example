@@ -1,9 +1,7 @@
-<style src="../../bower_components/bootstrap/dist/css/bootstrap.css"></style>
-
 <template>
     <div id="app">
         <header>
-            <app-header/>
+            <navbar/>
         </header>
         <main>
             <router-view></router-view>
@@ -15,11 +13,11 @@
 <script lang="ts">
     import Vue from 'vue'
     import Component from 'vue-class-component'
-    import AppHeader from './partial/Header.vue'
+    import Navbar from './partial/Navbar.vue'
 
     @Component({
         components: {
-            AppHeader
+            Navbar
         }
     })
     export default class App extends Vue {
@@ -27,6 +25,7 @@
     }
 </script>
 
+<style src="../../bower_components/bootstrap/dist/css/bootstrap.css"></style>
 <style>
     html, body {
         height: 100%;
