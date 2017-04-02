@@ -6,4 +6,4 @@ logMsg() {
 }
 
 
-#cd /app && npm start
+cd /app/_build && node server.js

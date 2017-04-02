@@ -7,6 +7,8 @@ services:
     build: .
     expose:
       - "8080"     # express
+    ports:
+      - "8080:8080"
     volumes:
       - ./:/app
   nginx:
