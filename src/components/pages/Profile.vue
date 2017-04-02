@@ -63,12 +63,4 @@
 </script>
 
 <style scoped>
-  h1, form {
-    text-align: center;
-  }
-
-  form {
-    width: 300px;
-    margin: 0 auto;
-  }
 </style>

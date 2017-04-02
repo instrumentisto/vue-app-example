@@ -27,7 +27,7 @@
             LanguageSwitcher
         }
     })
-    export default class Header extends Vue {
+    export default class Navbar extends Vue {
 
         checkHotStatus() {
             try {
@@ -44,12 +44,12 @@
     if (module.hot) {
         HotReloadApi.install(Vue);
         if (!module.hot.data) {
-            HotReloadApi.createRecord('Header', Header.options);
+            HotReloadApi.createRecord('Header', Navbar.options);
         } else {
             /*if (module.hot.data.cssModules && JSON.stringify(module.hot.data.cssModules) !== JSON.stringify(cssModules)) {
              delete Component.options._Ctor;
              }*/
-            HotReloadApi.reload('Header', Header.options);
+            HotReloadApi.reload('Header', Navbar.options);
         }
     }
 </script>
