@@ -74,11 +74,13 @@ module.exports = {
         new VueSSRPlugin(),
         new HtmlWebpackPlugin({
             template: 'src/templates/index.server.hbs',
-            inject: false
+            filename: 'index.server.html'
         }),
         new CopyWebpackPlugin([
             { from: 'assets/i18n', to: 'i18n' },
             { from: 'assets/img', to: 'img' },
+            { from: 'assets/img/favicon.ico', to: 'assets/img/favicon.ico' },
+            { from: 'server.js', to: 'server.js' },
         ]),
     ]
 }

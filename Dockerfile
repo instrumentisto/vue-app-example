@@ -6,4 +6,4 @@ RUN chmod +x /start.sh
 
 WORKDIR /app
 
-#CMD ["/start.sh"]
+CMD ["/start.sh"]
