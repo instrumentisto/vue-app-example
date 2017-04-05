@@ -31,10 +31,14 @@
 
         setLocale(lang) {
             if (lang === this['$lang']) {
-                return
+                return;
             }
 
-//            var self = this
+            if (Object.keys(Vue['locale'](lang)).length > 0) {
+                Vue.config['lang'] = lang;
+                return;
+            }
+
             Vue['locale'](lang, function () {
 //                self.loading = true
                 return fetch('/i18n/' + lang + '.json', {
@@ -55,7 +59,7 @@
                 })
             }, function () {
                 Vue.config['lang'] = lang
-            })
+            });
         }
 
     }
