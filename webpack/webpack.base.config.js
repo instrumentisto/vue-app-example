@@ -1,22 +1,13 @@
-const path = require('path')
-const webpack = require('webpack')
-const CopyWebpackPlugin = require('copy-webpack-plugin')
-const HtmlWebpackPlugin = require('html-webpack-plugin')
-const VueSSRPlugin = require('vue-ssr-webpack-plugin')
+var path = require('path')
+var webpack = require('webpack')
 
 module.exports = {
-    target: 'node',
-    entry: './src/main.server.ts',
     output: {
         path: path.resolve(__dirname, './_build'),
-        // publicPath: '/',
         filename: 'build.js',
-        // hotUpdateChunkFilename: 'hot/[id].[hash].hot-update.js',
-        // hotUpdateMainFilename: 'hot/[hash].hot-update.json',
-        libraryTarget: 'commonjs2'
     },
-    // recordsInputPath: path.resolve(__dirname, 'webpack.records.json'),
-    // recordsOutputPath: path.resolve(__dirname, './_build/webpack.records.json'),
+    recordsInputPath: path.resolve(__dirname, 'webpack.records.json'),
+    recordsOutputPath: path.resolve(__dirname, './_build/webpack.records.json'),
     module: {
         rules: [
             {
@@ -64,25 +55,7 @@ module.exports = {
     performance: {
         hints: false
     },
-    externals: Object.keys(require('./package.json').dependencies),
-    devtool: '#source-map',
-    plugins: [
-        new webpack.DefinePlugin({
-            'process.env.NODE_ENV': JSON.stringify(process.env.NODE_ENV || 'development'),
-            'process.env.VUE_ENV': '"server"'
-        }),
-        new VueSSRPlugin(),
-        new HtmlWebpackPlugin({
-            template: 'src/templates/index.server.hbs',
-            filename: 'index.server.html'
-        }),
-        new CopyWebpackPlugin([
-            { from: 'assets/i18n', to: 'i18n' },
-            { from: 'assets/img', to: 'img' },
-            { from: 'assets/img/favicon.ico', to: 'assets/img/favicon.ico' },
-            { from: 'server.js', to: 'server.js' },
-        ]),
-    ]
+    devtool: '#eval-source-map',
 }
 
 if (process.env.NODE_ENV === 'production') {
