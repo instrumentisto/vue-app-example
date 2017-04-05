@@ -28,10 +28,11 @@
 </template>
 
 <script lang="ts">
-    import Vue from 'vue'
-    import Component from 'vue-class-component'
-    import { Action, namespace } from 'vuex-class'
-    import HotReloadApi from 'vue-hot-reload-api'
+    import Vue from 'vue';
+    import Component from 'vue-class-component';
+    import { Action, namespace } from 'vuex-class';
+
+    import HotApi from '../../hot/api';
 
     const UsersAction = namespace('users', Action);
 
@@ -72,15 +73,15 @@
         }
     }
 
-    if (module.hot) {
-        HotReloadApi.install(Vue);
+    if (HotApi && module.hot) {
+        HotApi.install(Vue);
         if (!module.hot.data) {
-            HotReloadApi.createRecord('SignIn', SignIn.options);
+            HotApi.createRecord('SignIn', SignIn.options);
         } else {
             /*if (module.hot.data.cssModules && JSON.stringify(module.hot.data.cssModules) !== JSON.stringify(cssModules)) {
                 delete Component.options._Ctor;
             }*/
-            HotReloadApi.reload('SignIn', SignIn.options);
+            HotApi.reload('SignIn', SignIn.options);
         }
     }
 </script>

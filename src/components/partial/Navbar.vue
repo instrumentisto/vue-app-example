@@ -16,11 +16,11 @@
 </template>
 
 <script lang="ts">
-    import Vue from 'vue'
-    import Component from 'vue-class-component'
-    import HotReloadApi from 'vue-hot-reload-api'
+    import Vue from 'vue';
+    import Component from 'vue-class-component';
 
-    import LanguageSwitcher from './LanguageSwitcher.vue'
+    import HotApi from '../../hot/api';
+    import LanguageSwitcher from './LanguageSwitcher.vue';
 
     @Component({
         components: {
@@ -41,15 +41,15 @@
         }
     }
 
-    if (module.hot) {
-        HotReloadApi.install(Vue);
+    if (HotApi && module.hot) {
+        HotApi.install(Vue);
         if (!module.hot.data) {
-            HotReloadApi.createRecord('Header', Navbar.options);
+            HotApi.createRecord('Header', Navbar.options);
         } else {
             /*if (module.hot.data.cssModules && JSON.stringify(module.hot.data.cssModules) !== JSON.stringify(cssModules)) {
              delete Component.options._Ctor;
              }*/
-            HotReloadApi.reload('Header', Navbar.options);
+            HotApi.reload('Header', Navbar.options);
         }
     }
 </script>
