@@ -3,11 +3,11 @@ var webpack = require('webpack')
 
 module.exports = {
     output: {
-        path: path.resolve(__dirname, './_build'),
+        path: path.resolve(__dirname, '../_build'),
         filename: 'build.js',
     },
     recordsInputPath: path.resolve(__dirname, 'webpack.records.json'),
-    recordsOutputPath: path.resolve(__dirname, './_build/webpack.records.json'),
+    recordsOutputPath: path.resolve(__dirname, '../_build/webpack.records.json'),
     module: {
         rules: [
             {
