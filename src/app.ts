@@ -4,13 +4,13 @@ import VueForm from 'vue-form';
 import { sync } from 'vuex-router-sync';
 
 import App from './components/App.vue';
-import i18n from './i18n/locales';
 import router from './router';
 import store from './store';
 
 Vue.use(VueCookie);
 Vue.use(VueForm);
-Vue.use(i18n);
+
+require('./i18n/locales');
 
 sync(store, router);
 

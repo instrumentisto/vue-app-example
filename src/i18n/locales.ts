@@ -5,31 +5,23 @@ Vue.use(VueI18n);
 
 const languages = ['en', 'ru', 'uk'],
     languagesPriority = [
+        Vue.cookie.get('language'),
         navigator.language,
-        '', // TODO: get from cookie
         'en'
     ];
 
-let startLang;
-
 for (let lang of languagesPriority) {
     if (languages.find(value => value === lang)) {
-        startLang = lang;
+        Vue.config['lang'] = lang;
         break;
     }
 }
 
 for (let lang of languages) {
-    // Bundle app starting language data to the build.
+    // Put app starting language data to the bundle.
     // Other languages would be loaded by lazy load when they will be needed.
-    let data = ((lang === startLang))
+    let data = ((lang === Vue.config['lang']))
         ? require('../../assets/i18n/' + lang + '.json')
         : {};
-    Vue['locale'](lang, data, () => {
-        console.log('loaded', lang);
-    });
+    Vue['locale'](lang, data);
 }
-
-Vue.config['lang'] = startLang;
-
-export default VueI18n;
