@@ -34,8 +34,10 @@
                 return;
             }
 
+            Vue.config['lang'] = lang;
+            Vue.cookie.set('language', lang);
+
             if (Object.keys(Vue['locale'](lang)).length > 0) {
-                Vue.config['lang'] = lang;
                 return;
             }
 
@@ -57,9 +59,9 @@
                         return Promise.resolve(json)
                     }
                 })
-            }, function () {
+            }/*, function () {
                 Vue.config['lang'] = lang
-            });
+            }*/);
         }
 
     }
