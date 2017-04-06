@@ -16,5 +16,12 @@
     "login": "Войти",
     "do_not_have_account": "Еще нет аккаунта?",
     "forgot_password": "Забыли пароль?"
+  },
+  "profile": {
+    "title": "Мой профиль",
+    "logout_label": "Выход"
+  },
+  "general": {
+    "total_registrations_label": "Нас уже {count}!"
   }
 }
