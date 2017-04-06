@@ -16,7 +16,7 @@ export const getters = {
 export const actions = {
     getAll ({ commit }) {
         return Api.getAll().then((users) => {
-            commit(types.SET_USERS_LIST, users)
+            commit(types.SET_USERS_LIST, { users });
         })
     },
     register ({ commit }, { user }) {
