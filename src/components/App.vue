@@ -7,7 +7,9 @@
             <router-view></router-view>
         </main>
         <footer>
-            <span class="pull-right">Total registrations: <b>{{ usersTotalCount }}</b></span>
+            <span class="pull-right">
+                {{ $t('general.total_registrations_label', { count: usersTotalCount }) }}
+            </span>
         </footer>
     </div>
 </template>

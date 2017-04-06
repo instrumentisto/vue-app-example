@@ -7,8 +7,8 @@
 </template>
 
 <script lang="ts">
-    import Vue from 'vue'
-    import Component from 'vue-class-component'
+    import Vue from 'vue';
+    import Component from 'vue-class-component';
 
     @Component({
         props: {
@@ -18,15 +18,15 @@
     export default class LanguageSwitcher extends Vue {
 
         isActive(lang) {
-            return (lang === this['$lang'])
+            return (lang === this['$lang']);
         }
 
         get locales() {
-            let locales = []
+            let locales = [];
             Object.keys(this.$root['_$lang']['locales']).forEach((lang) => {
-                locales.push(lang)
-            })
-            return locales
+                locales.push(lang);
+            });
+            return locales;
         }
 
         setLocale(lang) {
@@ -50,18 +50,16 @@
                         'Content-Type': 'application/json'
                     }
                 }).then(function (res) {
-                    return res.json()
+                    return res.json();
                 }).then(function (json) {
 //                    self.loading = false
                     if (Object.keys(json).length === 0) {
-                        return Promise.reject(new Error('locale empty !!'))
+                        return Promise.reject(new Error('locale empty !!'));
                     } else {
-                        return Promise.resolve(json)
+                        return Promise.resolve(json);
                     }
-                })
-            }/*, function () {
-                Vue.config['lang'] = lang
-            }*/);
+                });
+            });
         }
 
     }

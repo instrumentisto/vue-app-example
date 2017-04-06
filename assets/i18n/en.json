@@ -16,5 +16,12 @@
     "login": "Log In",
     "do_not_have_account": "Don't have an account?",
     "forgot_password": "Forgot password?"
+  },
+  "profile": {
+    "title": "My Profile",
+    "logout_label": "Logout"
+  },
+  "general": {
+    "total_registrations_label": "There are already {count} of us!"
   }
 }

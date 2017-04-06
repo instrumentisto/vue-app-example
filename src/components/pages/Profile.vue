@@ -1,6 +1,6 @@
 <template>
   <section>
-    <h1>Profile</h1>
+    <h1>{{ $t('profile.title') }}</h1>
 
     <form class="form-horizontal">
       <div class="form-group">
@@ -10,20 +10,20 @@
       </div>
 
       <div class="form-group">
-        <label class="col-sm-2 control-label">Name</label>
+        <label class="col-sm-2 control-label">{{ $t('user.name') }}</label>
         <div class="col-sm-10">
           <p class="form-control-static">{{ user.name }}</p>
         </div>
       </div>
 
       <div class="form-group">
-        <label class="col-sm-2 control-label">Email</label>
+        <label class="col-sm-2 control-label">{{ $t('user.email') }}</label>
         <div class="col-sm-10">
           <p class="form-control-static">{{ user.email }}</p>
         </div>
       </div>
 
-      <button type="button" class="btn btn-default" v-on:click="logout">Logout</button>
+      <button type="button" class="btn btn-default" v-on:click="logout">{{ $t('profile.logout_label') }}</button>
     </form>
   </section>
 </template>
