@@ -29,11 +29,11 @@
 </template>
 
 <script lang="ts">
-    import Vue from 'vue'
-    import Component from 'vue-class-component'
-    import { Getter, Mutation, namespace } from 'vuex-class'
+    import Vue from 'vue';
+    import Component from 'vue-class-component';
+    import { Getter, Mutation, namespace } from 'vuex-class';
 
-    import mutationTypes from '../../store/mutation-types'
+    import mutationTypes from '../../store/mutation-types';
 
     const UsersGetter = namespace('users', Getter);
     const UsersMutation = namespace('users', Mutation);
@@ -41,26 +41,25 @@
     @Component({})
     export default class Profile extends Vue {
 
-        @UsersGetter('authorized') authorizedUser;
+        @UsersGetter('authorized')
+        private authorizedUser;
 
-        @UsersMutation(mutationTypes.RESET_AUTHORIZED_USER) resetAuthorizedUser;
+        @UsersMutation(mutationTypes.RESET_AUTHORIZED_USER)
+        private resetAuthorizedUser;
 
-        user = {};
+        private user = {};
 
-        created(): void {
-            let user = this.authorizedUser;
+        private created(): void {
+            const user = this.authorizedUser;
             if (user === null) {
                 this.logout();
             }
             this.user = user;
         }
 
-        logout(): void {
+        private logout(): void {
             this.resetAuthorizedUser();
             this.$router.push('/sign_in');
         }
     }
 </script>
-
-<style scoped>
-</style>

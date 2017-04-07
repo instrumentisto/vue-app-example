@@ -9,7 +9,7 @@
                 <button type="button" class="btn btn-default navbar-btn" @click="checkHotStatus()">Check for updates</button>
             </div>
             <div class="collapse navbar-collapse">
-                <language-switcher container-classes="nav navbar-nav navbar-right" />
+                <language-switcher container-classes="nav navbar-nav navbar-right" ></language-switcher>
             </div>
         </div>
     </nav>
@@ -24,19 +24,19 @@
 
     @Component({
         components: {
-            LanguageSwitcher
-        }
+            LanguageSwitcher,
+        },
     })
     export default class Navbar extends Vue {
 
-        checkHotStatus() {
+        private checkHotStatus() {
             try {
                 module.hot.check(true, (err, updatedModules) => {
-                    console.log('check err', err);
-                    console.log('check modules', updatedModules);
+//                    console.log('check err', err);
+//                    console.log('check modules', updatedModules);
                 });
-            } catch(e) {
-                console.log('check catch', e.toString());
+            } catch (e) {
+//                console.log('check catch', e.toString());
             }
         }
     }
@@ -46,9 +46,11 @@
         if (!module.hot.data) {
             HotApi.createRecord('Header', Navbar.options);
         } else {
-            /*if (module.hot.data.cssModules && JSON.stringify(module.hot.data.cssModules) !== JSON.stringify(cssModules)) {
-             delete Component.options._Ctor;
-             }*/
+            if (module.hot.data.cssModules
+                && JSON.stringify(module.hot.data.cssModules) !== JSON.stringify(cssModules)
+            ) {
+                delete Component.options._Ctor;
+            }
             HotApi.reload('Header', Navbar.options);
         }
     }
