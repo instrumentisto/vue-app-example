@@ -47,7 +47,7 @@ export default class Users {
         return this.fetch().then((users: any[]) => {
             let existingUser = users.find(user => user.email === newUser.email);
             if (existingUser) {
-                return Promise.reject('Email already taken');
+                return Promise.reject(1);
             }
 
             newUser.id = Util.randomString(32);
@@ -65,7 +65,7 @@ export default class Users {
             });
 
             if (!user) {
-                return Promise.reject('User not found');
+                return Promise.reject(1);
             }
 
             return user;

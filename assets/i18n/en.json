@@ -10,7 +10,9 @@
     "email_format": "Wrong email format"
   },
   "errors": {
-    "access_denied": "Access denied"
+    "access_denied": "Access denied",
+    "email_already_taken": "This email is already taken, please choose another one",
+    "common": "Something went wrong..."
   },
   "sign_in": {
     "title": "Sign In",
