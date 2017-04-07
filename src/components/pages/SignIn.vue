@@ -39,34 +39,35 @@
     @Component
     export default class SignIn extends Vue {
 
-        @UsersAction('login') login;
+        @UsersAction('login')
+        private login;
 
-        email: string = ''
+        private email: string = '';
 
-        password: string = ''
+        private password: string = '';
 
-        error: string = ''
+        private error: string = '';
 
-        formstate: Object = {}
+        private formstate: object = {};
 
-        fieldClassName(field): string {
+        private fieldClassName(field): string {
             if (!field) {
-                return ''
+                return '';
             }
             if ((field.$touched || field.$submitted) && field.$invalid) {
-                return 'has-error'
+                return 'has-error';
             }
         }
 
-        onSubmit(): void {
-            if (this.formstate['$invalid']) {
+        private onSubmit(): void {
+            if (this.formstate.$invalid) {
                 return;
             }
 
             this.login({
                 email: this.email,
-                password: this.password
-            }).then((user: any) => {
+                password: this.password,
+            }).then(() => {
                 this.$router.push('/profile');
             }).catch((error) => {
                 let errorMsg = this.$t('errors.common');

@@ -26,77 +26,78 @@
 </template>
 
 <script lang="ts">
-    import Vue from 'vue'
-    import Component from 'vue-class-component'
-    import { Action, namespace } from 'vuex-class'
+    import Vue from 'vue';
+    import Component from 'vue-class-component';
+    import { Action, namespace } from 'vuex-class';
 
     const UsersAction = namespace('users', Action);
 
     @Component({})
     export default class SignUp extends Vue {
 
-      @UsersAction('register') register;
+        @UsersAction('register')
+        private register;
 
-      name: string = '';
+        private name: string = '';
 
-      email: string = '';
+        private email: string = '';
 
-      password: string = '';
+        private password: string = '';
 
-      passwordRepeat: string = '';
+        private passwordRepeat: string = '';
 
-      image: string = '';
+        private image: string = '';
 
-      formstate: Object = {};
+        private formstate: object = {};
 
-      fieldClassName(field): string {
-        if (!field) {
-          return ''
+        private fieldClassName(field): string {
+            if (!field) {
+              return '';
+            }
+            if ((field.$touched || field.$submitted) && field.$invalid) {
+              return 'has-error';
+            }
         }
-        if ((field.$touched || field.$submitted) && field.$invalid) {
-          return 'has-error'
+
+        private onImageChange(changeEvent) {
+            const files = changeEvent.target.files || changeEvent.dataTransfer.files;
+            if (!files.length) {
+                return;
+            }
+
+            const reader = new FileReader();
+            const self = this;
+
+            reader.onload = (loadedEvent) => {
+                self.image = (loadedEvent.target as FileReader).result;
+            };
+            reader.readAsDataURL(files[0]);
         }
-      }
 
-      onImageChange(e) {
-          var files = e.target.files || e.dataTransfer.files
-          if (!files.length) {
-              return
-          }
+        private onSubmit(): void {
+            if (this.formstate.$invalid) {
+                return;
+            }
 
-          var reader = new FileReader()
-          var self = this
-
-          reader.onload = (e) => {
-              self.image = (e.target as FileReader).result
-          }
-          reader.readAsDataURL(files[0])
-      }
-
-      onSubmit(): void {
-          if (this.formstate['$invalid']) {
-              return
-          }
-
-          // TODO: check image and set default if it's empty
-          this.register({
-              user: {
-                  name: this.name,
-                  email: this.email,
-                  password: this.password,
-                  image: this.image
-              }
-          }).then((user: any) => {
-              this.$router.push('/profile');
-          }).catch((error) => {
-              let errorMsg = this.$t('errors.common');
-              switch (error) {
-                  case 1:
-                      errorMsg = this.$t('errors.email_already_taken');
-                      break;
-              }
-              this.error = errorMsg;
-          });
-      }
+            // TODO: check image and set default if it's empty
+            this.register({
+                user: {
+                    email: this.email,
+                    image: this.image,
+                    name: this.name,
+                    password: this.password,
+                },
+            }).then(() => {
+                this.$router.push('/profile');
+            }).catch((error) => {
+                let errorMsg = this.$t('errors.common');
+                switch (error) {
+                    case 1:
+                        errorMsg = this.$t('errors.email_already_taken');
+                        break;
+                }
+                this.error = errorMsg;
+            });
+        }
     }
 </script>

@@ -1,7 +1,7 @@
 <template>
     <div id="app">
         <header>
-            <navbar/>
+            <navbar></navbar>
         </header>
         <main>
             <router-view></router-view>
@@ -17,7 +17,7 @@
 <script lang="ts">
     import Vue from 'vue';
     import Component from 'vue-class-component';
-    import { Getter, Action, namespace } from 'vuex-class';
+    import { Action, Getter, namespace } from 'vuex-class';
 
     import Navbar from './partial/Navbar.vue';
 
@@ -26,16 +26,18 @@
 
     @Component({
         components: {
-            Navbar
-        }
+            Navbar,
+        },
     })
     export default class App extends Vue {
 
-        @UsersGetter('totalCount') usersTotalCount;
+        @UsersGetter('totalCount')
+        private usersTotalCount;
 
-        @UsersAction('getAll') getAllUsers;
+        @UsersAction('getAll')
+        private getAllUsers;
 
-        created(): void {
+        private created(): void {
             this.getAllUsers();
         }
     }
