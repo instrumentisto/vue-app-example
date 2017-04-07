@@ -1,27 +1,27 @@
 <template>
   <section>
-    <h1>Sign Up</h1>
+    <h1>{{ $t('sign_up.title') }}</h1>
 
     <vue-form :state="formstate" method="post" v-on:submit.prevent="onSubmit">
       <validate class="form-group" :class="fieldClassName(formstate.name)">
-        <input v-model="name" name="name" type="text" required class="form-control" placeholder="Name">
+        <input v-model="name" name="name" type="text" required class="form-control" :placeholder="$t('user.name')">
       </validate>
       <validate class="form-group" :class="fieldClassName(formstate.email)">
-        <input v-model="email" name="email" type="email" required class="form-control" placeholder="Email">
+        <input v-model="email" name="email" type="email" required class="form-control" :placeholder="$t('user.email')">
       </validate>
       <validate class="form-group" :class="fieldClassName(formstate.password)">
-        <input v-model="password" name="password" type="password" required class="form-control" placeholder="Password">
+        <input v-model="password" name="password" type="password" required class="form-control" :placeholder="$t('user.password')">
       </validate>
       <validate class="form-group" :class="fieldClassName(formstate.passwordRepeat)">
-        <input v-model="passwordRepeat" name="password_repeat" type="password" required class="form-control" placeholder="Password again">
+        <input v-model="passwordRepeat" name="password_repeat" type="password" required class="form-control" :placeholder="$t('user.password_again')">
       </validate>
       <validate class="form-group" :class="fieldClassName(formstate.image)">
         <input @change="onImageChange" name="image" type="file" class="form-control">
       </validate>
-      <button type="submit" class="btn btn-default">Sign Up</button>
+      <button type="submit" class="btn btn-default">{{ $t('sign_up.sign_up_button') }}</button>
     </vue-form>
 
-    <router-link to="/sign_in">Already have an account?</router-link>
+    <router-link to="/sign_in">{{ $t('sign_up.already_have_account') }}</router-link>
   </section>
 </template>
 

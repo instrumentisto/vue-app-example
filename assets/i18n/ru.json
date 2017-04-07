@@ -2,7 +2,8 @@
   "user": {
     "name": "Имя",
     "email": "Email",
-    "password": "Пароль"
+    "password": "Пароль",
+    "password_again": "Пароль еще раз"
   },
   "validation": {
     "required": "Обязательное",
@@ -23,5 +24,10 @@
   },
   "general": {
     "total_registrations_label": "Нас уже {count}!"
+  },
+  "sign_up": {
+    "title": "Регистрация",
+    "already_have_account": "Уже есть аккаунт?",
+    "sign_up_button": "Зарегистрироваться"
   }
 }
