@@ -1,7 +1,8 @@
-import Vue = require("vue");
+import Vue = require('vue');
 
-declare module "vue/types/vue" {
+declare module 'vue/types/vue' {
+    //noinspection TsLint
     interface Vue {
-        $t(keypath: String, lang?: String);
+        $t(keypath: string, lang?: string);
     }
 }
