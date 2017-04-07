@@ -7,7 +7,7 @@ import users from './modules/users';
 Vue.use(Vuex);
 
 const state = {
-    loading: false,
+    loading: false
 };
 
 const store = new Vuex.Store({

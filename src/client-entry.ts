@@ -1,4 +1,12 @@
+import Vue from 'vue';
+
 import { app } from './app';
+import I18n from './i18n';
+
+I18n.init([
+    Vue.cookie.get('language'),
+    navigator.language
+]);
 
 app.$mount('#app');
 
@@ -10,9 +18,11 @@ if (module.hot) {
       window.location.reload();
     }
   });
+
   module.hot.accept((errHandler) => {
     console.log('main accept error', errHandler);
   });
+
   module.hot.dispose(() => {
     console.log('main disposed');
     console.log(module.hot.data);

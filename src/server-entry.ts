@@ -1,4 +1,5 @@
 import { app, router, store } from './app';
+import I18n from './i18n';
 
 export default context => {
     router.push(context.url);
@@ -8,8 +9,8 @@ export default context => {
             return component.prefetch(store)
         }
     })).then(() => {
-        // set initial store on context
-        // the request handler will inline the state in the HTML response.
+        I18n.init(context.accept_languages);
+
         context.initialState = store.state;
 
         return app;

@@ -3,8 +3,10 @@
 const fs = require('fs');
 const path = require('path');
 const express = require('express');
+const parser = require('accept-language-parser');
 const resolve = file => path.resolve(__dirname, file);
 
+// TODO: add render context along with "template" parameter
 const renderer = require('vue-server-renderer').createBundleRenderer(require('./vue-ssr-bundle.json'), {
     template: fs.readFileSync(resolve('./index.server.html'), 'utf-8')
 });
@@ -32,7 +34,12 @@ app.get('*', (req, res) => {
         }
     };
 
-    renderer.renderToStream({ url: req.url })
+    let acceptLanguages = [];
+    for (let lang of parser.parse(req.headers['accept-language'])) {
+        acceptLanguages.push(lang.code);
+    }
+
+    renderer.renderToStream({ url: req.url, accept_languages: acceptLanguages })
         .on('error', errorHandler)
         .on('end', () => console.log(`whole request: ${Date.now() - s}ms`))
         .pipe(res);

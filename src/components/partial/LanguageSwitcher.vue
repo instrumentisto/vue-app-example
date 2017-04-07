@@ -1,7 +1,7 @@
 <template>
     <ul :class="containerClasses">
-        <li v-for="lang in locales" v-bind:class="{ active: isActive(lang) }">
-            <a @click="setLocale(lang)" href="javascript:void(0)">{{ lang }}</a>
+        <li v-for="lang in languages" v-bind:class="{ active: isActive(lang) }">
+            <a @click="changeLanguage(lang)" href="javascript:void(0)">{{ lang }}</a>
         </li>
     </ul>
 </template>
@@ -10,6 +10,8 @@
     import Vue from 'vue';
     import Component from 'vue-class-component';
 
+    import I18n from '../../i18n';
+
     @Component({
         props: {
             containerClasses: ''
@@ -17,19 +19,15 @@
     })
     export default class LanguageSwitcher extends Vue {
 
+        get languages() {
+            return I18n.LANGUAGES;
+        }
+
         isActive(lang) {
             return (lang === this['$lang']);
         }
 
-        get locales() {
-            let locales = [];
-            Object.keys(this.$root['_$lang']['locales']).forEach((lang) => {
-                locales.push(lang);
-            });
-            return locales;
-        }
-
-        setLocale(lang) {
+        changeLanguage(lang) {
             if (lang === this['$lang']) {
                 return;
             }
