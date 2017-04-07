@@ -10,7 +10,9 @@
     "email_format": "Не вірный формат Email"
   },
   "errors": {
-    "access_denied": "Не вірний логін/пароль"
+    "access_denied": "Не вірний логін/пароль",
+    "email_already_taken": "Цей email вже зайнято, будь ласка, оберіть інший",
+    "common": "На жаль, щось пішло не так..."
   },
   "sign_in": {
     "title": "Авторизація",

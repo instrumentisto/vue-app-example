@@ -63,13 +63,20 @@
                 return;
             }
 
-            this.login({ email: this.email, password: this.password })
-                .then((user: any) => {
-                    this.$router.push('/profile');
-                })
-                .catch((error) => {
-                    this.error = this.$t('errors.access_denied');
-                });
+            this.login({
+                email: this.email,
+                password: this.password
+            }).then((user: any) => {
+                this.$router.push('/profile');
+            }).catch((error) => {
+                let errorMsg = this.$t('errors.common');
+                switch (error) {
+                  case 1:
+                    errorMsg = this.$t('errors.access_denied');
+                    break;
+                }
+                this.error = errorMsg;
+            });
         }
     }
 
@@ -85,6 +92,3 @@
         }
     }
 </script>
-
-<style scoped>
-</style>

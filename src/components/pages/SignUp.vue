@@ -86,17 +86,17 @@
                   password: this.password,
                   image: this.image
               }
-          })
-              .then((user: any) => {
-                this.$router.push('/profile');
-              })
-              .catch((error) => {
-                  console.log('signup error', error);
-//                this.error = this.$t('errors.access_denied');
-              });
+          }).then((user: any) => {
+              this.$router.push('/profile');
+          }).catch((error) => {
+              let errorMsg = this.$t('errors.common');
+              switch (error) {
+                  case 1:
+                      errorMsg = this.$t('errors.email_already_taken');
+                      break;
+              }
+              this.error = errorMsg;
+          });
       }
     }
 </script>
-
-<style scoped>
-</style>
