@@ -6,7 +6,7 @@ import SignUp from '../components/pages/SignUp.vue';
 
 Vue.use(VueRouter);
 
-const Profile = resolve => require(['../components/pages/Profile.vue'], resolve);
+const Profile = (resolve) => require(['../components/pages/Profile.vue'], resolve);
 
 export default new VueRouter({
     mode: 'history',
@@ -15,5 +15,5 @@ export default new VueRouter({
         { path: '/sign_in', component: SignIn },
         { path: '/sign_up', component: SignUp },
         { path: '/profile', component: Profile },
-    ]
+    ],
 });

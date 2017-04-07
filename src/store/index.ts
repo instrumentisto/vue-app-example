@@ -7,20 +7,20 @@ import users from './modules/users';
 Vue.use(Vuex);
 
 const state = {
-    loading: false
+    loading: false,
 };
 
 const store = new Vuex.Store({
     state,
     modules: {
-        users
+        users,
     },
     plugins: [createPersistedState({
         key: 'vue-app-example-vuex',
         paths: [
-            'users.authorized'
-        ]
-    })]
+            'users.authorized',
+        ],
+    })],
 });
 
 if (module.hot) {
@@ -28,13 +28,13 @@ if (module.hot) {
         const newModuleUsers = require('./modules/users').default;
         store.hotUpdate({
             modules: {
-                users: newModuleUsers
-            }
+                users: newModuleUsers,
+            },
         });
     });
 
     module.hot.dispose(() => {
-        console.log('dispose store');
+        // console.log('dispose store');
     });
 }
 
