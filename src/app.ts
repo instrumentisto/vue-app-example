@@ -10,8 +10,6 @@ import store from './store';
 Vue.use(VueCookie);
 Vue.use(VueForm);
 
-require('./i18n/locales');
-
 sync(store, router);
 
 const app = new Vue({

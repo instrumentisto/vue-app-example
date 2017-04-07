@@ -1,30 +1,30 @@
-import Api from '../../api/users'
-import types from '../mutation-types'
+import Api from '../../api/users';
+import types from '../mutation-types';
 
 export const state = {
     all: [],
     authorized: null
-}
+};
 
 export const getters = {
     totalCount: state => {
         return state.all.length;
     },
     authorized: state => state.authorized
-}
+};
 
 export const actions = {
     getAll ({ commit }) {
         return Api.getAll().then((users) => {
             commit(types.SET_USERS_LIST, { users });
-        })
+        });
     },
     register ({ commit }, { user }) {
         return Api.register(user).then((addedUser) => {
             commit(types.ADD_USER, addedUser);
             commit(types.SET_AUTHORIZED_USER, { user });
             return addedUser;
-        })
+        });
     },
     login ({ commit }, { email, password }) {
         return Api.login(email, password).then((user) => {
@@ -32,7 +32,7 @@ export const actions = {
             return user;
         });
     }
-}
+};
 
 export const mutations = {
     [types.SET_USERS_LIST] (state, { users }) {
@@ -48,7 +48,7 @@ export const mutations = {
     [types.RESET_AUTHORIZED_USER] (state) {
         state.authorized = null;
     }
-}
+};
 
 export default {
     state,
@@ -56,4 +56,4 @@ export default {
     actions,
     mutations,
     namespaced: true
-}
+};

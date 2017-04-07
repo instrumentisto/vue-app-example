@@ -22,6 +22,13 @@ export default class Users {
     private static fetch(): Promise<any[]> {
         return new Promise((resolve, reject) => {
             setTimeout(() => {
+                let localStorage;
+                if (process.browser) {
+                    localStorage = window.localStorage;
+                } else {
+                    let LocalStorage = require('node-localstorage').LocalStorage;
+                    localStorage = new LocalStorage('./scratch');
+                }
                 let users = JSON.parse(localStorage.getItem(this.STORAGE_KEY));
                 if (!users) {
                     localStorage.setItem(this.STORAGE_KEY, JSON.stringify(this.INITIAL_USERS));

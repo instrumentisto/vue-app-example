@@ -12,6 +12,9 @@ module.exports = merge(base, {
         hotUpdateChunkFilename: 'hot/[id].[hash].hot-update.js',
         hotUpdateMainFilename: 'hot/[hash].hot-update.json'
     },
+    node: {
+        fs: "empty"
+    },
     plugins: [
         new HtmlWebpackPlugin({
             template: 'src/templates/index.hbs'
