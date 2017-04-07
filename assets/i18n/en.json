@@ -2,7 +2,8 @@
   "user": {
     "name": "Name",
     "email": "Email",
-    "password": "Password"
+    "password": "Password",
+    "password_again": "Password again"
   },
   "validation": {
     "required": "Required",
@@ -23,5 +24,10 @@
   },
   "general": {
     "total_registrations_label": "There are already {count} of us!"
+  },
+  "sign_up": {
+    "title": "Sign Up",
+    "already_have_account": "Already have an account?",
+    "sign_up_button": "Sign Up"
   }
 }
