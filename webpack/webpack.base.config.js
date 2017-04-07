@@ -35,6 +35,7 @@ module.exports = {
                 options: {
                     // esModule: true,
                     loaders: {
+                        ts: 'ts-loader!tslint-loader'
                     }
                 }
             },
