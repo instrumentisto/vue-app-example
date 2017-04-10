@@ -1,7 +1,7 @@
 import Vue from 'vue';
 
+import I18n from '~i18n';
 import { app } from './app';
-import I18n from './i18n';
 
 I18n.init([
     Vue.cookie.get('language'),

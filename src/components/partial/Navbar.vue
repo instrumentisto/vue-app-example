@@ -19,8 +19,8 @@
     import Vue from 'vue';
     import Component from 'vue-class-component';
 
-    import HotApi from '../../hot/api';
-    import LanguageSwitcher from './LanguageSwitcher.vue';
+    import LanguageSwitcher from '~components/partial/LanguageSwitcher.vue';
+    import HotApi from '~hot/api';
 
     @Component({
         components: {

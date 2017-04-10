@@ -1,12 +1,12 @@
-var path = require('path')
-var webpack = require('webpack')
+const path = require('path');
+const webpack = require('webpack');
 
 module.exports = {
     output: {
         path: path.resolve(__dirname, '../_build'),
         filename: 'build.js',
     },
-    recordsInputPath: path.resolve(__dirname, 'webpack.records.json'),
+    recordsInputPath: path.resolve(__dirname, '../webpack/records.json'),
     recordsOutputPath: path.resolve(__dirname, '../_build/webpack.records.json'),
     module: {
         rules: [
@@ -58,7 +58,16 @@ module.exports = {
     },
     resolve: {
         alias: {
-            'vue$': 'vue/dist/vue.esm.js'
+            '~api': path.join(__dirname, '../src/api'),
+            '~bower': path.join(__dirname, '../bower_components'),
+            '~components': path.join(__dirname, '../src/components'),
+            '~hot': path.join(__dirname, '../src/hot'),
+            '~i18n': path.join(__dirname, '../src/i18n'),
+            '~router': path.join(__dirname, '../src/router'),
+            '~store': path.join(__dirname, '../src/store'),
+            '~templates': path.join(__dirname, '../src/templates'),
+            '~util': path.join(__dirname, '../src/util'),
+            'vue$': 'vue/dist/vue.esm.js',
         },
         extensions: [".tsx", ".ts", ".js"]
     },
