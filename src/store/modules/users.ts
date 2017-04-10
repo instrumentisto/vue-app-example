@@ -1,5 +1,5 @@
-import Api from '../../api/users';
-import types from '../mutation-types';
+import Api from '~api/users';
+import types from '~store/mutation-types';
 
 export const localState = {
     all: [],

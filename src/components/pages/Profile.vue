@@ -33,7 +33,7 @@
     import Component from 'vue-class-component';
     import { Getter, Mutation, namespace } from 'vuex-class';
 
-    import mutationTypes from '../../store/mutation-types';
+    import mutationTypes from '~store/mutation-types';
 
     const UsersGetter = namespace('users', Getter);
     const UsersMutation = namespace('users', Mutation);

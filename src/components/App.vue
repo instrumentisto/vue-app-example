@@ -19,7 +19,7 @@
     import Component from 'vue-class-component';
     import { Action, Getter, namespace } from 'vuex-class';
 
-    import Navbar from './partial/Navbar.vue';
+    import Navbar from '~components/partial/Navbar.vue';
 
     const UsersGetter = namespace('users', Getter);
     const UsersAction = namespace('users', Action);
@@ -43,7 +43,7 @@
     }
 </script>
 
-<style src="../../bower_components/bootstrap/dist/css/bootstrap.css"></style>
+<style src="~bower/bootstrap/dist/css/bootstrap.css"></style>
 <style>
     html, body, #app, main {
         height: 100%;

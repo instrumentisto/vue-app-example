@@ -1,10 +1,10 @@
-const path = require('path')
-const webpack = require('webpack')
-const CopyWebpackPlugin = require('copy-webpack-plugin')
-const HtmlWebpackPlugin = require('html-webpack-plugin')
-const merge = require('webpack-merge')
+const path = require('path');
+const webpack = require('webpack');
+const CopyWebpackPlugin = require('copy-webpack-plugin');
+const HtmlWebpackPlugin = require('html-webpack-plugin');
+const merge = require('webpack-merge');
 
-const base = require('./webpack.base.config');
+const base = require('./base.config');
 
 module.exports = merge(base, {
     entry: './src/client-entry.ts',

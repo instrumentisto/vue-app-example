@@ -1,5 +1,5 @@
 import { app, router, store } from './app';
-import I18n from './i18n';
+import I18n from '~i18n';
 
 export default (context) => {
     router.push(context.url);

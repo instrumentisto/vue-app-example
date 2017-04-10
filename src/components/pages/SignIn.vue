@@ -32,7 +32,7 @@
     import Component from 'vue-class-component';
     import { Action, namespace } from 'vuex-class';
 
-    import HotApi from '../../hot/api';
+    import HotApi from '~hot/api';
 
     const UsersAction = namespace('users', Action);
 

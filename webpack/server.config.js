@@ -1,11 +1,11 @@
-const CopyWebpackPlugin = require('copy-webpack-plugin')
-const HtmlWebpackPlugin = require('html-webpack-plugin')
-const path = require('path')
-const VueSSRPlugin = require('vue-ssr-webpack-plugin')
-const webpack = require('webpack')
-const merge = require('webpack-merge')
+const CopyWebpackPlugin = require('copy-webpack-plugin');
+const HtmlWebpackPlugin = require('html-webpack-plugin');
+const path = require('path');
+const VueSSRPlugin = require('vue-ssr-webpack-plugin');
+const webpack = require('webpack');
+const merge = require('webpack-merge');
 
-const base = require('./webpack.base.config')
+const base = require('./base.config');
 
 module.exports = merge(base, {
     target: 'node',
