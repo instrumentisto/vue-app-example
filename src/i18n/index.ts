@@ -21,7 +21,7 @@ export default class I18n {
 
         for (const lang of this.LANGUAGES) {
             const data = ((lang === Vue.config.lang))
-                ? require('../../assets/i18n/' + lang + '.json')
+                ? require('~assets/i18n/' + lang + '.json')
                 : {};
             Vue.locale(lang, data);
         }
