@@ -59,6 +59,8 @@ module.exports = {
     resolve: {
         alias: {
             '~api': path.join(__dirname, '../src/api'),
+            'assets': path.join(__dirname, '../assets'),
+            '~assets': path.join(__dirname, '../assets'),
             '~bower': path.join(__dirname, '../bower_components'),
             '~components': path.join(__dirname, '../src/components'),
             '~hot': path.join(__dirname, '../src/hot'),
