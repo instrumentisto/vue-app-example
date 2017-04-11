@@ -17,7 +17,7 @@ module.exports = merge(base, {
     },
     plugins: [
         new HtmlWebpackPlugin({
-            template: 'src/templates/index.hbs'
+            template: 'src/templates/index.html'
         }),
         new CopyWebpackPlugin([
             { from: 'assets/i18n', to: 'i18n' },

@@ -21,7 +21,7 @@ module.exports = merge(base, {
         }),
         new VueSSRPlugin(),
         new HtmlWebpackPlugin({
-            template: 'src/templates/index.server.hbs',
+            template: 'src/templates/index.server.html',
             filename: 'index.server.html'
         }),
         new CopyWebpackPlugin([
