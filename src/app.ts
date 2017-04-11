@@ -12,10 +12,10 @@ Vue.use(VueForm);
 
 sync(store, router);
 
-const app = new Vue({
+const params = {
     router,
     store,
     render: (h) => h(App),
-});
+};
 
-export { app, router, store };
+export { params, router, store };

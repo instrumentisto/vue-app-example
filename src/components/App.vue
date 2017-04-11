@@ -31,6 +31,8 @@
     })
     export default class App extends Vue {
 
+        private title: string = 'App Title!';
+
         @UsersGetter('totalCount')
         private usersTotalCount;
 

@@ -1,5 +1,6 @@
 <template>
   <section>
+    {{ title }}
     <h1>{{ $t('sign_in.title') }}</h1>
 
     <vue-form :state="formstate" method="post" v-on:submit.prevent="onSubmit">
@@ -33,11 +34,12 @@
     import { Action, namespace } from 'vuex-class';
 
     import HotApi from '~hot/api';
+    import Page from '~components/Page.vue';
 
     const UsersAction = namespace('users', Action);
 
     @Component
-    export default class SignIn extends Vue {
+    export default class SignIn extends Page {
 
         @UsersAction('login')
         private login;
@@ -49,6 +51,12 @@
         private error: string = '';
 
         private formstate: object = {};
+
+        private title: string = 'Sign In';
+
+//        protected get title(): string {
+//            return this.$t('sign_in.title');
+//        }
 
         private fieldClassName(field): string {
             if (!field) {

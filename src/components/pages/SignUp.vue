@@ -30,10 +30,12 @@
     import Component from 'vue-class-component';
     import { Action, namespace } from 'vuex-class';
 
+    import Page from '~components/Page.vue';
+
     const UsersAction = namespace('users', Action);
 
     @Component({})
-    export default class SignUp extends Vue {
+    export default class SignUp extends Page {
 
         @UsersAction('register')
         private register;
@@ -49,6 +51,8 @@
         private image: string = '';
 
         private formstate: object = {};
+
+        private title: string = 'Sign Up';
 
         private fieldClassName(field): string {
             if (!field) {
