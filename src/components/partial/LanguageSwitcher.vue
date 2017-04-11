@@ -19,42 +19,39 @@
     })
     export default class LanguageSwitcher extends Vue {
 
-        get languages() {
-            return I18n.LANGUAGES;
+        get languages(): string[] {
+            return Object.keys(this.$i18n.messages);
         }
 
         private isActive(lang) {
-            return (lang === this.$lang);
+            return (lang === this.$i18n.locale);
         }
 
         private changeLanguage(lang) {
-            if (lang === this.$lang) {
+            if (lang === this.$i18n.locale) {
                 return;
             }
 
-            Vue.config.lang = lang;
-            Vue.cookie.set('language', lang);
+//            if (Object.keys(this.$i18n.getLocaleMessage(lang)).length > 0) {
+//                return;
+//            }
 
-            if (Object.keys(Vue.locale(lang)).length > 0) {
-                return;
-            }
-
-            Vue.locale(lang, () => {
-                return fetch('/i18n/' + lang + '.json', {
-                    headers: {
-                        'Accept': 'application/json',
-                        'Content-Type': 'application/json',
-                    },
-                    method: 'get',
-                }).then((res) => {
-                    return res.json();
-                }).then((json) => {
-                    if (Object.keys(json).length === 0) {
-                        return Promise.reject(new Error('locale empty !!'));
-                    } else {
-                        return Promise.resolve(json);
-                    }
-                });
+            fetch('/i18n/' + lang + '.json', {
+                headers: {
+                    'Accept': 'application/json',
+                    'Content-Type': 'application/json',
+                },
+                method: 'get',
+            }).then((res) => {
+                return res.json();
+            }).then((json) => {
+                if (Object.keys(json).length === 0) {
+                    return Promise.reject(new Error('locale empty !!'));
+                } else {
+                    this.$i18n.setLocaleMessage(lang, json);
+                    this.$i18n.locale = lang;
+                    Vue.cookie.set('language', lang);
+                }
             });
         }
     }

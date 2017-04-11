@@ -2,30 +2,33 @@ import Vue from 'vue';
 import VueI18n from 'vue-i18n';
 
 export default class I18n {
-
-    public static readonly LANGUAGES = ['en', 'ru', 'uk'];
-
-    public static init(languagesPriority: string[]): void {
+    public static init(languagesPriority: string[]): VueI18n {
         Vue.use(VueI18n);
 
-        if (!languagesPriority.find((lang) => lang === this.DEFAULT_LANGUAGE)) {
-            languagesPriority.push(this.DEFAULT_LANGUAGE);
-        }
-
+        let startLanguage;
         for (const lang of languagesPriority) {
-            if (this.LANGUAGES.find((value) => value === lang)) {
-                Vue.config.lang = lang;
+            if (this.languages[lang]) {
+                startLanguage = lang;
                 break;
             }
         }
 
-        for (const lang of this.LANGUAGES) {
-            const data = ((lang === Vue.config.lang))
-                ? require('~assets/i18n/' + lang + '.json')
-                : {};
-            Vue.locale(lang, data);
+        if (!startLanguage) {
+            startLanguage = this.defaultLanguage;
         }
+
+        const i18n = new VueI18n({
+            locale: startLanguage,
+            messages: this.languages,
+        });
+        i18n.setLocaleMessage(startLanguage, require('~assets/i18n/' + startLanguage + '.json'));
+        return i18n;
     }
 
-    private static readonly DEFAULT_LANGUAGE = 'en';
+    private static readonly defaultLanguage = 'en';
+    private static readonly languages = {
+        en: {},
+        ru: {},
+        uk: {},
+    };
 }

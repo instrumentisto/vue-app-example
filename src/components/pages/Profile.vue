@@ -33,13 +33,16 @@
     import Component from 'vue-class-component';
     import { Getter, Mutation, namespace } from 'vuex-class';
 
+    import Page from '~components/Page.vue';
     import mutationTypes from '~store/mutation-types';
 
     const UsersGetter = namespace('users', Getter);
     const UsersMutation = namespace('users', Mutation);
 
     @Component({})
-    export default class Profile extends Vue {
+    export default class Profile extends Page {
+
+        private title: string = 'My Profile';
 
         @UsersGetter('authorized')
         private authorizedUser;

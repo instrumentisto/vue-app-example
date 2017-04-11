@@ -1,13 +1,14 @@
 import Vue from 'vue';
 
+import { params } from './app';
 import I18n from '~i18n';
-import { app } from './app';
 
-I18n.init([
+params.i18n = I18n.init([
     Vue.cookie.get('language'),
     navigator.language,
 ]);
 
+const app = new Vue(params);
 app.$mount('#app');
 
 if (module.hot) {
