@@ -9,11 +9,12 @@ const base = require('./base.config');
 module.exports = merge(base, {
     entry: './src/client-entry.ts',
     output: {
+        filename: 'build.js',
         hotUpdateChunkFilename: 'hot/[id].[hash].hot-update.js',
         hotUpdateMainFilename: 'hot/[hash].hot-update.json'
     },
     node: {
-        fs: "empty"
+        fs: 'empty'
     },
     plugins: [
         new HtmlWebpackPlugin({

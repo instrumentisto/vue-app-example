@@ -3,7 +3,7 @@
 const fs = require('fs');
 const path = require('path');
 const express = require('express');
-const parser = require('accept-language-parser');
+const acceptLanguageParser = require('accept-language-parser');
 const resolve = file => path.resolve(__dirname, file);
 
 // TODO: add render context along with "template" parameter
@@ -35,7 +35,7 @@ app.get('*', (req, res) => {
     };
 
     let acceptLanguages = [];
-    for (let lang of parser.parse(req.headers['accept-language'])) {
+    for (let lang of acceptLanguageParser.parse(req.headers['accept-language'])) {
         acceptLanguages.push(lang.code);
     }
 
