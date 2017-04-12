@@ -4,7 +4,7 @@ module.exports = function (config) {
     config.set({
         browsers: ['PhantomJS'],
         frameworks: [/*'jasmine',*/'mocha', 'sinon-chai', /*'phantomjs-shim'*/],
-        reporters: ['progress', 'mocha', 'spec'/*, 'coverage'*/],
+        reporters: ['progress', 'mocha'/*, 'spec'*/],
         files: ['./index.ts'],
         preprocessors: {
             './index.ts': ['webpack'/*, 'sourcemap'*/]
@@ -13,13 +13,6 @@ module.exports = function (config) {
         webpackMiddleware: {
             noInfo: true,
         },
-        // coverageReporter: {
-        //     dir: './coverage',
-        //     reporters: [
-        //         { type: 'lcov', subdir: '.' },
-        //         { type: 'text-summary' },
-        //     ]
-        // },
         // logLevel: config.LOG_DEBUG
     });
 };
