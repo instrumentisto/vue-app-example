@@ -3,21 +3,22 @@ const webpack = require('webpack');
 
 module.exports = {
     output: {
+        filename: 'build.js',
         path: path.resolve(__dirname, '../_build')
     },
     recordsInputPath: path.resolve(__dirname, '../webpack/records.json'),
     recordsOutputPath: path.resolve(__dirname, '../_build/webpack.records.json'),
     module: {
         rules: [
-            {
-                enforce: 'pre',
-                test: /\.ts$/,
-                loader: 'tslint-loader',
-                exclude: /(node_modules)/,
-                options: {
-                    configFile: 'tslint.json'
-                }
-            },
+            // {
+            //     enforce: 'pre',
+            //     test: /\.ts$/,
+            //     loader: 'tslint-loader',
+            //     exclude: /(node_modules)/,
+            //     options: {
+            //         configFile: 'tslint.json'
+            //     }
+            // },
             {
                 test: /\.ts$/,
                 exclude: /node_modules|vue\/src/,
@@ -34,7 +35,7 @@ module.exports = {
                 options: {
                     // esModule: true,
                     loaders: {
-                        ts: 'ts-loader!tslint-loader'
+                        // ts: 'ts-loader!tslint-loader'
                     }
                 }
             },

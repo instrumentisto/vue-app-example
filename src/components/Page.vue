@@ -9,7 +9,9 @@
         protected title: string = '';
 
         protected created(): void {
-            document.title = this.title;
+            if (process.browser) {
+                document.title = this.title;
+            }
         }
 
         @Watch('title')
