@@ -6,6 +6,11 @@ const base = require('./base.config');
 
 module.exports = merge(base, {
     node: {
-        fs: "empty"
+        fs: 'empty'
     },
-})
+    resolve: {
+        alias: {
+            'vue$': 'vue/dist/vue.esm.js',
+        },
+    },
+});

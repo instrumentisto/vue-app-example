@@ -1,7 +1,7 @@
 import Vue from 'vue';
 
-import { params } from './app';
 import I18n from '~i18n';
+import { params } from './app';
 
 params.i18n = I18n.init([
     Vue.cookie.get('language'),

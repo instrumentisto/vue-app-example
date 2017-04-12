@@ -2,7 +2,10 @@ import Vue from 'vue';
 import VueI18n from 'vue-i18n';
 
 export default class I18n {
-    public static init(languagesPriority: string[]): VueI18n {
+    public static init(languagesPriority?: string[]): VueI18n {
+        if (!languagesPriority || languagesPriority.length === 0) {
+            languagesPriority = [this.defaultLanguage];
+        }
         Vue.use(VueI18n);
 
         let startLanguage;
