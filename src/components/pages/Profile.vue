@@ -1,6 +1,6 @@
 <template>
   <section>
-    <h1>{{ $t('profile.title') }}</h1>
+    <h1 class="title">{{ $t('profile.title') }}</h1>
 
     <form class="form-horizontal">
       <div class="form-group">
@@ -42,7 +42,7 @@
     @Component({})
     export default class Profile extends Page {
 
-        private title: string = 'My Profile';
+        protected name: string = 'profile';
 
         @UsersGetter('authorized')
         private authorizedUser;

@@ -1,6 +1,6 @@
 <template>
   <section>
-    <h1>{{ $t('sign_up.title') }}</h1>
+    <h1 class="title">{{ $t('sign_up.title') }}</h1>
 
     <vue-form :state="formstate" method="post" v-on:submit.prevent="onSubmit">
       <validate class="form-group" :class="fieldClassName(formstate.name)">
@@ -52,7 +52,7 @@
 
         private formstate: object = {};
 
-        private title: string = 'Sign Up';
+        protected name: string = 'sign_up';
 
         private fieldClassName(field): string {
             if (!field) {
