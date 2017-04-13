@@ -26,7 +26,8 @@
   },
   "general": {
     "total_registrations_label": "Нас вже {count}!",
-    "title": "Webmasters Test App"
+    "title": "Webmasters Test App",
+    "check_for_updates": "Перевірити оновлення"
   },
   "sign_up": {
     "title": "Реєстрація",

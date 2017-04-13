@@ -6,7 +6,9 @@
                     <img alt="Brand" src="~assets/img/logo.png">
                     {{ $t('general.title') }}
                 </a>
-                <button type="button" class="btn btn-default navbar-btn" @click="checkHotStatus()">Check for updates</button>
+                <button type="button" class="btn btn-default navbar-btn" @click="checkHotStatus()">
+                    {{ $t('general.check_for_updates') }}
+                </button>
             </div>
             <div class="collapse navbar-collapse">
                 <language-switcher container-classes="nav navbar-nav navbar-right" ></language-switcher>
