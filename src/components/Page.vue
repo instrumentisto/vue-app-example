@@ -8,12 +8,10 @@
 
         protected name: string;
 
-        protected title: string = '';
+        protected title: string;
 
         protected created(): void {
-            if (this.name) {
-                this.title = this.$t(this.name + '.title');
-            }
+            this.title = this.$t(this.name + '.title');
             if (process.browser) {
                 document.title = this.title;
             }
