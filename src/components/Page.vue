@@ -6,9 +6,14 @@
     @Component
     export default class SignIn extends Vue {
 
+        protected name: string;
+
         protected title: string = '';
 
         protected created(): void {
+            if (this.name) {
+                this.title = this.$t(this.name + '.title');
+            }
             if (process.browser) {
                 document.title = this.title;
             }

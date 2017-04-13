@@ -1,7 +1,6 @@
 <template>
   <section>
-    {{ title }}
-    <h1>{{ $t('sign_in.title') }}</h1>
+    <h1 class="title">{{ $t('sign_in.title') }}</h1>
 
     <vue-form :state="formstate" method="post" v-on:submit.prevent="onSubmit">
       <validate class="form-group" :class="fieldClassName(formstate.email)">
@@ -52,11 +51,7 @@
 
         private formstate: object = {};
 
-        private title: string = 'Sign In';
-
-//        protected get title(): string {
-//            return this.$t('sign_in.title');
-//        }
+        protected name: string = 'sign_in';
 
         private fieldClassName(field): string {
             if (!field) {
