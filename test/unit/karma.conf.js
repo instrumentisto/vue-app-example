@@ -4,7 +4,7 @@ module.exports = function (config) {
     config.set({
         browsers: ['PhantomJS'],
         frameworks: [/*'jasmine',*/'mocha', 'sinon-chai', /*'phantomjs-shim'*/],
-        reporters: ['progress', 'mocha'/*, 'spec'*/],
+        reporters: ['mocha', 'spec'],
         files: ['./index.ts'],
         preprocessors: {
             './index.ts': ['webpack'/*, 'sourcemap'*/]
