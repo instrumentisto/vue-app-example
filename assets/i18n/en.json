@@ -25,7 +25,8 @@
     "logout_label": "Logout"
   },
   "general": {
-    "total_registrations_label": "There are already {count} of us!"
+    "total_registrations_label": "There are already {count} of us!",
+    "title": "Webmasters Test App"
   },
   "sign_up": {
     "title": "Sign Up",

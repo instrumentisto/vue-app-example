@@ -25,7 +25,8 @@
     "logout_label": "Вихід"
   },
   "general": {
-    "total_registrations_label": "Нас вже {count}!"
+    "total_registrations_label": "Нас вже {count}!",
+    "title": "Webmasters Test App"
   },
   "sign_up": {
     "title": "Реєстрація",
