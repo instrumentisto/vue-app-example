@@ -4,7 +4,7 @@
             <div class="navbar-header">
                 <a class="navbar-brand" href="/">
                     <img alt="Brand" src="~assets/img/logo.png">
-                    Webmasters Test App
+                    {{ $t('general.title') }}
                 </a>
                 <button type="button" class="btn btn-default navbar-btn" @click="checkHotStatus()">Check for updates</button>
             </div>
