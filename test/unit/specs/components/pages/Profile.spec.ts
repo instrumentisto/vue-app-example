@@ -3,7 +3,7 @@ import Vue from 'vue';
 import I18n from '~i18n';
 import Profile from '~components/pages/Profile.vue';
 
-describe('Profile.vue', () => {
+describe('components/pages/Profile.vue', () => {
     const i18n = I18n.init();
     const vm = new Vue({
         components: {
