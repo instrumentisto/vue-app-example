@@ -1,7 +1,7 @@
 import Vue from 'vue';
 
-import I18n from '~i18n';
-import SignUp from '~components/pages/SignUp.vue';
+import I18n from 'I18n';
+import SignUp from 'components/pages/SignUp.vue';
 
 describe('components/pages/SignUp.vue', () => {
     const i18n = I18n.init();

@@ -32,8 +32,8 @@
     import Component from 'vue-class-component';
     import { Action, namespace } from 'vuex-class';
 
-    import HotApi from '~hot/api';
-    import Page from '~components/Page.vue';
+    import HMRApi from 'HMRApi';
+    import Page from 'components/Page.vue';
 
     const UsersAction = namespace('users', Action);
 
@@ -84,15 +84,15 @@
         }
     }
 
-    if (HotApi && module.hot) {
-        HotApi.install(Vue);
+    if (HMRApi && module.hot) {
+        HMRApi.install(Vue);
         if (!module.hot.data) {
-            HotApi.createRecord('SignIn', SignIn.options);
+            HMRApi.createRecord('SignIn', SignIn.options);
         } else {
             /*if (module.hot.data.cssModules && JSON.stringify(module.hot.data.cssModules) !== JSON.stringify(cssModules)) {
                 delete Component.options._Ctor;
             }*/
-            HotApi.reload('SignIn', SignIn.options);
+            HMRApi.reload('SignIn', SignIn.options);
         }
     }
 </script>

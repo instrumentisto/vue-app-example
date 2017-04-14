@@ -33,13 +33,13 @@
     import Component from 'vue-class-component';
     import { Getter, Mutation, namespace } from 'vuex-class';
 
-    import Page from '~components/Page.vue';
-    import mutationTypes from '~store/mutation-types';
+    import Page from 'components/Page.vue';
+    import mutationTypes from 'store/mutation-types';
 
     const UsersGetter = namespace('users', Getter);
     const UsersMutation = namespace('users', Mutation);
 
-    @Component({})
+    @Component
     export default class Profile extends Page {
 
         protected name: string = 'profile';
@@ -58,6 +58,9 @@
                 this.logout();
             }
             this.user = user;
+            if (!this.user.image) {
+                this.user.image = require('~assets/img/default_user_photo.jpg');
+            }
         }
 
         private logout(): void {

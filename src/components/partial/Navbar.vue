@@ -21,8 +21,8 @@
     import Vue from 'vue';
     import Component from 'vue-class-component';
 
-    import LanguageSwitcher from '~components/partial/LanguageSwitcher.vue';
-    import HotApi from '~hot/api';
+    import LanguageSwitcher from 'components/partial/LanguageSwitcher.vue';
+    import HMRApi from 'HMRApi';
 
     @Component({
         components: {
@@ -43,17 +43,17 @@
         }
     }
 
-    if (HotApi && module.hot) {
-        HotApi.install(Vue);
+    if (HMRApi && module.hot) {
+        HMRApi.install(Vue);
         if (!module.hot.data) {
-            HotApi.createRecord('Header', Navbar.options);
+            HMRApi.createRecord('Header', Navbar.options);
         } else {
             if (module.hot.data.cssModules
                 && JSON.stringify(module.hot.data.cssModules) !== JSON.stringify(cssModules)
             ) {
                 delete Component.options._Ctor;
             }
-            HotApi.reload('Header', Navbar.options);
+            HMRApi.reload('Header', Navbar.options);
         }
     }
 </script>

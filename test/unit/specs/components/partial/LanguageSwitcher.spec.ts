@@ -1,7 +1,7 @@
 import Vue from 'vue';
 
-import I18n from '~i18n';
-import LanguageSwitcher from '~components/partial/LanguageSwitcher.vue';
+import I18n from 'I18n';
+import LanguageSwitcher from 'components/partial/LanguageSwitcher.vue';
 
 describe('components/partial/LanguageSwitcher.vue', () => {
     const i18n = I18n.init();
