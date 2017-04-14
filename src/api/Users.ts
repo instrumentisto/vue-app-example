@@ -1,4 +1,4 @@
-import ApiHelper from '~api/Helper';
+import ApiHelper from '~/api/Helper';
 
 export default class Users {
 
@@ -15,7 +15,6 @@ export default class Users {
             }
 
             return ApiHelper.call('post', '/users', user).then((addedUser) => {
-                console.log('new user', addedUser);
                 return addedUser;
             });
         });

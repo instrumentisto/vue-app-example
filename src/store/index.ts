@@ -2,7 +2,7 @@ import Vue from 'vue';
 import Vuex from 'vuex';
 import createPersistedState from 'vuex-persistedstate';
 
-import users from '~store/modules/users';
+import Users from '~/store/modules/Users';
 
 Vue.use(Vuex);
 
@@ -13,7 +13,7 @@ const state = {
 const store = new Vuex.Store({
     state,
     modules: {
-        users,
+        users: Users.getConfig(),
     },
     plugins: [createPersistedState({
         key: 'vue-app-example-vuex',
@@ -24,8 +24,8 @@ const store = new Vuex.Store({
 });
 
 if (module.hot) {
-    module.hot.accept(['./modules/users'], (updatedDependencies) => {
-        const newModuleUsers = require('./modules/users').default;
+    module.hot.accept(['./modules/Users'], (updatedDependencies) => {
+        const newModuleUsers = require('./modules/Users').default;
         store.hotUpdate({
             modules: {
                 users: newModuleUsers,

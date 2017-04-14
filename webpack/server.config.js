@@ -9,7 +9,7 @@ const base = require('./base.config');
 
 module.exports = merge(base, {
     target: 'node',
-    entry: './src/server-entry.ts',
+    entry: './src/entry/server-entry.ts',
     output: {
         libraryTarget: 'commonjs2'
     },

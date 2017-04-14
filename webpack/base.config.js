@@ -6,8 +6,8 @@ module.exports = {
         filename: 'build.js',
         path: path.resolve(__dirname, '../_build')
     },
-    recordsInputPath: path.resolve(__dirname, '../webpack/records.json'),
-    recordsOutputPath: path.resolve(__dirname, '../_build/webpack.records.json'),
+    // recordsInputPath: path.resolve(__dirname, '../webpack/records.json'),
+    // recordsOutputPath: path.resolve(__dirname, '../_build/webpack.records.json'),
     module: {
         rules: [
             // {
@@ -54,17 +54,18 @@ module.exports = {
     },
     resolve: {
         alias: {
-            '~api': path.join(__dirname, '../src/api'),
+            '~': path.join(__dirname, '../src'),
+            // '~api': path.join(__dirname, '../src/api'),
             'assets': path.join(__dirname, '../assets'),
             '~assets': path.join(__dirname, '../assets'),
             '~bower': path.join(__dirname, '../bower_components'),
-            '~components': path.join(__dirname, '../src/components'),
-            '~hot': path.join(__dirname, '../src/hot'),
-            '~i18n': path.join(__dirname, '../src/i18n'),
-            '~router': path.join(__dirname, '../src/router'),
-            '~store': path.join(__dirname, '../src/store'),
-            '~templates': path.join(__dirname, '../src/templates'),
-            '~util': path.join(__dirname, '../src/util'),
+            // '~components': path.join(__dirname, '../src/components'),
+            // '~hot': path.join(__dirname, '../src/hot'),
+            // '~i18n': path.join(__dirname, '../src/i18n'),
+            // '~router': path.join(__dirname, '../src/router'),
+            // '~store': path.join(__dirname, '../src/store'),
+            // '~templates': path.join(__dirname, '../src/templates'),
+            // '~util': path.join(__dirname, '../src/util'),
         },
         extensions: [".tsx", ".ts", ".js"]
     },

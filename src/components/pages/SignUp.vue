@@ -4,16 +4,16 @@
 
     <vue-form :state="formstate" method="post" v-on:submit.prevent="onSubmit">
       <validate class="form-group" :class="fieldClassName(formstate.name)">
-        <input v-model="name" name="name" type="text" required class="form-control" :placeholder="$t('user.name')">
+        <input v-model="user.name" name="name" type="text" required class="form-control" :placeholder="$t('user.name')">
       </validate>
       <validate class="form-group" :class="fieldClassName(formstate.email)">
-        <input v-model="email" name="email" type="email" required class="form-control" :placeholder="$t('user.email')">
+        <input v-model="user.email" name="email" type="email" required class="form-control" :placeholder="$t('user.email')">
       </validate>
       <validate class="form-group" :class="fieldClassName(formstate.password)">
-        <input v-model="password" name="password" type="password" required class="form-control" :placeholder="$t('user.password')">
+        <input v-model="user.password" name="password" type="password" required class="form-control" :placeholder="$t('user.password')">
       </validate>
       <validate class="form-group" :class="fieldClassName(formstate.passwordRepeat)">
-        <input v-model="passwordRepeat" name="password_repeat" type="password" required class="form-control" :placeholder="$t('user.password_again')">
+        <input v-model="user.passwordRepeat" name="password_repeat" type="password" required class="form-control" :placeholder="$t('user.password_again')">
       </validate>
       <validate class="form-group" :class="fieldClassName(formstate.image)">
         <input @change="onImageChange" name="image" type="file" class="form-control">
@@ -30,27 +30,25 @@
     import Component from 'vue-class-component';
     import { Action, namespace } from 'vuex-class';
 
-    import Page from '~components/Page.vue';
+    import Page from '~/components/Page.vue';
 
     const UsersAction = namespace('users', Action);
 
-    @Component({})
+    @Component
     export default class SignUp extends Page {
 
         @UsersAction('register')
         private register;
 
-        private name: string = '';
+        private user = {
+            name: '',
+            email: '',
+            password: '',
+            passwordRepeat: '',
+            image: '',
+        };
 
-        private email: string = '';
-
-        private password: string = '';
-
-        private passwordRepeat: string = '';
-
-        private image: string = '';
-
-        private formstate: object = {};
+        private formstate: object = {}; // TODO: add FormState type
 
         protected name: string = 'sign_up';
 
@@ -70,10 +68,10 @@
             }
 
             const reader = new FileReader();
-            const self = this;
+            const component = this;
 
             reader.onload = (loadedEvent) => {
-                self.image = (loadedEvent.target as FileReader).result;
+                component.user.image = (loadedEvent.target as FileReader).result;
             };
             reader.readAsDataURL(files[0]);
         }
@@ -83,15 +81,8 @@
                 return;
             }
 
-            // TODO: check image and set default if it's empty
-            this.register({
-                user: {
-                    email: this.email,
-                    image: this.image,
-                    name: this.name,
-                    password: this.password,
-                },
-            }).then(() => {
+            // TODO: check image
+            this.register({ user: this.user }).then(() => {
                 this.$router.push('/profile');
             }).catch((error) => {
                 let errorMsg = this.$t('errors.common');

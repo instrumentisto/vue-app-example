@@ -4,7 +4,7 @@
     import { Watch } from 'vue-property-decorator';
 
     @Component
-    export default class SignIn extends Vue {
+    export default class Page extends Vue {
 
         protected name: string;
 
