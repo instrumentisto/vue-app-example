@@ -10,7 +10,7 @@
     import Vue from 'vue';
     import Component from 'vue-class-component';
 
-    import I18n from '~/I18n';
+    import I18n from 'I18n';
 
     @Component({
         props: {

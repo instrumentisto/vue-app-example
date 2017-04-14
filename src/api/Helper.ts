@@ -12,7 +12,7 @@ export default class Helper {
         return Vue.http[method](this.SERVER + name, params).then((response) => {
             return response.data;
         }).catch((response) => {
-            console.log('error', response);
+            // console.log('error', response);
             return response;
         });
     }

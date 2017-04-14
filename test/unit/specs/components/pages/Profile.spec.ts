@@ -1,7 +1,7 @@
 import Vue from 'vue';
 
-import I18n from '~/I18n';
-import Profile from '~/components/pages/Profile.vue';
+import Profile from 'components/pages/Profile.vue';
+import I18n from 'I18n';
 
 describe('components/pages/Profile.vue', () => {
     const i18n = I18n.init();

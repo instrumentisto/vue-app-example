@@ -2,7 +2,7 @@ import Vue from 'vue';
 import Vuex from 'vuex';
 import createPersistedState from 'vuex-persistedstate';
 
-import Users from '~/store/modules/Users';
+import Users from 'store/modules/Users';
 
 Vue.use(Vuex);
 

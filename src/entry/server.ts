@@ -1,7 +1,7 @@
 import Vue from 'vue';
 
-import I18n from '~/I18n';
-import params from '~/main';
+import I18n from 'I18n';
+import params from 'main';
 
 export default (context) => {
     params.router.push(context.url);

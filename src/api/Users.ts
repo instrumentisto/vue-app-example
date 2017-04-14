@@ -1,4 +1,4 @@
-import ApiHelper from '~/api/Helper';
+import ApiHelper from 'api/Helper';
 
 export default class Users {
 

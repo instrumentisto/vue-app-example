@@ -1,5 +1,5 @@
-import UsersApi from '~/api/Users';
-import types from '~/store/mutation-types';
+import UsersApi from 'api/Users';
+import types from 'store/mutation-types';
 
 export default class Users {
 
