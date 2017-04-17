@@ -2,24 +2,43 @@
   <section>
     <h1 class="title">{{ $t('sign_up.title') }}</h1>
 
-    <vue-form :state="formstate" method="post" v-on:submit.prevent="onSubmit">
-      <validate class="form-group" :class="fieldClassName(formstate.name)">
-        <input v-model="user.name" name="name" type="text" required class="form-control" :placeholder="$t('user.name')">
-      </validate>
-      <validate class="form-group" :class="fieldClassName(formstate.email)">
-        <input v-model="user.email" name="email" type="email" required class="form-control" :placeholder="$t('user.email')">
-      </validate>
-      <validate class="form-group" :class="fieldClassName(formstate.password)">
-        <input v-model="user.password" name="password" type="password" required class="form-control" :placeholder="$t('user.password')">
-      </validate>
-      <validate class="form-group" :class="fieldClassName(formstate.passwordRepeat)">
-        <input v-model="user.passwordRepeat" name="password_repeat" type="password" required class="form-control" :placeholder="$t('user.password_again')">
-      </validate>
-      <validate class="form-group" :class="fieldClassName(formstate.image)">
-        <input @change="onImageChange" name="image" type="file" class="form-control">
-      </validate>
-      <button type="submit" class="btn btn-default">{{ $t('sign_up.sign_up_button') }}</button>
-    </vue-form>
+    <form method="post" v-on:submit.prevent="onSubmit">
+      <div class="form-group" :class="{'has-error': validationErrors.has('name') }">
+        <input v-model="user.name" v-validate="'required'" :placeholder="$t('user.name')"
+               name="name" type="text" class="form-control">
+          <span v-show="validationErrors.has('name')" class="help-block">{{ validationErrors.first('name') }}</span>
+      </div>
+      <div class="form-group" :class="{'has-error': validationErrors.has('email') }">
+        <input v-model="user.email" v-validate="'required|email'" :placeholder="$t('user.email')"
+               name="email" type="email" class="form-control">
+          <span v-show="validationErrors.has('email')" class="help-block">{{ validationErrors.first('email') }}</span>
+      </div>
+      <div class="form-group" :class="{'has-error': validationErrors.has('password') }">
+        <input v-model="user.password" v-validate="'required'" :placeholder="$t('user.password')"
+               name="password" type="password" class="form-control">
+          <span v-show="validationErrors.has('password')" class="help-block">
+            {{ validationErrors.first('password') }}
+          </span>
+      </div>
+      <div class="form-group" :class="{'has-error': validationErrors.has('password_confirm') }">
+        <input v-model="user.password_confirm" v-validate="'required|confirmed:password'"
+               :placeholder="$t('user.password_confirm')"
+               name="password_confirm" type="password" class="form-control">
+          <span v-show="validationErrors.has('password_confirm')" class="help-block">
+            {{ validationErrors.first('password_confirm') }}
+          </span>
+      </div>
+      <div class="form-group" :class="{'has-error': validationErrors.has('image') }">
+        <input v-on:change="onImageChange" v-validate="'ext:jpg,png|mimes:image/jpeg,image/png|size:2048'"
+               name="image" type="file" class="form-control">
+          <span v-show="validationErrors.has('image')" class="help-block">
+            {{ validationErrors.first('image') }}
+          </span>
+      </div>
+      <button type="submit" class="btn btn-default" :disabled="validationErrors.any() ? true : false">
+          {{ $t('sign_up.sign_up_button') }}
+      </button>
+    </form>
 
     <router-link to="/sign_in">{{ $t('sign_up.already_have_account') }}</router-link>
   </section>
@@ -44,22 +63,11 @@
             name: '',
             email: '',
             password: '',
-            passwordRepeat: '',
+            password_confirm: '',
             image: '',
         };
 
-        private formstate: object = {}; // TODO: add FormState type
-
         protected name: string = 'sign_up';
-
-        private fieldClassName(field): string {
-            if (!field) {
-              return '';
-            }
-            if ((field.$touched || field.$submitted) && field.$invalid) {
-              return 'has-error';
-            }
-        }
 
         private onImageChange(changeEvent) {
             const files = changeEvent.target.files || changeEvent.dataTransfer.files;
@@ -77,7 +85,7 @@
         }
 
         private onSubmit(): void {
-            if (this.formstate.$invalid) {
+            if (this.validationErrors.any()) {
                 return;
             }
 
