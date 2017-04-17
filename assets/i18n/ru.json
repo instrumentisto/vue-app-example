@@ -3,11 +3,22 @@
     "name": "Имя",
     "email": "Email",
     "password": "Пароль",
-    "password_again": "Пароль еще раз"
+    "password_confirm": "Подтвердите пароль"
   },
   "validation": {
-    "required": "Обязательное",
-    "email_format": "Не верный формат Email"
+    "messages": {
+      "required": "Поле \"+e+\" обязвтельное для заполения 1.",
+      "email": "Поле \"+e+\" должно быть валидным емейлом 1.",
+      "confirmed": "Поле \"+e+\" не совпадает 1.",
+      "ext": "Поле \"+e+\" должно быть валидным файлом 1.",
+      "mimes": "Поле \"+e+\" должно быть с валидным контентом 1."
+    },
+    "attributes": {
+      "name": "Имя",
+      "email": "Email",
+      "password": "Пароль",
+      "password_confirm": "Подтвердите пароль"
+    }
   },
   "errors": {
     "access_denied": "Не правильный логин/пароль",

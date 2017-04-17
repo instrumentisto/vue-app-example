@@ -3,11 +3,22 @@
     "name": "Name",
     "email": "Email",
     "password": "Password",
-    "password_again": "Password again"
+    "password_confirm": "Confirm password"
   },
   "validation": {
-    "required": "Required",
-    "email_format": "Wrong email format"
+    "messages": {
+      "required": "The \"+e+\" is required 1.",
+      "email": "The \"+e+\" must be a valid email 1.",
+      "confirmed": "The \"+e+\" confirmation does not match.",
+      "ext": "The \"+e+\" must be a valid file.",
+      "mimes": "The \"+e+\" must have a valid file type."
+    },
+    "attributes": {
+      "name": "Name",
+      "email": "Email",
+      "password": "Password",
+      "password_confirm": "Confirm password"
+    }
   },
   "errors": {
     "access_denied": "Access denied",

@@ -2,22 +2,17 @@
   <section>
     <h1 class="title">{{ $t('sign_in.title') }}</h1>
 
-    <vue-form :state="formstate" method="post" v-on:submit.prevent="onSubmit">
-      <validate class="form-group" :class="fieldClassName(formstate.email)">
-          <input v-model="email" name="email" type="email" required class="form-control" :placeholder="$t('user.email')">
-          <field-messages auto-label name="email" show="$submitted && $invalid">
-            <span class="help-block" slot="required">{{ $t('validation.required') }}</span>
-            <span class="help-block" slot="email">{{ $t('validation.email_format') }}</span>
-          </field-messages>
-      </validate>
-      <validate class="form-group" :class="fieldClassName(formstate.password)">
-        <input v-model="password" name="password" type="password" required class="form-control" :placeholder="$t('user.password')">
-        <field-messages auto-label name="password" show="$submitted && $invalid">
-          <span class="help-block" slot="required">{{ $t('validation.required') }}</span>
-        </field-messages>
-      </validate>
+    <form method="post" v-on:submit.prevent="onSubmit">
+      <div class="form-group">
+          <input v-model="email" :placeholder="$t('user.email')"
+                 name="email" type="text" class="form-control">
+      </div>
+      <div class="form-group">
+        <input v-model="password" :placeholder="$t('user.password')"
+               name="password" type="password" class="form-control">
+      </div>
       <button type="submit" class="btn btn-default">{{ $t('sign_in.login') }}</button>
-    </vue-form>
+    </form>
 
     <p>{{ error }}</p>
 
@@ -49,24 +44,9 @@
 
         private error: string = '';
 
-        private formstate: object = {};
-
         protected name: string = 'sign_in';
 
-        private fieldClassName(field): string {
-            if (!field) {
-                return '';
-            }
-            if ((field.$touched || field.$submitted) && field.$invalid) {
-                return 'has-error';
-            }
-        }
-
         private onSubmit(): void {
-            if (this.formstate.$invalid) {
-                return;
-            }
-
             this.login({
                 email: this.email,
                 password: this.password,
