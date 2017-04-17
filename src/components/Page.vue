@@ -4,22 +4,17 @@
     import { Watch } from 'vue-property-decorator';
 
     @Component
-    export default class SignIn extends Vue {
+    export default class Page extends Vue {
 
         protected name: string;
 
-        protected title: string;
-
-        protected created(): void {
-            this.title = this.$t(this.name + '.title');
-            if (process.browser) {
-                document.title = this.title;
-            }
+        protected get title() {
+            return this.$t(this.name + '.title');
         }
 
         @Watch('title')
         titleChanged(val: string, oldVal: string) {
-            console.log('titleChanged', oldVal, val);
+            document.title = val;
         }
 
     }
