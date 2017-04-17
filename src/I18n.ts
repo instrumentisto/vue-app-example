@@ -21,24 +21,25 @@ export default class I18n {
             startLanguage = this.defaultLanguage;
         }
 
-        const i18n = new VueI18n({
+        this.i18n = new VueI18n({
             locale: startLanguage,
             messages: this.languages,
         });
 
-        i18n.setLocaleMessage(startLanguage, require('~assets/i18n/' + startLanguage + '.json'));
+        this.loadLocaleData(startLanguage);
 
-        if (module.hot) {
-            module.hot.accept(['~assets/i18n/en.json', '~assets/i18n/ru.json', '~assets/i18n/uk.json'], () => {
-                i18n.setLocaleMessage('en', require('~assets/i18n/en.json'));
-                i18n.setLocaleMessage('ru', require('~assets/i18n/ru.json'));
-                i18n.setLocaleMessage('uk', require('~assets/i18n/uk.json'));
-                // console.log('hot reload', this, arguments);
-            });
-        }
-
-        return i18n;
+        return this.i18n;
     }
+
+    public static loadLocaleData(locale: string): Promise<any> {
+        return System.import('~assets/i18n/' + locale + '.json').then((data) => {
+            this.i18n.setLocaleMessage(locale, data);
+            // TODO: implement vee-validation locale fetching
+            return Promise.resolve(data);
+        });
+    }
+
+    private static i18n: VueI18n = null;
 
     private static readonly defaultLanguage = 'en';
     private static readonly languages = {
@@ -46,4 +47,14 @@ export default class I18n {
         ru: {},
         uk: {},
     };
+}
+
+if (module.hot) {
+    module.hot.accept(['~assets/i18n/en.json', '~assets/i18n/ru.json', '~assets/i18n/uk.json'], () => {
+        // TODO: implement hot reloading for language files
+        // i18n.setLocaleMessage('en', require('~assets/i18n/en.json'));
+        // i18n.setLocaleMessage('ru', require('~assets/i18n/ru.json'));
+        // i18n.setLocaleMessage('uk', require('~assets/i18n/uk.json'));
+        // console.log('hot reload', this, arguments);
+    });
 }
