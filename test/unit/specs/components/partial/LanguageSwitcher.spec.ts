@@ -1,19 +1,10 @@
-import Vue from 'vue';
-
-import I18n from 'I18n';
 import LanguageSwitcher from 'components/partial/LanguageSwitcher.vue';
+import Helper from '../../../Helper';
 
 describe('components/partial/LanguageSwitcher.vue', () => {
-    const i18n = I18n.init();
-    const vm = new Vue({
-        components: {
-            test: LanguageSwitcher,
-        },
-        i18n,
-        template: '<div><test></test></div>',
-    }).$mount();
+    const app = Helper.initApp(LanguageSwitcher);
 
-    const languageSwitcherComponent = vm.$children[0];
+    const languageSwitcherComponent = app.$children[0];
 
     it('should return valid languages list', () => {
         expect(languageSwitcherComponent.languages)
@@ -22,10 +13,6 @@ describe('components/partial/LanguageSwitcher.vue', () => {
     });
 
     it('active language flag must be true for current language', () => {
-        expect(languageSwitcherComponent.isActive(i18n.locale)).to.be.true;
+        expect(languageSwitcherComponent.isActive(app.$i18n.locale)).to.be.true;
     });
-
-    // it('should return empty class name for empty field', () => {
-    //     expect(languageSwitcherComponent.fieldClassName(null)).to.be.empty;
-    // });
 });
