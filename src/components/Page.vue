@@ -8,14 +8,14 @@
 
         protected name: string;
 
-        protected get title() {
-            return this.$t(this.name + '.title');
+        protected get title(): string {
+            let title = this.$t(this.name + '.title');
+            document.title = title;
+            return title;
         }
 
         @Watch('title')
-        titleChanged(val: string, oldVal: string) {
-            document.title = val;
-        }
+        titleChanged() { }
 
     }
 </script>
