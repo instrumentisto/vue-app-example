@@ -5,7 +5,10 @@ module.exports = function (config) {
         browsers: ['PhantomJS'],
         frameworks: [/*'jasmine',*/'mocha', 'chai', /*'phantomjs-shim'*/],
         reporters: ['mocha', 'spec'],
-        files: ['./index.ts'],
+        files: [
+            '../../node_modules/babel-polyfill/dist/polyfill.js',
+            './index.ts'
+        ],
         preprocessors: {
             './index.ts': ['webpack'/*, 'sourcemap'*/]
         },
