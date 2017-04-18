@@ -34,7 +34,7 @@
     import { Getter, Mutation, namespace } from 'vuex-class';
 
     import Page from 'components/Page.vue';
-    import mutationTypes from 'store/mutation-types';
+    import Users from 'store/modules/Users';
 
     const UsersGetter = namespace('users', Getter);
     const UsersMutation = namespace('users', Mutation);
@@ -47,7 +47,7 @@
         @UsersGetter('authorized')
         private authorizedUser;
 
-        @UsersMutation(mutationTypes.RESET_AUTHORIZED_USER)
+        @UsersMutation(Users.mutationTypes.RESET_AUTHORIZED_USER)
         private resetAuthorizedUser;
 
         private user = {};
@@ -56,7 +56,9 @@
             const user = this.authorizedUser;
             if (user === null) {
                 this.logout();
+                return;
             }
+
             this.user = user;
             if (!this.user.image) {
                 this.user.image = require('~assets/img/default_user_photo.jpg');
