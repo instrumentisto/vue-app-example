@@ -1,3 +1,4 @@
+import { Validator } from 'vee-validate';
 import Vue from 'vue';
 import VueI18n from 'vue-i18n';
 
@@ -34,7 +35,22 @@ export default class I18n {
     public static loadLocaleData(locale: string): Promise<any> {
         return System.import('~assets/i18n/' + locale + '.json').then((data) => {
             this.i18n.setLocaleMessage(locale, data);
-            // TODO: implement vee-validation locale fetching
+
+            const validationDictionary = {};
+            validationDictionary[locale] = {
+                attributes: data.validation.attributes,
+                messages: {},
+            };
+            for (const rule in data.validation.messages) {
+                if (data.validation.messages.hasOwnProperty(rule)) {
+                    validationDictionary[locale].messages[rule] = (field) => {
+                        return data.validation.messages[rule];
+                    };
+                }
+            }
+            Validator.updateDictionary(validationDictionary);
+            Validator.setLocale(locale);
+
             return Promise.resolve(data);
         });
     }
