@@ -1,29 +1,16 @@
-import Vue from 'vue';
-
-import I18n from 'I18n';
 import SignIn from 'components/pages/SignIn.vue';
+import Helper from '../../../Helper';
 
 describe('components/pages/SignIn.vue', () => {
-    const i18n = I18n.init();
-    const vm = new Vue({
-        components: {
-            test: SignIn,
-        },
-        i18n,
-        template: '<div><test></test></div>',
-    }).$mount();
+    const app = Helper.initApp(SignIn);
 
-    const signInComponent = vm.$children[0];
+    const signInComponent = app.$children[0] as SignIn;
 
     it('should have correct page title', () => {
-        expect(signInComponent.title).to.equal(i18n.t('sign_in.title'));
+        expect(signInComponent.title).to.equal(app.$i18n.t('sign_in.title'));
     });
 
     it('should render correct section title', () => {
-        expect(vm.$el.querySelector('h1.title').textContent).to.equal(i18n.t('sign_in.title'));
-    });
-
-    it('should return empty class name for empty field', () => {
-        expect(signInComponent.fieldClassName(null)).to.be.empty;
+        expect(app.$el.querySelector('h1.title').textContent).to.equal(app.$i18n.t('sign_in.title'));
     });
 });
