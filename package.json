@@ -23,6 +23,7 @@
   "devDependencies": {
     "@types/chai": "^3.5.0",
     "@types/mocha": "^2.2.40",
+    "babel-polyfill": "^6.23.0",
     "chai": "^3.5.0",
     "copy-webpack-plugin": "^4.0.1",
     "cross-env": "^3.0.0",
