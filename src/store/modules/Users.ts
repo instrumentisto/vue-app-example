@@ -1,19 +1,25 @@
 import UsersApi from 'api/Users';
-import types from 'store/mutation-types';
 
 export default class Users {
 
-    public static getConfig() {
+    public static readonly mutationTypes = {
+        ADD_USER: 'ADD_USER',
+        RESET_AUTHORIZED_USER: 'RESET_AUTHORIZED_USER',
+        SET_AUTHORIZED_USER: 'SET_AUTHORIZED_USER',
+        SET_USERS_LIST: 'SET_USERS_LIST',
+    };
+
+    public static getModule() {
         return {
             actions: this.actions,
             getters: this.getters,
             mutations: this.mutations,
             namespaced: true,
-            state: this.localState,
+            state: this.state,
         };
     }
 
-    private static localState = {
+    private static state = {
         all: [],
         authorized: null,
     };
@@ -28,36 +34,36 @@ export default class Users {
     private static actions = {
         getAll: ({ commit }) => {
             return UsersApi.getAll().then((users) => {
-                commit(types.SET_USERS_LIST, { users });
+                commit(Users.mutationTypes.SET_USERS_LIST, { users });
             });
         },
         login: ({ commit }, { email, password }) => {
             return UsersApi.login(email, password).then((user) => {
-                commit(types.SET_AUTHORIZED_USER, { user });
+                commit(Users.mutationTypes.SET_AUTHORIZED_USER, { user });
                 return user;
             });
         },
         register: ({ commit }, { user }) => {
             return UsersApi.register(user).then((addedUser) => {
-                commit(types.ADD_USER, addedUser);
-                commit(types.SET_AUTHORIZED_USER, { user });
+                commit(Users.mutationTypes.ADD_USER, addedUser);
+                commit(Users.mutationTypes.SET_AUTHORIZED_USER, { user });
                 return addedUser;
             });
         },
     };
 
     private static mutations = {
-        [types.SET_USERS_LIST]: (state, { users }) => {
+        [Users.mutationTypes.SET_USERS_LIST]: (state, { users }) => {
             state.all = users;
         },
-        [types.ADD_USER]: (state, { user }) => {
+        [Users.mutationTypes.ADD_USER]: (state, { user }) => {
             state.all.push(user);
         },
-        [types.SET_AUTHORIZED_USER]: (state, { user }) => {
+        [Users.mutationTypes.SET_AUTHORIZED_USER]: (state, { user }) => {
             user.password = undefined;
             state.authorized = user;
         },
-        [types.RESET_AUTHORIZED_USER]: (state) => {
+        [Users.mutationTypes.RESET_AUTHORIZED_USER]: (state) => {
             state.authorized = null;
         },
     };

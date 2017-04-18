@@ -5,7 +5,7 @@ import VueResource from 'vue-resource';
 
 import App from 'components/App.vue';
 import Router from 'Router';
-import store from 'store';
+import RootStore from 'store/Root';
 import Validation from 'Validation';
 
 Vue.use(VueCookie);
@@ -18,5 +18,5 @@ Validation.init();
 export default {
     render: (h) => h(App),
     router: Router.init(),
-    store,
+    store: RootStore.init(),
 };
