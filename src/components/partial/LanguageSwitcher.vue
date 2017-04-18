@@ -34,6 +34,7 @@
 
             I18n.loadLocaleData(lang).then(() => {
                 this.$i18n.locale = lang;
+                this.$validator.setLocale(lang);
                 Vue.cookie.set('language', lang);
             });
         }
