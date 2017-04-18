@@ -49,7 +49,6 @@ export default class I18n {
                 }
             }
             Validator.updateDictionary(validationDictionary);
-            Validator.setLocale(locale);
 
             return Promise.resolve(data);
         });
