@@ -4,17 +4,17 @@
 
     <form method="post" v-on:submit.prevent="onSubmit">
       <div class="form-group" :class="{'has-error': validationErrors.has('name') }">
-        <input v-model="user.name" v-validate="'required'" :placeholder="$t('user.name')"
+        <input v-model="user.name" v-validate="'required'" :placeholder="$t('validation.attributes.name')"
                name="name" type="text" class="form-control">
           <span v-show="validationErrors.has('name')" class="help-block">{{ validationErrors.first('name') }}</span>
       </div>
       <div class="form-group" :class="{'has-error': validationErrors.has('email') }">
-        <input v-model="user.email" v-validate="'required|email'" :placeholder="$t('user.email')"
+        <input v-model="user.email" v-validate="'required|email'" :placeholder="$t('validation.attributes.email')"
                name="email" type="email" class="form-control">
           <span v-show="validationErrors.has('email')" class="help-block">{{ validationErrors.first('email') }}</span>
       </div>
       <div class="form-group" :class="{'has-error': validationErrors.has('password') }">
-        <input v-model="user.password" v-validate="'required'" :placeholder="$t('user.password')"
+        <input v-model="user.password" v-validate="'required'" :placeholder="$t('validation.attributes.password')"
                name="password" type="password" class="form-control">
           <span v-show="validationErrors.has('password')" class="help-block">
             {{ validationErrors.first('password') }}
@@ -22,7 +22,7 @@
       </div>
       <div class="form-group" :class="{'has-error': validationErrors.has('password_confirm') }">
         <input v-model="user.password_confirm" v-validate="'required|confirmed:password'"
-               :placeholder="$t('user.password_confirm')"
+               :placeholder="$t('validation.attributes.password_confirm')"
                name="password_confirm" type="password" class="form-control">
           <span v-show="validationErrors.has('password_confirm')" class="help-block">
             {{ validationErrors.first('password_confirm') }}
