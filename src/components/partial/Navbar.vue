@@ -3,7 +3,8 @@
         <div class="container-fluid">
             <div class="navbar-header">
                 <a class="navbar-brand" href="/">
-                    <img alt="Brand" src="~assets/img/logo.png">
+                    <img v-show="!$store.state.loading" src="~assets/img/logo.png">
+                    <img v-show="$store.state.loading" src="~assets/img/loading_box.gif">
                     {{ $t('general.title') }}
                 </a>
                 <button type="button" class="btn btn-default navbar-btn" @click="checkHotStatus()">
