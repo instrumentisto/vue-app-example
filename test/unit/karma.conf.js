@@ -3,8 +3,8 @@ const webpackConfig = require('../../webpack/test.config.js');
 module.exports = function (config) {
     config.set({
         browsers: ['PhantomJS'],
-        frameworks: [/*'jasmine',*/'mocha', 'chai', /*'phantomjs-shim'*/],
-        reporters: ['mocha', 'spec'],
+        frameworks: ['mocha', 'chai'/*, 'phantomjs-shim'*/],
+        reporters: ['spec'],
         files: [
             '../../node_modules/babel-polyfill/dist/polyfill.js',
             './index.ts'
