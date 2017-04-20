@@ -40,7 +40,7 @@
       </button>
     </form>
 
-    <router-link to="/sign_in">{{ $t('sign_up.already_have_account') }}</router-link>
+    <router-link to="/login">{{ $t('sign_up.already_have_account') }}</router-link>
   </section>
 </template>
 

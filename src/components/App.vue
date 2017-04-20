@@ -4,7 +4,9 @@
             <navbar></navbar>
         </header>
         <main>
-            <router-view></router-view>
+            <transition name="fade" mode="out-in" appear>
+                <router-view></router-view>
+            </transition>
         </main>
         <footer>
             <span class="pull-right">
@@ -31,7 +33,7 @@
     })
     export default class App extends Vue {
 
-        private title: string = 'App Title!';
+        private title: string = '';
 
         @UsersGetter('totalCount')
         private usersTotalCount;
@@ -47,14 +49,18 @@
 
 <style src="~bower/bootstrap/dist/css/bootstrap.css"></style>
 <style>
-    html, body, #app, main {
-        height: 100%;
-        width: 100%;
+    html {
+        position: relative;
+        min-height: 100%;
+    }
+
+    body {
+        margin-bottom: 51px;
     }
 
     main {
-        margin-top: -72px;
-        padding-top: 72px;
+        padding-top: 51px;
+        padding-bottom: 20px;
     }
 
     main > section {
@@ -64,11 +70,20 @@
     }
 
     footer {
+        position: absolute;
+        bottom: 0;
         height: 52px;
-        margin-top: -52px;
+        width: 100%;
         padding: 10px;
         border-top: 1px solid #e7e7e7;
         background-color: #f8f8f8;
         line-height: 32px;
+    }
+
+    .fade-enter-active, .fade-leave-active {
+        transition: opacity .5s
+    }
+    .fade-enter, .fade-leave-to {
+        opacity: 0
     }
 </style>
