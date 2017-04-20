@@ -45,21 +45,12 @@
         protected name: string = 'profile';
 
         @UsersGetter('authorized')
-        private authorizedUser;
+        private user;
 
         @UsersMutation(Users.mutationTypes.RESET_AUTHORIZED_USER)
         private resetAuthorizedUser;
 
-        private user = {};
-
         private created(): void {
-            const user = this.authorizedUser;
-            if (user === null) {
-                this.logout();
-                return;
-            }
-
-            this.user = user;
             if (!this.user.image) {
                 this.user.image = require('~assets/img/default_user_photo.jpg');
             }
@@ -67,7 +58,7 @@
 
         private logout(): void {
             this.resetAuthorizedUser();
-            this.$router.push('/sign_in');
+            this.$router.push('/login');
         }
     }
 </script>

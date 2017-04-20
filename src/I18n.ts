@@ -2,6 +2,8 @@ import { Validator } from 'vee-validate';
 import Vue from 'vue';
 import VueI18n from 'vue-i18n';
 
+import store from 'store';
+
 export default class I18n {
     public static init(languagesPriority: string[], localeData?: any): VueI18n {
         languagesPriority.push(this.defaultLanguage);
@@ -31,6 +33,8 @@ export default class I18n {
     }
 
     public static loadLocaleData(locale: string): Promise<any> {
+        store.state.loading = true;
+
         return System.import('~assets/i18n/' + locale + '.json').then((data) => {
             this.i18n.setLocaleMessage(locale, data);
 
@@ -48,6 +52,8 @@ export default class I18n {
             }
             Validator.updateDictionary(validationDictionary);
 
+            store.state.loading = false;
+
             return data;
         });
     }
@@ -55,7 +61,7 @@ export default class I18n {
     private static i18n: VueI18n = null;
 
     private static readonly defaultLanguage = 'en';
-    private static readonly languages = {
+    private static readonly languages = { // TODO: move supported languages list to the config file
         en: {},
         ru: {},
         uk: {},
