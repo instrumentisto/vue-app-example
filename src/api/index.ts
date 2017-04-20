@@ -3,7 +3,7 @@ import axios, {AxiosInstance} from 'axios';
 import store from 'store';
 
 const instance: AxiosInstance = axios.create({
-    baseURL: 'http://vue-app-example.dev:3000/', // TODO: move API URL to the config file
+    baseURL: process.env.API_URL,
 });
 
 instance.interceptors.request.use((config) => {

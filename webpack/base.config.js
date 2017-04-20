@@ -68,6 +68,13 @@ module.exports = {
         hints: false
     },
     devtool: '#eval-source-map',
+    plugins: [
+        new webpack.DefinePlugin({
+            'process.env': {
+                API_URL: JSON.stringify(process.env.API_URL),
+            },
+        }),
+    ],
 };
 
 if (process.env.NODE_ENV === 'production') {
