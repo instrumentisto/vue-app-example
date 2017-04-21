@@ -1,6 +1,7 @@
 import Vue from 'vue';
 import VueCookie from 'vue-cookie';
 
+import 'class-component/hooks';
 import App from 'components/App.vue';
 import Router from 'Router';
 import store from 'store';

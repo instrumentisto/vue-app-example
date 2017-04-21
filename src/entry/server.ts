@@ -2,19 +2,32 @@ import Vue from 'vue';
 
 import I18n from 'I18n';
 import params from 'main';
+import App from 'components/App.vue';
 
 export default (context) => {
-    params.router.push(context.url);
+    return new Promise((resolve, reject) => {
+        params.router.push(context.url);
 
-    return Promise.all(params.router.getMatchedComponents().map((component) => {
-        if (component.prefetch) {
-            return component.prefetch(params.store);
-        }
-    })).then(() => {
-        params.i18n = I18n.init(context.accept_languages);
+        params.router.onReady(() => {
+            const matchedComponents = params.router.getMatchedComponents();
 
-        context.initialState = params.store.state;
+            if (!matchedComponents.length) {
+                reject({ code: 404 });
+            }
 
-        return new Vue(params);
+            Promise.all(matchedComponents.map((component) => {
+                return component.options.preFetch && component.options.preFetch(params.store);
+            })).then(() => {
+                return App.options.preFetch(params.store);
+            }).then(() => {
+                context.state = params.store.state;
+
+                return I18n.init(context.accept_languages).then((i18n) => {
+                    params.i18n = i18n;
+                });
+            }).then(() => {
+                resolve(new Vue(params));
+            }).catch(reject);
+        });
     });
 };
