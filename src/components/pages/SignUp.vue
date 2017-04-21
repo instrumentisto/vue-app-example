@@ -89,7 +89,6 @@
                 return;
             }
 
-            // TODO: check image
             this.register({ user: this.user }).then(() => {
                 this.$router.push('/profile');
             }).catch((error) => {
