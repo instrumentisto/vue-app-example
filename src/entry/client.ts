@@ -3,13 +3,13 @@ import Vue from 'vue';
 import I18n from 'I18n';
 import params from 'main';
 
-params.i18n = I18n.init([
+I18n.init([
     Vue.cookie.get('language'),
     navigator.language,
-]);
-
-const app = new Vue(params);
-app.$mount('#app');
+]).then((i18n) => {
+  params.i18n = i18n;
+  new Vue(params).$mount('#app');
+});
 
 if (module.hot) {
   module.hot.status((status) => {
@@ -27,6 +27,6 @@ if (module.hot) {
   module.hot.dispose(() => {
     // console.log('main disposed');
     // console.log(module.hot.data);
-    app.$destroy();
+    // app.$destroy();
   });
 }

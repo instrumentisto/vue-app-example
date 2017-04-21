@@ -5,7 +5,7 @@ import VueI18n from 'vue-i18n';
 import store from 'store';
 
 export default class I18n {
-    public static init(languagesPriority: string[], localeData?: any): VueI18n {
+    public static init(languagesPriority: string[]): Promise<VueI18n> {
         languagesPriority.push(this.defaultLanguage);
 
         let startLanguage;
@@ -23,13 +23,9 @@ export default class I18n {
             messages: this.languages,
         });
 
-        if (localeData) {
-            this.i18n.setLocaleMessage(startLanguage, localeData);
-        } else {
-            this.loadLocaleData(startLanguage);
-        }
-
-        return this.i18n;
+        return this.loadLocaleData(startLanguage).then((data) => {
+            return this.i18n;
+        });
     }
 
     public static loadLocaleData(locale: string): Promise<any> {
@@ -61,7 +57,7 @@ export default class I18n {
     private static i18n: VueI18n = null;
 
     private static readonly defaultLanguage = 'en';
-    private static readonly languages = { // TODO: move supported languages list to the config file
+    private static readonly languages = {
         en: {},
         ru: {},
         uk: {},
