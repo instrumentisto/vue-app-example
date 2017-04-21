@@ -1,5 +1,6 @@
 #!/usr/bin/env node
 
+const favicon = require('serve-favicon');
 const fs = require('fs');
 const path = require('path');
 const express = require('express');
@@ -12,6 +13,8 @@ const renderer = require('vue-server-renderer').createBundleRenderer(require('./
 });
 
 const app = express();
+
+app.use(favicon(resolve('./img/logo.png')));
 
 app.use(express.static('./'));
 
