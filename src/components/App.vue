@@ -44,6 +44,10 @@
         private created(): void {
             this.getAllUsers();
         }
+
+        private preFetch(store): Promise {
+            return store.dispatch('users/getAll');
+        }
     }
 </script>
 
