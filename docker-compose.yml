@@ -4,11 +4,13 @@ services:
   node:
     container_name: vue-app-example-node
     image: instrumentisto/vue-app-example:dev
+    depends_on:
+      - json-server
     build: .
     expose:
-      - "8080"        # express
+      - "8080"
     ports:
-      - "8080:8080"
+      - "8080:8080"   # express
     volumes:
       - ./:/app
   nginx:
@@ -30,6 +32,8 @@ services:
     image: instrumentisto/node-builder
     working_dir: /app
     command: /bin/sh -c "npm run json-server"
+    expose:
+      - "3000"
     ports:
       - "3000:3000"   #json-server
     volumes:
