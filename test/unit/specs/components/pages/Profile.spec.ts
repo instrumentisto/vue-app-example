@@ -1,21 +1,27 @@
 import Profile from 'components/pages/Profile.vue';
-import Helper from '../../../Helper';
+import Helper from 'unit/Helper';
 
 describe('components/pages/Profile.vue', () => {
-    const testUser = {
+    let testUser = {
         email: 'test@gmail.com',
         id: 1,
         name: 'Test',
     };
-    const app = Helper.initApp(Profile, false);
+    let app;
+    let component: Profile;
 
-    app.$store.state.users.authorized = testUser;
-    app.$mount();
+    before(() => {
+        return Helper.initApp(Profile, false).then((vm) => {
+            app = vm;
+            app.$store.state.user.authorized = testUser;
+            app.$mount();
 
-    const profileComponent = app.$children[0] as Profile;
+            component = app.$children[0];
+        });
+    });
 
     it('should have correct page title', () => {
-        expect(profileComponent.title).to.equal(app.$i18n.t('profile.title'));
+        expect(component.title).to.equal(app.$i18n.t('profile.title'));
     });
 
     it('should render correct section title', () => {
@@ -23,6 +29,6 @@ describe('components/pages/Profile.vue', () => {
     });
 
     it('should render correct user name', () => {
-        expect(app.$el.querySelector('p#user_name').textContent).to.equal(testUser.name);
+        expect(app.$el.querySelector('#user_name').textContent).to.equal(testUser.name);
     });
 });

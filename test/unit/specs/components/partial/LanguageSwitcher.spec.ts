@@ -1,18 +1,24 @@
 import LanguageSwitcher from 'components/partial/LanguageSwitcher.vue';
-import Helper from '../../../Helper';
+import Helper from 'unit/Helper';
 
 describe('components/partial/LanguageSwitcher.vue', () => {
-    const app = Helper.initApp(LanguageSwitcher);
+    let app;
+    let component: LanguageSwitcher;
 
-    const languageSwitcherComponent = app.$children[0];
+    before(() => {
+        return Helper.initApp(LanguageSwitcher).then((vm) => {
+            app = vm;
+            component = app.$children[0];
+        });
+    });
 
     it('should return valid languages list', () => {
-        expect(languageSwitcherComponent.languages)
+        expect(component.languages)
             .to.be.an('array')
             .and.not.be.empty;
     });
 
     it('active language flag must be true for current language', () => {
-        expect(languageSwitcherComponent.isActive(app.$i18n.locale)).to.be.true;
+        expect(component.isActive(app.$i18n.locale)).to.be.true;
     });
 });
