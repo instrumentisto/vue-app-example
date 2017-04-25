@@ -31,24 +31,25 @@
 <script lang="ts">
     import Vue from 'vue';
     import Component from 'vue-class-component';
-    import { Getter, Mutation, namespace } from 'vuex-class';
+    import { Getter, Action, namespace } from 'vuex-class';
 
     import Page from 'components/Page.vue';
-    import Users from 'store/modules/Users';
+    import { RESET_AUTHORIZATION } from 'store/modules/user/actions';
+    import { AUTHORIZED } from 'store/modules/user/getters';
 
-    const UsersGetter = namespace('users', Getter);
-    const UsersMutation = namespace('users', Mutation);
+    const UserGetter = namespace('user', Getter);
+    const UserAction = namespace('user', Action);
 
     @Component
     export default class Profile extends Page {
 
         protected name: string = 'profile';
 
-        @UsersGetter('authorized')
+        @UserGetter(AUTHORIZED)
         private user;
 
-        @UsersMutation(Users.mutationTypes.RESET_AUTHORIZED_USER)
-        private resetAuthorizedUser;
+        @UserAction(RESET_AUTHORIZATION)
+        private resetAuthorization;
 
         private created(): void {
             if (!this.user.image) {
@@ -57,7 +58,7 @@
         }
 
         private logout(): void {
-            this.resetAuthorizedUser();
+            this.resetAuthorization();
             this.$router.push('/login');
         }
     }
