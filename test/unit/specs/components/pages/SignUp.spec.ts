@@ -1,13 +1,19 @@
 import SignUp from 'components/pages/SignUp.vue';
-import Helper from '../../../Helper';
+import Helper from 'unit/Helper';
 
 describe('components/pages/SignUp.vue', () => {
-    const app = Helper.initApp(SignUp);
+    let app;
+    let component: SignUp;
 
-    const signUpComponent = app.$children[0] as SignUp;
+    before(() => {
+        return Helper.initApp(SignUp).then((vm) => {
+            app = vm;
+            component = app.$children[0];
+        });
+    });
 
     it('should have correct page title', () => {
-        expect(signUpComponent.title).to.equal(app.$i18n.t('sign_up.title'));
+        expect(component.title).to.equal(app.$i18n.t('sign_up.title'));
     });
 
     it('should render correct section title', () => {
