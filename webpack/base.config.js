@@ -22,22 +22,34 @@ module.exports = {
             {
                 test: /\.ts$/,
                 exclude: /node_modules|vue\/src/,
-                loader: 'ts-loader',
-                options: {
-                    appendTsSuffixTo: [/\.vue$/],
-                    transpileOnly: true,
-                    isolatedModules: true
-                }
+                use: [
+                    {
+                        loader: 'babel-loader',
+                    },
+                    {
+                        loader: 'ts-loader',
+                        options: {
+                            appendTsSuffixTo: [/\.vue$/],
+                            transpileOnly: true,
+                            isolatedModules: true
+                        }
+                    },
+                ]
             },
             {
                 test: /\.vue$/,
-                loader: 'vue-loader',
-                options: {
-                    // esModule: true,
-                    loaders: {
-                        // ts: 'ts-loader!tslint-loader'
+                use: [
+                    {
+                        loader: 'vue-loader',
+                        options: {
+                            // preserveWhitespace: false,
+                            // esModule: true,
+                            loaders: {
+                                ts: 'babel-loader!ts-loader', // TODO: add !tslint-loader
+                            },
+                        },
                     }
-                }
+                ]
             },
             {
                 test: /\.(png|jpg|gif|svg)$/,
