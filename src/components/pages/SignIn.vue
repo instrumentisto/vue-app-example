@@ -29,13 +29,14 @@
 
     import HMRApi from 'HMRApi';
     import Page from 'components/Page.vue';
+    import { LOGIN } from 'store/modules/user/actions';
 
-    const UsersAction = namespace('users', Action);
+    const UserAction = namespace('user', Action);
 
     @Component
     export default class SignIn extends Page {
 
-        @UsersAction('login')
+        @UserAction(LOGIN)
         private login;
 
         private email: string = '';

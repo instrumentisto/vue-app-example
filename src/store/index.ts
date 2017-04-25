@@ -1,40 +1,54 @@
 import Vue from 'vue';
-import Vuex from 'vuex';
+import Vuex, { ActionTree, GetterTree, MutationTree } from 'vuex';
 import createPersistedState from 'vuex-persistedstate';
 
-import Users from 'store/modules/Users';
+import UserModule from 'store/modules/user';
+import actions from 'store/root/actions';
+import getters from 'store/root/getters';
+import mutations from 'store/root/mutations';
+import RootState from 'store/root/state';
+
+import LanguageSwitcher from 'components/partial/LanguageSwitcher.vue';
 
 Vue.use(Vuex);
 
-const state = {
-    loading: false,
-};
-
 const store = new Vuex.Store({
-    state,
+    actions,
+    getters,
     modules: {
-        users: Users.getModule(),
+        user: new UserModule(),
     },
+    mutations,
     plugins: [createPersistedState({
         key: 'vue-app-example-vuex',
         paths: [
-            'users.authorized',
+            'user.authorized',
         ],
     })],
+    state: new RootState(),
 });
 
 if (module.hot) {
-    module.hot.accept(['./modules/Users'], (updatedDependencies) => {
-        const newModuleUsers = require('./modules/Users').default;
+    module.hot.accept([
+        'store/root/actions',
+        'store/root/getters',
+        'store/root/mutations',
+        'store/modules/user',
+    ], (updatedDependencies) => {
+        // console.log('store hot updated!');
+        const HotUserModule = require('store/modules/user').default;
         store.hotUpdate({
+            actions: require('store/root/actions') as ActionTree<RootState, any>,
+            getters: require('store/root/getters') as GetterTree<RootState, any>,
             modules: {
-                users: newModuleUsers,
+                users: new HotUserModule(),
             },
+            mutations: require('store/root/mutations') as MutationTree<RootState>,
         });
     });
 
     module.hot.dispose(() => {
-        // console.log('dispose store');
+        // console.log('store hot disposed!');
     });
 }
 

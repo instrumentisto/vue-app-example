@@ -50,14 +50,15 @@
     import { Action, namespace } from 'vuex-class';
 
     import Page from 'components/Page.vue';
+    import { SIGN_UP } from 'store/modules/user/actions';
 
-    const UsersAction = namespace('users', Action);
+    const UserAction = namespace('user', Action);
 
     @Component
     export default class SignUp extends Page {
 
-        @UsersAction('register')
-        private register;
+        @UserAction(SIGN_UP)
+        private signUp;
 
         private user = {
             name: '',
@@ -89,7 +90,7 @@
                 return;
             }
 
-            this.register({ user: this.user }).then(() => {
+            this.signUp(this.user).then(() => {
                 this.$router.push('/profile');
             }).catch((error) => {
                 let errorMsg = this.$t('errors.common');

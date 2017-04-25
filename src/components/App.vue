@@ -22,9 +22,11 @@
     import { Action, Getter, namespace } from 'vuex-class';
 
     import Navbar from 'components/partial/Navbar.vue';
+    import { FETCH_ALL } from 'store/modules/user/actions';
+    import { TOTAL_COUNT } from 'store/modules/user/getters';
 
-    const UsersGetter = namespace('users', Getter);
-    const UsersAction = namespace('users', Action);
+    const UserGetter = namespace('user', Getter);
+    const UserAction = namespace('user', Action);
 
     @Component({
         components: {
@@ -35,18 +37,18 @@
 
         private title: string = '';
 
-        @UsersGetter('totalCount')
+        @UserGetter(TOTAL_COUNT)
         private usersTotalCount;
 
-        @UsersAction('getAll')
-        private getAllUsers;
+        @UserAction(FETCH_ALL)
+        private fetchAllUsers;
 
         private created(): void {
-            this.getAllUsers();
+            this.fetchAllUsers();
         }
 
         private preFetch(store): Promise {
-            return store.dispatch('users/getAll');
+            return store.dispatch('user/' + FETCH_ALL);
         }
     }
 </script>
