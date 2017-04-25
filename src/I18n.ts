@@ -5,6 +5,9 @@ import VueI18n from 'vue-i18n';
 import store from 'store';
 
 export default class I18n {
+
+    public static readonly defaultLanguage = 'en';
+
     public static init(languagesPriority: string[]): Promise<VueI18n> {
         languagesPriority.push(this.defaultLanguage);
 
@@ -56,7 +59,6 @@ export default class I18n {
 
     private static i18n: VueI18n = null;
 
-    private static readonly defaultLanguage = 'en';
     private static readonly languages = {
         en: {},
         ru: {},
