@@ -1,6 +1,13 @@
 {
   "compilerOptions": {
-    "module": "es2015",
+    "baseUrl": ".",
+    "paths": {
+      "*": [
+        "src/*",
+        "test/*"
+      ]
+    },
+    "module": "es6",
     "moduleResolution": "node",
     "allowSyntheticDefaultImports": true,
     "experimentalDecorators": true,
