@@ -9,7 +9,7 @@
         protected name: string;
 
         private get title(): string {
-            let title = this.$t(this.name + '.title');
+            const title = this.$t(this.name + '.title');
             if (process.browser) {
                 document.title = title;
             }
@@ -17,7 +17,9 @@
         }
 
         @Watch('title')
-        titleChanged() { }
+        private titleChanged() {
+            //noinspection TsLint
+        }
 
         private mounted(): void {
             this.$store.state.loading = false;

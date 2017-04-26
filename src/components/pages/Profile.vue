@@ -31,7 +31,7 @@
 <script lang="ts">
     import Vue from 'vue';
     import Component from 'vue-class-component';
-    import { Getter, Action, namespace } from 'vuex-class';
+    import { Action, Getter, namespace } from 'vuex-class';
 
     import Page from 'components/Page.vue';
     import { RESET_AUTHORIZATION } from 'store/modules/user/actions';

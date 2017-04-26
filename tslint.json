@@ -1,11 +1,9 @@
 {
-    "defaultSeverity": "error",
     "extends": [
         "tslint:recommended"
     ],
-    "jsRules": {},
     "rules": {
         "quotemark": [true, "single"]
-    },
-    "rulesDirectory": []
+//        "no-consecutive-blank-lines": [true, 10]
+    }
 }
