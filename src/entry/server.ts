@@ -17,7 +17,6 @@ export default (context) => {
             }
 
             Promise.all(matchedComponents.map((component: any | Vue) => {
-                // TODO: try component.$options
                 return component.options.preFetch && component.options.preFetch(params.store);
             })).then(() => {
                 return (App as any).options.preFetch(params.store);

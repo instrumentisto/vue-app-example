@@ -9,8 +9,8 @@ const base = require('./base.config');
 module.exports = merge(base, {
     entry: './src/entry/client.ts',
     output: {
-        // hotUpdateChunkFilename: 'hot/[id].[hash].hot-update.js',
-        // hotUpdateMainFilename: 'hot/[hash].hot-update.json'
+        hotUpdateChunkFilename: 'hot/[id].[hash].hot-update.js',
+        hotUpdateMainFilename: 'hot/[hash].hot-update.json'
     },
     node: {
         fs: 'empty'
