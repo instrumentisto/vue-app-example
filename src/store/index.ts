@@ -8,8 +8,6 @@ import getters from 'store/root/getters';
 import mutations from 'store/root/mutations';
 import RootState from 'store/root/state';
 
-import LanguageSwitcher from 'components/partial/LanguageSwitcher.vue';
-
 Vue.use(Vuex);
 
 const store = new Vuex.Store({
@@ -23,6 +21,7 @@ const store = new Vuex.Store({
         key: 'vue-app-example-vuex',
         paths: [
             'user.authorized',
+            'locale',
         ],
     })],
     state: new RootState(),

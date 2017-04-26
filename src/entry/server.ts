@@ -1,8 +1,9 @@
 import Vue from 'vue';
 
+import 'class-component/hooks';
+import App from 'components/App.vue';
 import I18n from 'I18n';
 import params from 'main';
-import App from 'components/App.vue';
 
 export default (context) => {
     return new Promise((resolve, reject) => {
@@ -15,10 +16,11 @@ export default (context) => {
                 reject({ code: 404 });
             }
 
-            Promise.all(matchedComponents.map((component) => {
+            Promise.all(matchedComponents.map((component: any | Vue) => {
+                // TODO: try component.$options
                 return component.options.preFetch && component.options.preFetch(params.store);
             })).then(() => {
-                return App.options.preFetch(params.store);
+                return (App as any).options.preFetch(params.store);
             }).then(() => {
                 context.state = params.store.state;
 

@@ -12,22 +12,22 @@ export const SIGN_UP = 'SIGN_UP';
 export default {
     [FETCH_ALL]: (store: ActionContext<UserState, any>) => {
         return UsersApi.getAll().then((users) => {
-            store.commit(mutations.SET_USERS_LIST, users);
+            store.commit(mutations.SET_LIST, users);
         });
     },
     [LOGIN]: (store: ActionContext<UserState, any>, { email, password }) => {
         return UsersApi.login(email, password).then((user) => {
-            store.commit(mutations.SET_AUTHORIZED_USER, user);
+            store.commit(mutations.SET_AUTHORIZED, user);
             return user;
         });
     },
     [RESET_AUTHORIZATION]: (store: ActionContext<UserState, any>) => {
-        store.commit(mutations.SET_AUTHORIZED_USER, null);
+        store.commit(mutations.SET_AUTHORIZED, null);
     },
     [SIGN_UP]: (store: ActionContext<UserState, any>, user) => {
         return UsersApi.register(user).then((addedUser) => {
-            store.commit(mutations.ADD_USER, addedUser);
-            store.commit(mutations.SET_AUTHORIZED_USER, user);
+            store.commit(mutations.ADD, addedUser);
+            store.commit(mutations.SET_AUTHORIZED, user);
             return addedUser;
         });
     },

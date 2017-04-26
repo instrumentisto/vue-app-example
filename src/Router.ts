@@ -6,7 +6,7 @@ import SignIn from 'components/pages/SignIn.vue';
 import SignUp from 'components/pages/SignUp.vue';
 import store from 'store';
 
-const Profile = (resolve) => require(['components/pages/Profile.vue'], resolve);
+const Profile = () => System.import('components/pages/Profile.vue');
 
 export default class Router implements RouterOptions {
 
@@ -23,7 +23,9 @@ export default class Router implements RouterOptions {
 
     public constructor() {
         Vue.use(VueRouter);
+
         this.router = new VueRouter(this);
+
         this.router.beforeEach(this.beforeEach);
         this.router.onReady(this.onReady);
     }
