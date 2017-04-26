@@ -57,18 +57,18 @@
     @Component
     export default class SignUp extends Page {
 
+        protected name: string = 'sign_up';
+
         @UserAction(SIGN_UP)
         private signUp;
 
         private user = {
-            name: '',
             email: '',
+            image: '',
+            name: '',
             password: '',
             password_confirm: '',
-            image: '',
         };
-
-        protected name: string = 'sign_up';
 
         private onImageChange(changeEvent) {
             const files = changeEvent.target.files || changeEvent.dataTransfer.files;

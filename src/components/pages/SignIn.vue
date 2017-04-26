@@ -27,14 +27,16 @@
     import Component from 'vue-class-component';
     import { Action, namespace } from 'vuex-class';
 
-    import HMRApi from 'HMRApi';
     import Page from 'components/Page.vue';
+    import HMRApi from 'HMRApi';
     import { LOGIN } from 'store/modules/user/actions';
 
     const UserAction = namespace('user', Action);
 
     @Component
     export default class SignIn extends Page {
+
+        protected name: string = 'sign_in';
 
         @UserAction(LOGIN)
         private login;
@@ -45,8 +47,6 @@
 
         private error: string = '';
 
-        protected name: string = 'sign_in';
-
         private onSubmit(): void {
             this.login({
                 email: this.email,
@@ -56,9 +56,9 @@
             }).catch((error) => {
                 let errorMsg = this.$t('errors.common');
                 switch (error) {
-                  case 1:
-                    errorMsg = this.$t('errors.access_denied');
-                    break;
+                    case 1:
+                        errorMsg = this.$t('errors.access_denied');
+                        break;
                 }
                 this.error = errorMsg;
             });

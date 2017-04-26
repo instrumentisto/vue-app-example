@@ -10,15 +10,15 @@ module.exports = {
     // recordsOutputPath: path.resolve(__dirname, '../_build/webpack.records.json'),
     module: {
         rules: [
-            // {
-            //     enforce: 'pre',
-            //     test: /\.ts$/,
-            //     loader: 'tslint-loader',
-            //     exclude: /(node_modules)/,
-            //     options: {
-            //         configFile: 'tslint.json'
-            //     }
-            // },
+            {
+                enforce: 'pre',
+                test: /\.ts$/,
+                loader: 'tslint-loader',
+                exclude: /node_modules/,
+                options: {
+                    configFile: 'tslint.json'
+                }
+            },
             {
                 test: /\.ts$/,
                 exclude: /node_modules|vue\/src/,
@@ -42,10 +42,9 @@ module.exports = {
                     {
                         loader: 'vue-loader',
                         options: {
-                            // preserveWhitespace: false,
                             // esModule: true,
                             loaders: {
-                                ts: 'babel-loader!ts-loader', // TODO: add !tslint-loader
+                                ts: 'babel-loader!ts-loader!tslint-loader',
                             },
                         },
                     }

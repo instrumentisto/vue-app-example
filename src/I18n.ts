@@ -27,6 +27,7 @@ export default class I18n {
         for (const locale of this.locales) {
             messages[locale] = {};
         }
+
         this.i18n = new VueI18n({
             locale: startLocale,
             messages,
