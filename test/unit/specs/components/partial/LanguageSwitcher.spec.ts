@@ -13,7 +13,7 @@ describe('components/partial/LanguageSwitcher.vue', () => {
     });
 
     it('should return valid languages list', () => {
-        expect(component.languages)
+        expect(component.locales)
             .to.be.an('array')
             .and.not.be.empty;
     });
