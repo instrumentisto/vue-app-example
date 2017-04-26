@@ -1,14 +1,17 @@
+import { expect } from 'chai';
+import Vue from 'vue';
+
 import Profile from 'components/pages/Profile.vue';
 import Helper from 'unit/Helper';
 
 describe('components/pages/Profile.vue', () => {
-    let testUser = {
+    const testUser = {
         email: 'test@gmail.com',
         id: 1,
         name: 'Test',
     };
-    let app;
-    let component: Profile;
+    let app: Vue;
+    let component: any;
 
     before(() => {
         return Helper.initApp(Profile, false).then((vm) => {

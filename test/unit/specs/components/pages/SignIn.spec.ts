@@ -1,9 +1,12 @@
+import { expect } from 'chai';
+import Vue from 'vue';
+
 import SignIn from 'components/pages/SignIn.vue';
 import Helper from 'unit/Helper';
 
 describe('components/pages/SignIn.vue', () => {
-    let app;
-    let component: SignIn;
+    let app: Vue;
+    let component: any;
 
     before(() => {
         return Helper.initApp(SignIn).then((vm) => {

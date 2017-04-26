@@ -1,9 +1,12 @@
+import { expect } from 'chai';
+import Vue from 'vue';
+
 import LanguageSwitcher from 'components/partial/LanguageSwitcher.vue';
 import Helper from 'unit/Helper';
 
 describe('components/partial/LanguageSwitcher.vue', () => {
-    let app;
-    let component: LanguageSwitcher;
+    let app: Vue;
+    let component: any;
 
     before(() => {
         return Helper.initApp(LanguageSwitcher).then((vm) => {
