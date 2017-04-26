@@ -13,6 +13,6 @@ Validation.init();
 
 export default {
     render: (h) => h(App),
-    router: Router.init(),
+    router: new Router().instance,
     store,
 };
