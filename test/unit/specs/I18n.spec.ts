@@ -11,7 +11,7 @@ describe('I18n.ts', () => {
 
     it('should correctly initialize vue-i18n plugin with default language on empty priority list', () => {
         return I18n.init([]).then((i18n) => {
-            expect(Object.keys(i18n.getLocaleMessage(I18n.defaultLanguage)))
+            expect(Object.keys(i18n.getLocaleMessage(I18n.defaultLocale)))
                 .to.be.an('array')
                 .and.not.be.empty;
         });
@@ -19,7 +19,7 @@ describe('I18n.ts', () => {
 
     it('should correctly initialize vue-i18n plugin with default language on not existing locale', () => {
         return I18n.init(['not_existing_language']).then((i18n) => {
-            expect(Object.keys(i18n.getLocaleMessage(I18n.defaultLanguage)))
+            expect(Object.keys(i18n.getLocaleMessage(I18n.defaultLocale)))
                 .to.be.an('array')
                 .and.not.be.empty;
         });

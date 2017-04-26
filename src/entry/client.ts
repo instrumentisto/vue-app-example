@@ -2,9 +2,10 @@ import Vue from 'vue';
 
 import I18n from 'I18n';
 import params from 'main';
+import store from 'store';
 
 I18n.init([
-    Vue.cookie.get('language'),
+    store.state.locale,
     navigator.language,
 ]).then((i18n) => {
   params.i18n = i18n;

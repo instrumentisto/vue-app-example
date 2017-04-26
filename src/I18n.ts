@@ -6,27 +6,33 @@ import store from 'store';
 
 export default class I18n {
 
-    public static readonly defaultLanguage = 'en';
+    public static readonly defaultLocale = 'en';
 
-    public static init(languagesPriority: string[]): Promise<VueI18n> {
-        languagesPriority.push(this.defaultLanguage);
+    public static readonly locales = ['en', 'ru', 'uk'];
 
-        let startLanguage;
-        for (const lang of languagesPriority) {
-            if (this.languages[lang]) {
-                startLanguage = lang;
+    public static init(priority: string[]): Promise<VueI18n> {
+        priority.push(this.defaultLocale);
+
+        let startLocale;
+        for (const locale of priority) {
+            if (this.locales.find((value) => value === locale)) {
+                startLocale = locale;
                 break;
             }
         }
 
         Vue.use(VueI18n);
 
+        const messages = {};
+        for (const locale of this.locales) {
+            messages[locale] = {};
+        }
         this.i18n = new VueI18n({
-            locale: startLanguage,
-            messages: this.languages,
+            locale: startLocale,
+            messages,
         });
 
-        return this.loadLocaleData(startLanguage).then((data) => {
+        return this.loadLocaleData(startLocale).then(() => {
             return this.i18n;
         });
     }
@@ -34,7 +40,7 @@ export default class I18n {
     public static loadLocaleData(locale: string): Promise<any> {
         store.state.loading = true;
 
-        return System.import('~assets/i18n/' + locale + '.json').then((data) => {
+        return System.import('~assets/i18n/' + locale + '.json').then((data: any) => {
             this.i18n.setLocaleMessage(locale, data);
 
             const validationDictionary = {};
@@ -58,12 +64,6 @@ export default class I18n {
     }
 
     private static i18n: VueI18n = null;
-
-    private static readonly languages = {
-        en: {},
-        ru: {},
-        uk: {},
-    };
 }
 
 if (module.hot) {
