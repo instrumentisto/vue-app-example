@@ -11,6 +11,10 @@
     "moduleResolution": "node",
     "allowSyntheticDefaultImports": true,
     "experimentalDecorators": true,
+//    "isolatedModules": false,
+//    "noImplicitThis": true,
+//    "removeComments": true,
+//    "suppressImplicitAnyIndexErrors": true,
     "target": "es6",
     "lib": [
       "dom",

@@ -1,4 +1,4 @@
-import { ActionContext, ActionTree, GetterTree, Module, MutationTree } from 'vuex';
+import { Module } from 'vuex';
 
 import actions from 'store/modules/user/actions';
 import getters from 'store/modules/user/getters';
@@ -7,15 +7,15 @@ import UserState from 'store/modules/user/state';
 
 export default class User implements Module<UserState, any> {
 
-    public namespaced: boolean = true;
+    public namespaced = true;
 
     public state: UserState;
 
-    public getters: GetterTree<UserState, any> = getters;
+    public getters = getters;
 
-    public actions: ActionTree<UserState, any> = actions;
+    public actions = actions;
 
-    public mutations: MutationTree<UserState> = mutations;
+    public mutations = mutations;
 
     public constructor() {
         this.state = new UserState();
