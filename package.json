@@ -24,6 +24,7 @@
     "@types/chai": "^3.5.0",
     "@types/mocha": "^2.2.40",
     "@types/node": "^7.0.13",
+    "@types/vue-i18n": "^6.1.0",
     "babel-core": "^6.24.1",
     "babel-loader": "^7.0.0",
     "babel-polyfill": "^6.23.0",
