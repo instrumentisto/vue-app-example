@@ -1,3 +1,5 @@
+import { expect } from 'chai';
+
 import Router from 'Router';
 
 describe('Router.ts', () => {
