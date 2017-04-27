@@ -8,5 +8,7 @@ _release
 .DS_Store
 
 npm-debug.log
+selenium-debug.log
+test/e2e/reports
 
 .data/db.json
