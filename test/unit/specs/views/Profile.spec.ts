@@ -1,8 +1,8 @@
 import { expect } from 'chai';
 import Vue from 'vue';
 
-import Profile from 'components/pages/Profile.vue';
 import Helper from 'unit/Helper';
+import Profile from 'views/Profile.vue';
 
 describe('components/pages/Profile.vue', () => {
     const testUser = {

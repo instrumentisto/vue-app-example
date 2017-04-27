@@ -27,7 +27,7 @@
     import Component from 'vue-class-component';
     import { Action, namespace } from 'vuex-class';
 
-    import Page from 'components/Page.vue';
+    import Page from 'Page.vue';
     import HMRApi from 'HMRApi';
     import { LOGIN } from 'store/modules/user/actions';
 

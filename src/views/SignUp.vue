@@ -49,7 +49,7 @@
     import Component from 'vue-class-component';
     import { Action, namespace } from 'vuex-class';
 
-    import Page from 'components/Page.vue';
+    import Page from 'Page.vue';
     import { SIGN_UP } from 'store/modules/user/actions';
 
     const UserAction = namespace('user', Action);

@@ -22,7 +22,7 @@
     import Vue from 'vue';
     import Component from 'vue-class-component';
 
-    import LanguageSwitcher from 'components/partial/LanguageSwitcher.vue';
+    import LanguageSwitcher from 'components/LanguageSwitcher.vue';
     import HMRApi from 'HMRApi';
 
     @Component({

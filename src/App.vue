@@ -21,7 +21,7 @@
     import Component from 'vue-class-component';
     import { Action, Getter, namespace } from 'vuex-class';
 
-    import Navbar from 'components/partial/Navbar.vue';
+    import Navbar from 'components/Navbar.vue';
     import { FETCH_ALL } from 'store/modules/user/actions';
     import { TOTAL_COUNT } from 'store/modules/user/getters';
 
