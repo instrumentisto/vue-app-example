@@ -14,7 +14,7 @@
       <button type="submit" class="btn btn-default">{{ $t('sign_in.login') }}</button>
     </form>
 
-    <p>{{ error }}</p>
+    <p v-show="error" class="error">{{ error }}</p>
 
     <router-link to="/sign_up">{{ $t('sign_in.do_not_have_account') }}</router-link>
     <br/>
