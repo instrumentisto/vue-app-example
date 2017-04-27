@@ -1,8 +1,8 @@
 import { expect } from 'chai';
 import Vue from 'vue';
 
-import SignUp from 'components/pages/SignUp.vue';
 import Helper from 'unit/Helper';
+import SignUp from 'views/SignUp.vue';
 
 describe('components/pages/SignUp.vue', () => {
     let app: Vue;

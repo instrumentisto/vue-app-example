@@ -1,7 +1,7 @@
 import Vue from 'vue';
 
-import 'class-component/hooks';
-import App from 'components/App.vue';
+import 'class-component/hooks'; // must be imported first
+import App from 'App.vue';
 import I18n from 'I18n';
 import params from 'main';
 

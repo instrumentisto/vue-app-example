@@ -33,7 +33,7 @@
     import Component from 'vue-class-component';
     import { Action, Getter, namespace } from 'vuex-class';
 
-    import Page from 'components/Page.vue';
+    import Page from 'Page.vue';
     import { RESET_AUTHORIZATION } from 'store/modules/user/actions';
     import { AUTHORIZED } from 'store/modules/user/getters';
 

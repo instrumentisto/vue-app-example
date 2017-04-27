@@ -2,11 +2,11 @@ import Vue from 'vue';
 import VueRouter from 'vue-router';
 import { Route, RouterMode, RouterOptions } from 'vue-router/types/router';
 
-import SignIn from 'components/pages/SignIn.vue';
-import SignUp from 'components/pages/SignUp.vue';
 import store from 'store';
+import SignIn from 'views/SignIn.vue';
+import SignUp from 'views/SignUp.vue';
 
-const Profile = () => System.import('components/pages/Profile.vue');
+const Profile = () => System.import('views/Profile.vue');
 
 export default class Router implements RouterOptions {
 
@@ -39,7 +39,7 @@ export default class Router implements RouterOptions {
 
         if (to.matched.some((record) => record.meta.requiresAuth)) {
             next();
-            if (!store.state.users.authorized) {
+            if (!store.state.user.authorized) {
                 next({
                     path: '/login',
                 });
