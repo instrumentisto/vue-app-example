@@ -1,16 +1,10 @@
 {
   "users": [
     {
-      "email": "roman@dragan.com.ua",
-      "id": "a4vhAoFG",
-      "name": "Roman Dragan",
-      "password": "123123"
-    },
-    {
       "email": "test@gmail.com",
       "id": "hwX6aOr7",
       "name": "Test User",
-      "password": "321321"
+      "password": "123123"
     }
   ]
 }
