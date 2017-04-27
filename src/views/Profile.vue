@@ -1,5 +1,5 @@
 <template>
-  <section>
+  <section id="profile">
     <h1 class="title">{{ $t('profile.title') }}</h1>
 
     <form class="form-horizontal">
