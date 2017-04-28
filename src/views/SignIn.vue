@@ -1,8 +1,8 @@
 <template>
-  <section>
+  <section id="signIn">
     <h1 class="title">{{ $t('sign_in.title') }}</h1>
 
-    <form method="post" v-on:submit.prevent="onSubmit">
+    <form id="signInForm" method="post" v-on:submit.prevent="onSubmit">
       <div class="form-group">
           <input v-model="email" :placeholder="$t('validation.attributes.email')"
                  name="email" type="text" class="form-control">
@@ -14,7 +14,7 @@
       <button type="submit" class="btn btn-default">{{ $t('sign_in.login') }}</button>
     </form>
 
-    <p v-show="error" class="error">{{ error }}</p>
+    <p v-show="error" class="error">{{ error }}</p> <!-- TODO convert to vue component -->
 
     <router-link to="/sign_up">{{ $t('sign_in.do_not_have_account') }}</router-link>
     <br/>

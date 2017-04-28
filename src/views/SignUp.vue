@@ -1,8 +1,8 @@
 <template>
-  <section>
+  <section id="signUp">
     <h1 class="title">{{ $t('sign_up.title') }}</h1>
 
-    <form method="post" v-on:submit.prevent="onSubmit">
+    <form id="signUpForm" method="post" v-on:submit.prevent="onSubmit">
       <div class="form-group" :class="{'has-error': validationErrors.has('name') }">
         <input v-model="user.name" v-validate="'required'" :placeholder="$t('validation.attributes.name')"
                name="name" type="text" class="form-control">
@@ -40,6 +40,8 @@
       </button>
     </form>
 
+    <p class="error" v-show="error">{{ error }}</p> <!-- TODO convert to vue component -->
+
     <router-link to="/login">{{ $t('sign_up.already_have_account') }}</router-link>
   </section>
 </template>
@@ -69,6 +71,8 @@
             password: '',
             password_confirm: '',
         };
+
+        private error: string = '';
 
         private onImageChange(changeEvent) {
             const files = changeEvent.target.files || changeEvent.dataTransfer.files;

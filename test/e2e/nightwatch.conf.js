@@ -2,7 +2,7 @@ require('babel-register')
 
 module.exports = {
     src_folders: ['test/e2e/specs'],
-    output_folder: 'test/e2e/reports',
+    output_folder: false,
     custom_assertions_path: ['test/e2e/custom-assertions'],
 
     selenium: {
@@ -21,7 +21,13 @@ module.exports = {
             selenium_host: 'localhost',
             silent: true,
             globals: {
-                devServerURL: 'http://vue-app-example.dev'
+                devServerURL: 'http://vue-app-example.dev/',
+                localeData: require('../../assets/i18n/en.json'),
+                localStorage: {
+                    'vue-app-example-vuex': {
+                        locale: 'en'
+                    }
+                }
             }
         },
 
