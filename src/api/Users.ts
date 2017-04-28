@@ -2,6 +2,7 @@ import {AxiosPromise, AxiosResponse} from 'axios';
 
 import API from 'api';
 
+// TODO: add docs about receiving and storing plain password
 export default class Users {
 
     public static getAll(): AxiosPromise {
@@ -22,9 +23,7 @@ export default class Users {
                 return Promise.reject(1);
             }
 
-            return API.post('users', {
-                params: user,
-            }).then((postResponse: AxiosResponse) => {
+            return API.post('users', user).then((postResponse: AxiosResponse) => {
                 return postResponse.data;
             });
         });

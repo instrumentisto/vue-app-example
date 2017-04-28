@@ -9,6 +9,7 @@ _release
 
 npm-debug.log
 selenium-debug.log
-test/e2e/reports
+
+test/e2e/specs/**/*.js
 
 .data/db.json

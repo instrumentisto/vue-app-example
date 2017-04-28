@@ -5,7 +5,8 @@
     "build:client": "cross-env NODE_ENV=development API_URL=http://vue-app-example.dev:3000/ webpack --config webpack/client.config.js --progress --hide-modules",
     "build:server": "cross-env NODE_ENV=development API_URL=http://json-server:3000/ webpack --config webpack/server.config.js --progress --hide-modules",
     "json-server": "json-server --watch .data/db.json --delay 500",
-    "test:e2e": "cross-env PORT=8080 node test/e2e/runner.js",
+    "test": "npm run test:unit && npm run test:e2e",
+    "test:e2e": "tsc test/e2e/specs/**/*.ts && node test/e2e/runner.js",
     "test:unit": "karma start test/unit/karma.conf.js --single-run"
   },
   "dependencies": {
