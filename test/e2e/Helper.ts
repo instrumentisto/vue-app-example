@@ -1,7 +1,7 @@
 export default class Helper {
-    public static beforeEach(browser, done, path) {
+    public static beforeEach(browser, done) {
       browser
-        .url(browser.globals.devServerURL + path)
+        .url(browser.launch_url)
         .execute((initialStorage) => {
           for (const key in initialStorage) {
             if (!initialStorage.hasOwnProperty(key)) {
