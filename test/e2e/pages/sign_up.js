@@ -12,6 +12,6 @@ module.exports = {
     error: 'p.error'
   },
   url: function() {
-    return this.api.launchUrl + 'sign_up';
+    return this.api.launchUrl + '/sign_up';
   },
 };
