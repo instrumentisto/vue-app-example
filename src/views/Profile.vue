@@ -10,16 +10,16 @@
       </div>
 
       <div class="form-group">
-        <label class="col-sm-2 control-label" for="user_name">{{ $t('validation.attributes.name') }}</label>
+        <label class="col-sm-2 control-label" for="userName">{{ $t('validation.attributes.name') }}</label>
         <div class="col-sm-10">
-          <p id="user_name" class="form-control-static">{{ user.name }}</p>
+          <p id="userName" class="form-control-static">{{ user.name }}</p>
         </div>
       </div>
 
       <div class="form-group">
-        <label class="col-sm-2 control-label" for="user_email">{{ $t('validation.attributes.email') }}</label>
+        <label class="col-sm-2 control-label" for="userEmail">{{ $t('validation.attributes.email') }}</label>
         <div class="col-sm-10">
-          <p id="user_email" class="form-control-static">{{ user.email }}</p>
+          <p id="userEmail" class="form-control-static">{{ user.email }}</p>
         </div>
       </div>
 

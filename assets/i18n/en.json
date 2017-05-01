@@ -5,7 +5,8 @@
       "email": "Wrong email format",
       "confirmed": "Passwords don't match",
       "ext": "Wrong file extension",
-      "mimes": "Wrong file type"
+      "mimes": "Wrong file type",
+      "min": "The field field must be at least {value} characters"
     },
     "attributes": {
       "name": "Name",

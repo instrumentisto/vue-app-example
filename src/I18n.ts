@@ -51,8 +51,13 @@ export default class I18n {
             };
             for (const rule in data.validation.messages) {
                 if (data.validation.messages.hasOwnProperty(rule)) {
-                    validationDictionary[locale].messages[rule] = (field) => {
-                        return data.validation.messages[rule];
+                    validationDictionary[locale].messages[rule] = (field, value) => {
+                        switch (rule) {
+                          case 'min':
+                            return data.validation.messages[rule].replace('{value}', value);
+                          default:
+                            return data.validation.messages[rule];
+                        }
                     };
                 }
             }

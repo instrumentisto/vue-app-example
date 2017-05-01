@@ -4,38 +4,42 @@
 
     <form id="signUpForm" method="post" v-on:submit.prevent="onSubmit">
       <div class="form-group" :class="{'has-error': validationErrors.has('name') }">
-        <input v-model="user.name" v-validate="'required'" :placeholder="$t('validation.attributes.name')"
+        <input v-model="user.name" v-validate.initial="'required'" :placeholder="$t('validation.attributes.name')"
                name="name" type="text" class="form-control">
-          <span v-show="validationErrors.has('name')" class="help-block">{{ validationErrors.first('name') }}</span>
+          <span id="nameError" v-show="validationErrors.has('name')" class="help-block">
+            {{ validationErrors.first('name') }}
+          </span>
       </div>
       <div class="form-group" :class="{'has-error': validationErrors.has('email') }">
-        <input v-model="user.email" v-validate="'required|email'" :placeholder="$t('validation.attributes.email')"
+        <input v-model="user.email" v-validate.initial="'required|email'" :placeholder="$t('validation.attributes.email')"
                name="email" type="email" class="form-control">
-          <span v-show="validationErrors.has('email')" class="help-block">{{ validationErrors.first('email') }}</span>
+          <span id="emailError" v-show="validationErrors.has('email')" class="help-block">
+            {{ validationErrors.first('email') }}
+          </span>
       </div>
       <div class="form-group" :class="{'has-error': validationErrors.has('password') }">
-        <input v-model="user.password" v-validate="'required'" :placeholder="$t('validation.attributes.password')"
+        <input v-model="user.password" v-validate.initial="'required|min:6'" :placeholder="$t('validation.attributes.password')"
                name="password" type="password" class="form-control">
-          <span v-show="validationErrors.has('password')" class="help-block">
+          <span id="passwordError" v-show="validationErrors.has('password')" class="help-block">
             {{ validationErrors.first('password') }}
           </span>
       </div>
       <div class="form-group" :class="{'has-error': validationErrors.has('password_confirm') }">
-        <input v-model="user.password_confirm" v-validate="'required|confirmed:password'"
+        <input v-model="user.password_confirm" v-validate.initial="'required|min:6|confirmed:password'"
                :placeholder="$t('validation.attributes.password_confirm')"
                name="password_confirm" type="password" class="form-control">
-          <span v-show="validationErrors.has('password_confirm')" class="help-block">
+          <span id="passwordConfirmError" v-show="validationErrors.has('password_confirm')" class="help-block">
             {{ validationErrors.first('password_confirm') }}
           </span>
       </div>
       <div class="form-group" :class="{'has-error': validationErrors.has('image') }">
-        <input v-on:change="onImageChange" v-validate="'ext:jpg,png|mimes:image/jpeg,image/png|size:2048'"
+        <input v-on:change="onImageChange" v-validate.initial="'ext:jpg,png|mimes:image/jpeg,image/png|size:2048'"
                name="image" type="file" class="form-control">
-          <span v-show="validationErrors.has('image')" class="help-block">
+          <span id="imageError" v-show="validationErrors.has('image')" class="help-block">
             {{ validationErrors.first('image') }}
           </span>
       </div>
-      <button type="submit" class="btn btn-default" :disabled="validationErrors.any() ? true : false">
+      <button type="submit" class="btn btn-default">
           {{ $t('sign_up.sign_up_button') }}
       </button>
     </form>
@@ -90,20 +94,18 @@
         }
 
         private onSubmit(): void {
-            if (this.validationErrors.any()) {
-                return;
-            }
-
-            this.signUp(this.user).then(() => {
-                this.$router.push('/profile');
-            }).catch((error) => {
-                let errorMsg = this.$t('errors.common');
-                switch (error) {
-                    case 1:
+            this.$validator.validateAll().then(() => {
+                this.signUp(this.user).then(() => {
+                    this.$router.push('/profile');
+                }).catch((error) => {
+                    let errorMsg = this.$t('errors.common');
+                    switch (error) {
+                      case 1:
                         errorMsg = this.$t('errors.email_already_taken');
                         break;
-                }
-                this.error = errorMsg;
+                    }
+                    this.error = errorMsg;
+                });
             });
         }
     }
