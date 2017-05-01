@@ -44,7 +44,7 @@
       </button>
     </form>
 
-    <p class="error" v-show="error">{{ error }}</p> <!-- TODO convert to vue component -->
+    <error-block :error="error"></error-block>
 
     <router-link to="/login">{{ $t('sign_up.already_have_account') }}</router-link>
   </section>
@@ -55,12 +55,17 @@
     import Component from 'vue-class-component';
     import { Action, namespace } from 'vuex-class';
 
+    import ErrorBlock from 'components/ErrorBlock.vue';
     import Page from 'Page.vue';
     import { SIGN_UP } from 'store/modules/user/actions';
 
     const UserAction = namespace('user', Action);
 
-    @Component
+    @Component({
+        components: {
+            ErrorBlock,
+        },
+    })
     export default class SignUp extends Page {
 
         protected name: string = 'sign_up';
@@ -94,6 +99,7 @@
         }
 
         private onSubmit(): void {
+            this.error = '';
             this.$validator.validateAll().then(() => {
                 this.signUp(this.user).then(() => {
                     this.$router.push('/profile');

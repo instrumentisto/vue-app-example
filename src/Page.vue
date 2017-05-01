@@ -18,7 +18,7 @@
 
         @Watch('title')
         private titleChanged() {
-            //noinspection TsLint
+            // tslint:disable-line
         }
 
         private mounted(): void {
