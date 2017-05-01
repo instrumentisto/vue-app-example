@@ -6,7 +6,7 @@
     "build:server": "cross-env NODE_ENV=development API_URL=http://json-server:3000/ webpack --config webpack/server.config.js --progress --hide-modules",
     "json-server": "json-server --watch .data/db.json --delay 500",
     "test": "npm run test:unit && npm run test:e2e",
-    "test:e2e": "tsc test/e2e/specs/**/*.ts && node test/e2e/runner.js",
+    "test:e2e": "tsc -p test/e2e && nightwatch --config test/e2e/nightwatch.conf.js --env chrome",
     "test:unit": "karma start test/unit/karma.conf.js --single-run"
   },
   "dependencies": {
