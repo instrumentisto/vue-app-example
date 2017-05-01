@@ -14,7 +14,7 @@
       <button type="submit" class="btn btn-default">{{ $t('sign_in.login') }}</button>
     </form>
 
-    <p v-show="error" class="error">{{ error }}</p> <!-- TODO convert to vue component -->
+    <error-block :error="error"></error-block>
 
     <router-link to="/sign_up">{{ $t('sign_in.do_not_have_account') }}</router-link>
     <br/>
@@ -27,13 +27,18 @@
     import Component from 'vue-class-component';
     import { Action, namespace } from 'vuex-class';
 
+    import ErrorBlock from 'components/ErrorBlock.vue';
     import HMRApi from 'HMRApi';
     import Page from 'Page.vue';
     import { LOGIN } from 'store/modules/user/actions';
 
     const UserAction = namespace('user', Action);
 
-    @Component
+    @Component({
+        components: {
+            ErrorBlock,
+        },
+    })
     export default class SignIn extends Page {
 
         protected name: string = 'sign_in';
@@ -48,6 +53,7 @@
         private error: string = '';
 
         private onSubmit(): void {
+            this.error = '';
             this.login({
                 email: this.email,
                 password: this.password,
