@@ -19,7 +19,7 @@ module.exports = {
 
     test_settings: {
         default: {
-            launch_url: 'http://vue-app-example.dev/',
+            launch_url: 'http://vue-app-example.dev',
             selenium_port: 4444,
             selenium_host: 'localhost',
             silent: true,

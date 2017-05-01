@@ -6,6 +6,6 @@ module.exports = {
     error: 'p.error'
   },
   url: function() {
-    return this.api.launchUrl + 'login';
+    return this.api.launchUrl + '/login';
   },
 };
