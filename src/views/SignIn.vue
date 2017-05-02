@@ -4,21 +4,29 @@
 
     <form id="signInForm" method="post" v-on:submit.prevent="onSubmit">
       <div class="form-group">
-          <input v-model="email" :placeholder="$t('validation.attributes.email')"
+          <input v-model="email"
+                 :placeholder="$t('validation.attributes.email')"
                  name="email" type="text" class="form-control">
       </div>
       <div class="form-group">
-        <input v-model="password" :placeholder="$t('validation.attributes.password')"
+        <input v-model="password"
+               :placeholder="$t('validation.attributes.password')"
                name="password" type="password" class="form-control">
       </div>
-      <button type="submit" class="btn btn-default">{{ $t('sign_in.login') }}</button>
+      <button type="submit" class="btn btn-default">
+        {{ $t('sign_in.login') }}
+      </button>
     </form>
 
     <error-block :error="error"></error-block>
 
-    <router-link to="/sign_up">{{ $t('sign_in.do_not_have_account') }}</router-link>
+    <router-link to="/sign_up">
+      {{ $t('sign_in.do_not_have_account') }}
+    </router-link>
     <br/>
-    <router-link to="/forgot_password">{{ $t('sign_in.forgot_password') }}</router-link>
+    <router-link to="/forgot_password">
+      {{ $t('sign_in.forgot_password') }}
+    </router-link>
   </section>
 </template>
 
@@ -76,9 +84,6 @@
         if (!module.hot.data) {
             HMRApi.createRecord('SignIn', SignIn.options);
         } else {
-            /*if (module.hot.data.cssModules && JSON.stringify(module.hot.data.cssModules) !== JSON.stringify(cssModules)) {
-                delete Component.options._Ctor;
-            }*/
             HMRApi.reload('SignIn', SignIn.options);
         }
     }

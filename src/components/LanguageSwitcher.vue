@@ -1,7 +1,10 @@
 <template>
     <ul :class="containerClasses">
-        <li v-for="locale in locales" v-bind:class="{ active: isActive(locale) }">
-            <a @click="change(locale)" href="javascript:void(0)">{{ locale }}</a>
+        <li v-for="locale in locales"
+            v-bind:class="{ active: isActive(locale) }">
+            <a @click="change(locale)" href="javascript:void(0)">
+                {{ locale }}
+            </a>
         </li>
     </ul>
 </template>
