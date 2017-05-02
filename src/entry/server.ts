@@ -1,7 +1,7 @@
 import Vue from 'vue';
 
 import 'class-component/hooks'; // must be imported first
-import App from 'App.vue';
+import App from 'App.vue'; // tslint:disable-line
 import I18n from 'I18n';
 import params from 'main';
 
@@ -17,7 +17,8 @@ export default (context) => {
             }
 
             Promise.all(matchedComponents.map((component: any | Vue) => {
-                return component.options.preFetch && component.options.preFetch(params.store);
+                return (component.options.preFetch
+                        && component.options.preFetch(params.store));
             })).then(() => {
                 return (App as any).options.preFetch(params.store);
             }).then(() => {

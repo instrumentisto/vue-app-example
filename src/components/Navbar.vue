@@ -6,13 +6,15 @@
           <img src="~assets/img/logo.png"/>
           {{ $t('general.title') }}
         </a>
-        <button type="button" class="btn btn-default navbar-btn" @click="checkHotStatus()">
+        <button type="button" class="btn btn-default navbar-btn"
+                @click="checkHotStatus()">
           {{ $t('general.check_for_updates') }}
         </button>
         <loading-spinner></loading-spinner>
       </div>
       <div class="collapse navbar-collapse">
-        <language-switcher container-classes="nav navbar-nav navbar-right"></language-switcher>
+        <language-switcher
+            container-classes="nav navbar-nav navbar-right"></language-switcher>
       </div>
     </div>
   </nav>
@@ -51,11 +53,6 @@
         if (!module.hot.data) {
             HMRApi.createRecord('Header', Navbar.options);
         } else {
-            /*if (module.hot.data.cssModules
-                && JSON.stringify(module.hot.data.cssModules) !== JSON.stringify(cssModules)
-            ) {
-                delete Component.options._Ctor;
-            }*/
             HMRApi.reload('Header', Navbar.options);
         }
     }

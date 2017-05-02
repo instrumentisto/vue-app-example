@@ -10,20 +10,26 @@
       </div>
 
       <div class="form-group">
-        <label class="col-sm-2 control-label" for="userName">{{ $t('validation.attributes.name') }}</label>
+        <label class="col-sm-2 control-label" for="userName">
+          {{ $t('validation.attributes.name') }}
+        </label>
         <div class="col-sm-10">
           <p id="userName" class="form-control-static">{{ user.name }}</p>
         </div>
       </div>
 
       <div class="form-group">
-        <label class="col-sm-2 control-label" for="userEmail">{{ $t('validation.attributes.email') }}</label>
+        <label class="col-sm-2 control-label" for="userEmail">
+          {{ $t('validation.attributes.email') }}
+        </label>
         <div class="col-sm-10">
           <p id="userEmail" class="form-control-static">{{ user.email }}</p>
         </div>
       </div>
 
-      <button type="button" class="btn btn-default" v-on:click="logout">{{ $t('profile.logout_label') }}</button>
+      <button type="button" class="btn btn-default" v-on:click="logout">
+        {{ $t('profile.logout_label') }}
+      </button>
     </form>
   </section>
 </template>

@@ -1,3 +1,5 @@
+/** @module store */
+
 import Vue from 'vue';
 import Vuex, { ActionTree, GetterTree, MutationTree } from 'vuex';
 import createPersistedState from 'vuex-persistedstate';
@@ -51,4 +53,10 @@ if (module.hot) {
     });
 }
 
+/**
+ * Vuex store instance, initialized with required root store,
+ * modules and plugins.
+ *
+ * @return {Store}   Initialized Vuex store instance.
+ */
 export default store;

@@ -1,17 +1,39 @@
-import {AxiosPromise, AxiosResponse} from 'axios';
+import { AxiosPromise, AxiosResponse } from 'axios';
 
 import API from 'api';
 
-// TODO: add docs about receiving and storing plain password
+/**
+ * Implementation of /users API endpoint.
+ *
+ * Note, that passwords are sent and received in plain format,
+ * even in GET requests. It's because of default json-server configuration, that
+ * don't support POST requests for filtering data.
+ * It's very not secure, but it's OK for PoC app.
+ */
 export default class Users {
 
+    /**
+     * Fetches all users.
+     *
+     * @returns {AxiosPromise}   AxiosPromise with all users array.
+     */
     public static getAll(): AxiosPromise {
         return API.get('/users').then((response: AxiosResponse) => {
             return response.data;
         });
     }
 
-    public static register(user: any): AxiosPromise {
+    /**
+     * Registers new user in the system.
+     * It also checks if user with same email already exists.
+     *
+     * @param {any} user    User object with all info, required for registration.
+     *
+     * @returns {Promise}   Resolved AxiosPromise with created user object
+     *                      on success, or rejected Promise with "1" error code,
+     *                      if user with given email already exists.
+     */
+    public static register(user: any): Promise<any> {
         return API.get('/users', {
             params: {
                 email: user.email,
@@ -23,16 +45,25 @@ export default class Users {
                 return Promise.reject(1);
             }
 
-            return API.post('/users', user).then((postResponse: AxiosResponse) => {
-                return postResponse.data;
-            });
+            return API.post('/users', user)
+                .then((postResponse: AxiosResponse) => {
+                    return postResponse.data;
+                });
         });
     }
 
-    public static login(email: string, password: string): AxiosPromise {
-        // Sending password by GET request - is not safe way.
-        // But in default son-server configuration we can filter data only by using GET requests.
-        // So for test app it might be OK.
+    /**
+     * Does login action, that checks if user with given email/password exists
+     * in the system.
+     *
+     * @param {string} email        User email, that does login.
+     * @param {string} password     User password, that does login.
+     *
+     * @returns {Promise}   Resolved AxiosPromise with user object on success,
+     *                      or rejected Promise with "1" error code,
+     *                      if login was failed.
+     */
+    public static login(email: string, password: string): Promise<any> {
         return API.get('/users', {
             params: {
                 email,
