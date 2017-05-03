@@ -46,23 +46,47 @@
     const UserGetter = namespace('user', Getter);
     const UserAction = namespace('user', Action);
 
+    /**
+     * Describes user profile page.
+     */
     @Component
     export default class Profile extends Page {
 
+        /**
+         * Specifies name of the page. It's required if we want to show
+         * correct page title with i18n support.
+         */
         protected name: string = 'profile';
 
+        /**
+         * Returns global application authorization state.
+         *
+         * It uses root Vuex getter under the hood.
+         */
         @UserGetter(AUTHORIZED)
-        private user;
+        private user: () => object;
 
+        /**
+         * Resets global application authorization state.
+         *
+         * It executes root Vuex action under the hood.
+         */
         @UserAction(RESET_AUTHORIZATION)
-        private resetAuthorization;
+        private resetAuthorization: () => void;
 
+        /**
+         * Vue component 'created' hook, that executes when component instance
+         * was created.
+         */
         private created(): void {
             if (!this.user.image) {
                 this.user.image = require('~assets/img/default_user_photo.jpg');
             }
         }
 
+        /**
+         * Resets user authorization state and redirects to the login page.
+         */
         private logout(): void {
             this.resetAuthorization();
             this.$router.push('/login');

@@ -79,6 +79,9 @@
 
     const UserAction = namespace('user', Action);
 
+    /**
+     * Describes user registration page.
+     */
     @Component({
         components: {
             ErrorBlock,
@@ -86,11 +89,21 @@
     })
     export default class SignUp extends Page {
 
+        /**
+         * Specifies name of the page. It's required if we want to show
+         * correct page title with i18n support.
+         */
         protected name: string = 'sign_up';
 
+        /**
+         * Executes user sign up action of the root Vuex store.
+         */
         @UserAction(SIGN_UP)
-        private signUp;
+        private signUp: (user) => void;
 
+        /**
+         * User object, that contains all information, specified by user.
+         */
         private user = {
             email: '',
             image: '',
@@ -99,8 +112,18 @@
             password_confirm: '',
         };
 
+        /**
+         * Error message, that will be shown if user with specified email
+         * already exists.
+         */
         private error: string = '';
 
+        /**
+         * Sign up form user image change event handler.
+         *
+         * It takes image, specified by user and converts it to the base64
+         * hash, which stores to the 'user' property.
+         */
         private onImageChange(changeEvent) {
             const files = (changeEvent.target.files
                            || changeEvent.dataTransfer.files);
@@ -117,6 +140,14 @@
             reader.readAsDataURL(files[0]);
         }
 
+        /**
+         * Sign up form submit event handler.
+         *
+         * Executes sign up form validation, sign up function and redirects
+         * to the profile page.
+         * If validation was failed or user with specified email already exists,
+         * it prints localized error message.
+         */
         private onSubmit(): void {
             this.error = '';
             this.$validator.validateAll().then(() => {

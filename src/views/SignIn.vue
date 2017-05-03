@@ -42,6 +42,9 @@
 
     const UserAction = namespace('user', Action);
 
+    /**
+     * Describes user authorization page.
+     */
     @Component({
         components: {
             ErrorBlock,
@@ -49,17 +52,44 @@
     })
     export default class SignIn extends Page {
 
+        /**
+         * Specifies name of the page. It's required if we want to show
+         * correct page title with i18n support.
+         */
         protected name: string = 'sign_in';
 
+        /**
+         * Executes user login action of the root Vuex store.
+         */
         @UserAction(LOGIN)
-        private login;
+        private login: (user: {email: string, password: string}) => object;
 
+        /**
+         * Email of the user, that is signing in.
+         *
+         * It binds to the email input, of the sign in form.
+         */
         private email: string = '';
 
+        /**
+         * Password of the user, that is signing in.
+         *
+         * It binds to the password input, of the sign in form.
+         */
         private password: string = '';
 
+        /**
+         * Error message, that will be shown if entered user credentials
+         * were invalid.
+         */
         private error: string = '';
 
+        /**
+         * Sign in form submit event handler.
+         *
+         * Executes login function and redirects to the profile page on
+         * success. Otherwise, it shows localized error message.
+         */
         private onSubmit(): void {
             this.error = '';
             this.login({

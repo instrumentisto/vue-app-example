@@ -19,6 +19,7 @@
 <script lang="ts">
     import Vue from 'vue';
     import Component from 'vue-class-component';
+    import { Store } from 'vuex';
     import { Action, Getter, namespace } from 'vuex-class';
 
     import Navbar from 'components/Navbar.vue';
@@ -28,6 +29,12 @@
     const UserGetter = namespace('user', Getter);
     const UserAction = namespace('user', Action);
 
+    /**
+     * Describes base application component, that contains general properties
+     * of all views and components.
+     *
+     * It also specifies base application template.
+     */
     @Component({
         components: {
             Navbar,
@@ -35,17 +42,35 @@
     })
     export default class App extends Vue {
 
+        /**
+         * Returns total count of users from global Vuex store.
+         *
+         * It uses root Vuex getter under the hood.
+         */
         @UserGetter(TOTAL_COUNT)
         private usersTotalCount;
 
+        /**
+         * Executes fetch all users action of the root Vuex store.
+         */
         @UserAction(FETCH_ALL)
         private fetchAllUsers;
 
+        /**
+         * Vue component 'created' hook, that executes when component instance
+         * was created.
+         */
         private created(): void {
             this.fetchAllUsers();
         }
 
-        private preFetch(store): Promise {
+        /**
+         * Vue component 'preFetch' hook, that is used in SSR to do required
+         * things with given Vuex store before page rendering.
+         *
+         * @param store     Vuex store, to perform actions on.
+         */
+        private preFetch(store: Store): Promise<object[]> {
             return store.dispatch('user/' + FETCH_ALL);
         }
     }
@@ -53,41 +78,42 @@
 
 <style src="~bower/bootstrap/dist/css/bootstrap.css"></style>
 <style>
-    html {
-        position: relative;
-        min-height: 100%;
-    }
+  html {
+    position: relative;
+    min-height: 100%;
+  }
 
-    body {
-        margin-bottom: 51px;
-    }
+  body {
+    margin-bottom: 51px;
+  }
 
-    main {
-        padding-top: 51px;
-        padding-bottom: 20px;
-    }
+  main {
+    padding-top: 51px;
+    padding-bottom: 20px;
+  }
 
-    main > section {
-        width: 400px;
-        margin: 0 auto;
-        text-align: center;
-    }
+  main > section {
+    width: 400px;
+    margin: 0 auto;
+    text-align: center;
+  }
 
-    footer {
-        position: absolute;
-        bottom: 0;
-        height: 52px;
-        width: 100%;
-        padding: 10px;
-        border-top: 1px solid #e7e7e7;
-        background-color: #f8f8f8;
-        line-height: 32px;
-    }
+  footer {
+    position: absolute;
+    bottom: 0;
+    height: 52px;
+    width: 100%;
+    padding: 10px;
+    border-top: 1px solid #e7e7e7;
+    background-color: #f8f8f8;
+    line-height: 32px;
+  }
 
-    .fade-enter-active, .fade-leave-active {
-        transition: opacity .5s
-    }
-    .fade-enter, .fade-leave-to {
-        opacity: 0
-    }
+  .fade-enter-active, .fade-leave-active {
+    transition: opacity .5s
+  }
+
+  .fade-enter, .fade-leave-to {
+    opacity: 0
+  }
 </style>
