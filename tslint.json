@@ -3,7 +3,8 @@
         "tslint:recommended"
     ],
     "rules": {
-        "quotemark": [true, "single"]
-//        "no-consecutive-blank-lines": [true, 10]
+        "quotemark": [true, "single"],
+        "trailing-comma": false,
+        "no-consecutive-blank-lines": [false]
     }
 }
