@@ -8,8 +8,14 @@ import Validation from 'Validation';
 
 Validation.init();
 
-export default {
+/**
+ * Initial app params, that can be used for initializing Vue app instance in
+ * all environments: client, server, test.
+ */
+export const params: ComponentOptions<Vue> = {
     render: (h) => h(App),
     router: new Router().instance,
     store,
-} as ComponentOptions<Vue>;
+};
+
+export default params;

@@ -15,7 +15,7 @@ export default class Users {
     /**
      * Fetches all users.
      *
-     * @returns {AxiosPromise}   AxiosPromise with all users array.
+     * @returns     AxiosPromise with all users array.
      */
     public static getAll(): AxiosPromise {
         return API.get('/users').then((response: AxiosResponse) => {
@@ -27,9 +27,9 @@ export default class Users {
      * Registers new user in the system.
      * It also checks if user with same email already exists.
      *
-     * @param {any} user    User object with all info, required for registration.
+     * @param user   User object with all info, required for registration.
      *
-     * @returns {Promise}   Resolved AxiosPromise with created user object
+     * @returns     Resolved AxiosPromise with created user object
      *                      on success, or rejected Promise with "1" error code,
      *                      if user with given email already exists.
      */
@@ -56,12 +56,12 @@ export default class Users {
      * Does login action, that checks if user with given email/password exists
      * in the system.
      *
-     * @param {string} email        User email, that does login.
-     * @param {string} password     User password, that does login.
+     * @param email      User email, that does login.
+     * @param password   User password, that does login.
      *
-     * @returns {Promise}   Resolved AxiosPromise with user object on success,
-     *                      or rejected Promise with "1" error code,
-     *                      if login was failed.
+     * @returns     Resolved AxiosPromise with user object on success,
+     *              or rejected Promise with "1" error code,
+     *              if login was failed.
      */
     public static login(email: string, password: string): Promise<any> {
         return API.get('/users', {

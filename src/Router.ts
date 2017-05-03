@@ -1,6 +1,6 @@
 import Vue from 'vue';
 import VueRouter from 'vue-router';
-import { Route, RouteConfig, RouterMode, RouterOptions } from 'vue-router/types/router';
+import { RawLocation, Route, RouteConfig, RouterMode, RouterOptions } from 'vue-router/types/router';
 
 import store from 'store';
 import SignIn from 'views/SignIn.vue';
@@ -12,8 +12,6 @@ const Profile = () => System.import('views/Profile.vue');
  * Describes vue-router configuration.
  *
  * More info: http://router.vuejs.org/en/
- *
- * @implements RouterOptions
  */
 export default class Router implements RouterOptions {
 
@@ -21,10 +19,8 @@ export default class Router implements RouterOptions {
      * List of all routes, supported by application.
      * Each router must implement RouteConfig interface, and has at least
      * "path" and "component" properties.
-     *
-     * @type {RouteConfig[]}
      */
-    public routes = [
+    public routes: RouteConfig[] = [
         { path: '/', component: SignIn },
         { path: '/login', component: SignIn },
         { path: '/sign_up', component: SignUp },
@@ -36,12 +32,11 @@ export default class Router implements RouterOptions {
      * Available values:
      * - hash
      * - history
+     * - abstract
      *
      * More info: http://router.vuejs.org/en/api/options.html
-     *
-     * @type {RouterMode}
      */
-    public mode = 'history' as RouterMode;
+    public mode: RouterMode = 'history';
 
     /**
      * Vue-router initialized instance.
@@ -62,22 +57,24 @@ export default class Router implements RouterOptions {
 
     /**
      * Returns vue-router instance.
-     *
-     * @returns {VueRouter}
      */
-    public get instance() {
+    public get instance(): VueRouter {
         return this.router;
     }
 
     /**
-     * Function that, will be executed before each page navigation
+     * Function, that will be executed before each page navigation
      *
-     * @param {Route} to        Route, to which navigation is performed.
-     * @param {Route} from      Route, from which navigation is performed.
-     * @param {function} next   Function, that MUST be called after
-     *                          performing all other actions.
+     * @param to     Route, to which navigation is performed.
+     * @param from   Route, from which navigation is performed.
+     * @param next   Function, that MUST be called after performing all other
+     *               actions.
      */
-    private beforeEach(to: Route, from: Route, next) {
+    private beforeEach(
+        to: Route,
+        from: Route,
+        next: (to?: RawLocation | false | ((vm: Vue) => any) | void) => void
+    ) {
         store.state.loading = true;
 
         if (to.matched.some((record) => record.meta.requiresAuth)) {

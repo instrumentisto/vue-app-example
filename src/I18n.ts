@@ -13,17 +13,13 @@ export default class I18n {
     /**
      * Default application locale.
      * It's used as fallback locale when requested one is not available.
-     *
-     * @type {string}
      */
-    public static readonly defaultLocale = 'en';
+    public static readonly defaultLocale: string = 'en';
 
     /**
-     * Locales list, that application supports.
-     *
-     * @type {string[]}
+     * Locales list, supported by application.
      */
-    public static readonly locales = ['en', 'ru', 'uk'];
+    public static readonly locales: string[] = ['en', 'ru', 'uk'];
 
     /**
      * Initialize vue-i18n plugin with given priority of locales.
@@ -32,8 +28,7 @@ export default class I18n {
      *
      * @param priority   Priority array of locales.
      *
-     * @returns {Promise<VueI18n>}   Resolved promise with initialized vue-i18n
-     *                               plugin instance.
+     * @returns     Resolved promise with initialized vue-i18n plugin instance.
      */
     public static init(priority: string[]): Promise<VueI18n> {
         priority.push(this.defaultLocale);
@@ -64,12 +59,12 @@ export default class I18n {
     }
 
     /**
-     * Loads locale data and updated vue-i18n and vee-validate plugins
+     * Loads locale data and updates vue-i18n and vee-validate plugins
      * dictionaries with it.
      *
      * @param locale    Locale, to load data for.
      *
-     * @returns {Promise<any>}   Resolved promise with locale data.
+     * @returns     Resolved promise with locale data.
      */
     public static loadLocaleData(locale: string): Promise<any> {
         store.state.loading = true;
@@ -107,8 +102,6 @@ export default class I18n {
 
     /**
      * Instance of initialized vue-i18n plugin.
-     *
-     * @type {any}
      */
     private static i18n: VueI18n = null;
 }

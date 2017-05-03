@@ -1,5 +1,10 @@
 import Component from 'vue-class-component';
 
-Component.registerHooks([
+/**
+ * Custom hooks, that will be available in Vue components.
+ */
+export const supportedHooks: string[] = [
     'preFetch',
-]);
+];
+
+Component.registerHooks(supportedHooks);

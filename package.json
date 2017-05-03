@@ -57,6 +57,8 @@
     "tslint": "^5.0.0",
     "tslint-loader": "^3.5.1",
     "typedoc": "^0.6.0",
+    "typedoc-plugin-external-module-name": "^1.0.9",
+    "typedoc-webpack-plugin": "^1.1.4",
     "typescript": "^2.2.1",
     "vue-class-component": "5.0.1",
     "vue-hot-reload-api": "^2.0.11",

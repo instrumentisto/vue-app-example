@@ -17,8 +17,6 @@ export default class Validation {
      * Configuration options of vee-validate plugins.
      *
      * More info: http://vee-validate.logaretm.com/index.html#configuration
-     *
-     * @type {object}
      */
     private static readonly config = {
         errorBagName: 'validationErrors',

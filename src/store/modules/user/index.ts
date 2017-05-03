@@ -1,4 +1,4 @@
-import { Module } from 'vuex';
+import { ActionTree, GetterTree, Module, MutationTree } from 'vuex';
 
 import actions from 'store/modules/user/actions';
 import getters from 'store/modules/user/getters';
@@ -9,47 +9,36 @@ import RootState from 'store/root/state';
 /**
  * Represents user Vuex store module and implements its own state, getters,
  * actions and mutations.
- *
- * @implements Module<UserState, RootState>
  */
 export default class User implements Module<UserState, RootState> {
 
     /**
      * Specifies if module is self-contained or registered
      * under the global namespace.
-     * More info: https://vuex.vuejs.org/en/modules.html ("Namespacing" section)
      *
-     * @type {boolean}
+     * More info: https://vuex.vuejs.org/en/modules.html ("Namespacing" section)
      */
-    public namespaced = true;
+    public namespaced: boolean = true;
 
     /**
      * Specifies user module level state.
-     *
-     * @type {UserState}
      */
     public state: UserState;
 
     /**
      * Specifies getters of user module.
-     *
-     * @type {GetterTree<UserState, RootState>}
      */
-    public getters = getters;
+    public getters: GetterTree<UserState, RootState> = getters;
 
     /**
      * Specifies actions of user module.
-     *
-     * @type {ActionTree<UserState, RootState>}
      */
-    public actions = actions;
+    public actions: ActionTree<UserState, RootState> = actions;
 
     /**
      * Specifies mutations of user module.
-     *
-     * @type {MutationTree<UserState>}
      */
-    public mutations = mutations;
+    public mutations: MutationTree<UserState> = mutations;
 
     /**
      * Creates user Vuex module, based on predefined class properties.
