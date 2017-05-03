@@ -1,5 +1,3 @@
-/** @module store/root/actions */
-
 import { ActionContext, ActionTree } from 'vuex';
 
 import * as mutations from 'store/root/mutations';
@@ -7,33 +5,32 @@ import RootState from 'store/root/state';
 
 /**
  * The name of start loading action.
- *
- * @type {string}
  */
-export const START_LOADING = 'START_LOADING';
+export const START_LOADING: string = 'startLoading';
 
 /**
  * The name of stop loading action.
- *
- * @type {string}
  */
-export const STOP_LOADING = 'STOP_LOADING';
+export const STOP_LOADING: string = 'stopLoading';
+
+/**
+ * Commits "true" to the store's loading state.
+ *
+ * @param store     Root Vuex store.
+ */
+export function startLoading(store: ActionContext<RootState, any>) {
+    store.commit(mutations.SET_LOADING, true);
+}
+/**
+ * Commits "false" to the store's loading state.
+ *
+ * @param store     Root Vuex store.
+ */
+export function stopLoading(store: ActionContext<RootState, any>) {
+    store.commit(mutations.SET_LOADING, false);
+}
 
 export default {
-    /**
-     * Commits "true" to the store's loading state.
-     *
-     * @param {ActionContext<RootState, any>} store     Root Vuex store.
-     */
-    [START_LOADING]: (store: ActionContext<RootState, any>) => {
-        store.commit(mutations.SET_LOADING, true);
-    },
-    /**
-     * Commits "false" to the store's loading state.
-     *
-     * @param {ActionContext<RootState, any>} store     Root Vuex store.
-     */
-    [STOP_LOADING]: (store: ActionContext<RootState, any>) => {
-        store.commit(mutations.SET_LOADING, false);
-    },
+    startLoading,
+    stopLoading
 } as ActionTree<RootState, any>;

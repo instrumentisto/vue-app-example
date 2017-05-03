@@ -1,41 +1,38 @@
-/** @module store/root/mutations */
-
 import { MutationTree } from 'vuex';
 
 import RootState from 'store/root/state';
 
 /**
  * The name of set loading mutation.
- *
- * @type {string}
  */
-export const SET_LOADING = 'SET_LOADING';
+export const SET_LOADING: string = 'setLoading';
 
 /**
  * The name of set locale mutation.
- *
- * @type {string}
  */
-export const SET_LOCALE = 'SET_LOCALE';
+export const SET_LOCALE: string = 'setLocale';
+
+/**
+ * Sets application loading state.
+ *
+ * @param state         Root Vuex state.
+ * @param isLoading     Loading state, that will be set to the state.
+ */
+export function setLoading(state: RootState, isLoading: boolean) {
+    state.loading = isLoading;
+}
+
+/**
+ * Sets application locale state.
+ *
+ * @param  state    Root Vuex state.
+ * @param  locale   Locale key string, that will be set to the state.
+ */
+export function setLocale(state: RootState, locale: string) {
+    state.locale = locale;
+}
 
 export default {
-    /**
-     * Sets application loading state.
-     *
-     * @param {RootState} state     Root Vuex state.
-     * @param {boolean} isLoading   Loading state, that will be set to the state.
-     */
-    [SET_LOADING]: (state: RootState, isLoading: boolean) => {
-        state.loading = isLoading;
-    },
-    /**
-     * Sets application locale state.
-     *
-     * @param {RootState} state     Root Vuex state.
-     * @param {string} locale       Locale key string, that will be set
-     *                              to the state.
-     */
-    [SET_LOCALE]: (state: RootState, locale: string) => {
-        state.locale = locale;
-    },
+    setLoading,
+    setLocale
 } as MutationTree<RootState>;

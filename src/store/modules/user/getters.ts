@@ -1,5 +1,3 @@
-/** @module store/modules/users/getters */
-
 import { GetterTree } from 'vuex';
 
 import UserState from 'store/modules/user/state';
@@ -7,37 +5,37 @@ import RootState from 'store/root/state';
 
 /**
  * The name of authorized getter.
- *
- * @type {string}
  */
-export const AUTHORIZED = 'AUTHORIZED';
+export const AUTHORIZED: string = 'authorized';
 
 /**
  * The name of total count getter.
- *
- * @type {string}
  */
-export const TOTAL_COUNT = 'TOTAL_COUNT';
+export const TOTAL_COUNT: string = 'totalCount';
+
+/**
+ * Returns authorized state from users store.
+ *
+ * @param state     User Vuex state.
+ *
+ * @returns     Authorized user object.
+ */
+export function authorized(state: UserState) {
+    return state.authorized;
+}
+
+/**
+ * Returns total users count state from users store.
+ *
+ * @param state     User Vuex state.
+ *
+ * @returns     Number of users in state.
+ */
+export function totalCount(state: UserState) {
+    return state.all.length;
+}
 
 export default {
-    /**
-     * Returns authorized state from users store.
-     *
-     * @param {UserState} state     User Vuex state.
-     *
-     * @returns {Object|null}    Authorized user object.
-     */
-    [AUTHORIZED]: (state: UserState) => {
-        return state.authorized;
-    },
-    /**
-     * Returns total users count state from users store.
-     *
-     * @param {UserState} state     User Vuex state.
-     *
-     * @returns {number}    Number of users in state.
-     */
-    [TOTAL_COUNT]: (state: UserState) => {
-        return state.all.length;
-    },
+    authorized,
+    totalCount
 } as GetterTree<UserState, RootState>;

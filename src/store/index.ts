@@ -1,7 +1,5 @@
-/** @module store */
-
 import Vue from 'vue';
-import Vuex, { ActionTree, GetterTree, MutationTree } from 'vuex';
+import Vuex, { ActionTree, GetterTree, MutationTree, Store } from 'vuex';
 import createPersistedState from 'vuex-persistedstate';
 
 import UserModule from 'store/modules/user';
@@ -12,7 +10,11 @@ import RootState from 'store/root/state';
 
 Vue.use(Vuex);
 
-const store = new Vuex.Store({
+/**
+ * Vuex store instance, initialized with required root store,
+ * modules and plugins.
+ */
+export const store: Store<any> = new Store({
     actions,
     getters,
     modules: {
@@ -53,10 +55,4 @@ if (module.hot) {
     });
 }
 
-/**
- * Vuex store instance, initialized with required root store,
- * modules and plugins.
- *
- * @return {Store}   Initialized Vuex store instance.
- */
 export default store;
