@@ -8,7 +8,7 @@ import RootState from 'store/root/state';
 /**
  * The name of fetch all action.
  */
-export const FETCH_ALL: string = 'fetchAll';
+export const FETCH_ALL: string = 'fetchAl';
 
 /**
  * The name of login action.
@@ -44,9 +44,8 @@ export function fetchAll(
 /**
  * Call API login action and commit authorized user to the store.
  *
- * @param store      User Vuex store.
- * @param email      Email of the user, that is signing in.
- * @param password   Password of the user, that is signing in.
+ * @param store     User Vuex store.
+ * @param user      User info with email and password to do login action.
  *
  * @returns     Resolved promise with authorized user object,
  *              or rejected promise with error code:
@@ -54,9 +53,9 @@ export function fetchAll(
  */
 export function login(
     store: ActionContext<UserState, RootState>,
-    { email, password }
+    user: { email: string, password: string }
 ): Promise<object> {
-    return UsersApi.login(email, password).then((user) => {
+    return UsersApi.login(user.email, user.password).then((user) => {
         store.commit(mutations.SET_AUTHORIZED, user);
         return user;
     });

@@ -7,14 +7,14 @@
           {{ $t('general.title') }}
         </a>
         <button type="button" class="btn btn-default navbar-btn"
-                @click="checkHotStatus()">
+                @click="checkHotUpdates()">
           {{ $t('general.check_for_updates') }}
         </button>
         <loading-spinner></loading-spinner>
       </div>
       <div class="collapse navbar-collapse">
         <language-switcher
-            container-classes="nav navbar-nav navbar-right"></language-switcher>
+            container-class="nav navbar-nav navbar-right"></language-switcher>
       </div>
     </div>
   </nav>
@@ -28,6 +28,9 @@
     import LoadingSpinner from 'components/LoadingSpinner.vue';
     import HMRApi from 'HMRApi';
 
+    /**
+     * Describes application Bootstrap navigation bar.
+     */
     @Component({
         components: {
             LanguageSwitcher,
@@ -36,7 +39,10 @@
     })
     export default class Navbar extends Vue {
 
-        private checkHotStatus() {
+        /**
+         * Checks for HMR updates and automatically applies them.
+         */
+        private checkHotUpdates() {
             try {
                 module.hot.check(true, (err, updatedModules) => {
 //                    console.log('check err', err);
