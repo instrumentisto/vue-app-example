@@ -4,14 +4,19 @@ PoC app to test [Vue.js](https://vuejs.org/) framework
 
 ## Getting Started
 
-1. Init database for [JSON server](https://github.com/typicode/json-server):
+0. Install project dependencies:
 ```bash
-cp .data/db.example.json .data/db.json
+npm install && bower install
 ```
 
-2. Build & run docker image using Docker Compose:
+1. Build project for both client & server environments:
+```bash
+npm run build:dev
 ```
-docker-compose up --build
+
+2. Init database for [JSON server](https://github.com/typicode/json-server):
+```bash
+cp .data/db.example.json .data/db.json
 ```
 
 3. Add this line to your `hosts` file:
@@ -19,7 +24,12 @@ docker-compose up --build
 127.0.0.1	vue-app-example.dev
 ```
 
-4. Open application in browser:
+4. Build & run docker image using Docker Compose:
+```
+docker-compose up --build
+```
+
+5. Open application in browser:
 ```
 start http://vue-app-example.dev
 ```
