@@ -54,6 +54,7 @@ export default class I18n {
         });
 
         return this.loadLocaleData(startLocale).then(() => {
+            Validator.setLocale(startLocale);
             return this.i18n;
         });
     }
