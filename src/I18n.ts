@@ -6,7 +6,7 @@ import store from 'store';
 
 /**
  * Describes internationalization logic of the application.
- * Uses vue-i18n plugin with external locale resources behind the hood.
+ * Uses vue-i18n plugin with external locale resources under the hood.
  */
 export default class I18n {
 
@@ -28,7 +28,7 @@ export default class I18n {
      *
      * @param priority   Priority array of locales.
      *
-     * @returns     Resolved promise with initialized vue-i18n plugin instance.
+     * @return   Resolved promise with initialized vue-i18n plugin instance.
      */
     public static init(priority: string[]): Promise<VueI18n> {
         priority.push(this.defaultLocale);
@@ -64,7 +64,7 @@ export default class I18n {
      *
      * @param locale    Locale, to load data for.
      *
-     * @returns     Resolved promise with locale data.
+     * @return   Resolved promise with locale data.
      */
     public static loadLocaleData(locale: string): Promise<any> {
         store.state.loading = true;

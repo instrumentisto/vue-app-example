@@ -73,7 +73,7 @@
     import Component from 'vue-class-component';
     import { Action, namespace } from 'vuex-class';
 
-    import ErrorBlock from 'components/ErrorBlock.vue';
+    import ErrorBlock from 'components/error-block/ErrorBlock.vue';
     import Page from 'Page.vue';
     import { SIGN_UP } from 'store/modules/user/actions';
 
@@ -93,18 +93,18 @@
          * Specifies name of the page. It's required if we want to show
          * correct page title with i18n support.
          */
-        protected name: string = 'sign_up';
+        public name: string = 'sign_up';
 
         /**
          * Executes user sign up action of the root Vuex store.
          */
         @UserAction(SIGN_UP)
-        private signUp: (user) => void;
+        public signUp: (user) => void;
 
         /**
          * User object, that contains all information, specified by user.
          */
-        private user = {
+        public user = {
             email: '',
             image: '',
             name: '',
@@ -116,7 +116,7 @@
          * Error message, that will be shown if user with specified email
          * already exists.
          */
-        private error: string = '';
+        public error: string = '';
 
         /**
          * Sign up form user image change event handler.
@@ -124,7 +124,7 @@
          * It takes image, specified by user and converts it to the base64
          * hash, which stores to the 'user' property.
          */
-        private onImageChange(changeEvent) {
+        public onImageChange(changeEvent) {
             const files = (changeEvent.target.files
                            || changeEvent.dataTransfer.files);
             if (!files.length) {
@@ -148,7 +148,7 @@
          * If validation was failed or user with specified email already exists,
          * it prints localized error message.
          */
-        private onSubmit(): void {
+        public onSubmit(): void {
             this.error = '';
             this.$validator.validateAll().then(() => {
                 this.signUp(this.user).then(() => {

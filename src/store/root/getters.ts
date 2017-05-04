@@ -12,7 +12,7 @@ export const LOADING: string = 'loading';
  *
  * @param state     Root Vuex state.
  *
- * @returns     Loading state.
+ * @return   Loading state.
  */
 export function loading(state: RootState) {
     return state.loading;
