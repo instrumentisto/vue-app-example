@@ -53,10 +53,13 @@
     export default class Profile extends Page {
 
         /**
-         * Specifies name of the page. It's required if we want to show
-         * correct page title with i18n support.
+         * Returns localized page title.
+         *
+         * @return   Localized page title, that was calculated.
          */
-        public name: string = 'profile';
+        public get title(): string {
+            return this.$t('profile.title');
+        }
 
         /**
          * Returns global application authorization state.

@@ -23,10 +23,6 @@
     <router-link to="/sign_up">
       {{ $t('sign_in.do_not_have_account') }}
     </router-link>
-    <br/>
-    <router-link to="/forgot_password">
-      {{ $t('sign_in.forgot_password') }}
-    </router-link>
   </section>
 </template>
 
@@ -53,10 +49,13 @@
     export default class SignIn extends Page {
 
         /**
-         * Specifies name of the page. It's required if we want to show
-         * correct page title with i18n support.
+         * Returns localized page title.
+         *
+         * @return   Localized page title, that was calculated.
          */
-        public name: string = 'sign_in';
+        public get title(): string {
+            return this.$t('sign_in.title');
+        }
 
         /**
          * Executes user login action of the root Vuex store.
