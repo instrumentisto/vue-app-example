@@ -2,13 +2,17 @@ const path = require('path');
 const webpack = require('webpack');
 const TypedocWebpackPlugin = require('typedoc-webpack-plugin');
 
+const outputDirName = (process.env.NODE_ENV === 'production')
+    ? '_release'
+    : '_build';
+
 module.exports = {
     output: {
         filename: 'build.js',
-        path: path.resolve(__dirname, '../_build')
+        path: path.resolve(__dirname, '../' + outputDirName)
     },
     recordsInputPath: path.resolve(__dirname, '../webpack/records.json'),
-    recordsOutputPath: path.resolve(__dirname, '../_build/webpack.records.json'),
+    recordsOutputPath: path.resolve(__dirname, '../' + outputDirName + '/webpack.records.json'),
     module: {
         rules: [
             {
@@ -79,11 +83,11 @@ module.exports = {
     performance: {
         hints: false
     },
-    devtool: '#eval-source-map',
+    devtool: '#cheap-module-eval-source-map',
     plugins: [
         new webpack.DefinePlugin({
             'process.env': {
-                API_URL: JSON.stringify(process.env.API_URL),
+                NODE_ENV: JSON.stringify(process.env.NODE_ENV),
             },
         }),
         new TypedocWebpackPlugin({
@@ -116,7 +120,7 @@ module.exports = {
 };
 
 if (process.env.NODE_ENV === 'production') {
-    module.exports.devtool = '#source-map'
+    module.exports.devtool = false;
     // http://vue-loader.vuejs.org/en/workflow/production.html
     module.exports.plugins = (module.exports.plugins || []).concat([
         new webpack.DefinePlugin({

@@ -16,6 +16,12 @@ module.exports = merge(base, {
         fs: 'empty'
     },
     plugins: [
+        new webpack.DefinePlugin({
+            'process.env': {
+                VUE_ENV: '"client"',
+                API_URL: JSON.stringify(process.env.CLIENT_API_URL),
+            },
+        }),
         new HtmlWebpackPlugin({
             template: 'src/templates/index.html'
         }),
