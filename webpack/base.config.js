@@ -1,6 +1,5 @@
 const path = require('path');
 const webpack = require('webpack');
-const TypedocWebpackPlugin = require('typedoc-webpack-plugin');
 
 const outputDirName = (process.env.NODE_ENV === 'production')
     ? '_release'
@@ -15,15 +14,6 @@ module.exports = {
     recordsOutputPath: path.resolve(__dirname, '../' + outputDirName + '/webpack.records.json'),
     module: {
         rules: [
-            {
-                enforce: 'pre',
-                test: /\.ts$/,
-                loader: 'tslint-loader',
-                exclude: /node_modules/,
-                options: {
-                    configFile: 'tslint.json'
-                }
-            },
             {
                 test: /\.ts$/,
                 exclude: /node_modules|vue\/src/,
@@ -49,7 +39,7 @@ module.exports = {
                         options: {
                             // esModule: true,
                             loaders: {
-                                ts: 'babel-loader!ts-loader!tslint-loader',
+                                ts: 'babel-loader!ts-loader',
                             },
                         },
                     }
@@ -90,32 +80,6 @@ module.exports = {
                 NODE_ENV: JSON.stringify(process.env.NODE_ENV),
             },
         }),
-        new TypedocWebpackPlugin({
-            mode: 'modules',
-            module: 'es6',
-            target: 'es6',
-            out: './docs',
-            exclude: '**/{node_modules,entry}/**/*.*',
-            experimentalDecorators: true,
-            excludeExternals: true,
-            ignoreCompilerErrors: true,
-            moduleResolution: "node",
-            includeDeclarations: false,
-            externalPattern: "**/*.d.ts",
-            emitDecoratorMetadata: true,
-            preserveConstEnums: true,
-            stripInternal: true,
-            suppressExcessPropertyErrors: true,
-            suppressImplicitAnyIndexErrors: true,
-            allowSyntheticDefaultImports: true,
-            excludeNotExported: true,
-            paths: {
-                "*": [
-                    "src/*",
-                    "test/*"
-                ]
-            },
-        }, ['./src']),
     ],
 };
 
