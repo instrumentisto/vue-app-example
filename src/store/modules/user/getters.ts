@@ -18,7 +18,7 @@ export const TOTAL_COUNT: string = 'totalCount';
  *
  * @param state     User Vuex state.
  *
- * @returns     Authorized user object.
+ * @return   Authorized user object.
  */
 export function authorized(state: UserState) {
     return state.authorized;
@@ -29,7 +29,7 @@ export function authorized(state: UserState) {
  *
  * @param state     User Vuex state.
  *
- * @returns     Number of users in state.
+ * @return   Number of users in state.
  */
 export function totalCount(state: UserState) {
     return state.all.length;

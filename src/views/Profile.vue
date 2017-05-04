@@ -56,7 +56,7 @@
          * Specifies name of the page. It's required if we want to show
          * correct page title with i18n support.
          */
-        protected name: string = 'profile';
+        public name: string = 'profile';
 
         /**
          * Returns global application authorization state.
@@ -64,7 +64,7 @@
          * It uses root Vuex getter under the hood.
          */
         @UserGetter(AUTHORIZED)
-        private user: () => object;
+        public user: any;
 
         /**
          * Resets global application authorization state.
@@ -72,13 +72,13 @@
          * It executes root Vuex action under the hood.
          */
         @UserAction(RESET_AUTHORIZATION)
-        private resetAuthorization: () => void;
+        public resetAuthorization: () => void;
 
         /**
          * Vue component 'created' hook, that executes when component instance
          * was created.
          */
-        private created(): void {
+        public created(): void {
             if (!this.user.image) {
                 this.user.image = require('~assets/img/default_user_photo.jpg');
             }
@@ -87,7 +87,7 @@
         /**
          * Resets user authorization state and redirects to the login page.
          */
-        private logout(): void {
+        public logout(): void {
             this.resetAuthorization();
             this.$router.push('/login');
         }

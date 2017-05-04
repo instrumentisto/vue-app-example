@@ -22,7 +22,7 @@
     import { Store } from 'vuex';
     import { Action, Getter, namespace } from 'vuex-class';
 
-    import Navbar from 'components/Navbar.vue';
+    import Navbar from 'components/navbar/Navbar.vue';
     import { FETCH_ALL } from 'store/modules/user/actions';
     import { TOTAL_COUNT } from 'store/modules/user/getters';
 
@@ -48,19 +48,26 @@
          * It uses root Vuex getter under the hood.
          */
         @UserGetter(TOTAL_COUNT)
-        private usersTotalCount;
+        public usersTotalCount: number;
 
         /**
          * Executes fetch all users action of the root Vuex store.
          */
         @UserAction(FETCH_ALL)
-        private fetchAllUsers;
+        public fetchAllUsers:
+            /**
+             * Executes fetch all users action of the root Vuex store.
+             *
+             * @return   Resolved promise with array of all users, that exist
+             *           in the system.
+             */
+            () => Promise<object>;
 
         /**
          * Vue component 'created' hook, that executes when component instance
          * was created.
          */
-        private created(): void {
+        public created(): void {
             this.fetchAllUsers();
         }
 
@@ -69,8 +76,11 @@
          * things with given Vuex store before page rendering.
          *
          * @param store     Vuex store, to perform actions on.
+         *
+         * @return   Resolved promise with array of all users, that exist
+         *           in the system.
          */
-        private preFetch(store: Store): Promise<object[]> {
+        public preFetch(store: Store): Promise<object[]> {
             return store.dispatch('user/' + FETCH_ALL);
         }
     }

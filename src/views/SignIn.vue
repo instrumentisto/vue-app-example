@@ -35,7 +35,7 @@
     import Component from 'vue-class-component';
     import { Action, namespace } from 'vuex-class';
 
-    import ErrorBlock from 'components/ErrorBlock.vue';
+    import ErrorBlock from 'components/error-block/ErrorBlock.vue';
     import HMRApi from 'HMRApi';
     import Page from 'Page.vue';
     import { LOGIN } from 'store/modules/user/actions';
@@ -56,33 +56,40 @@
          * Specifies name of the page. It's required if we want to show
          * correct page title with i18n support.
          */
-        protected name: string = 'sign_in';
+        public name: string = 'sign_in';
 
         /**
          * Executes user login action of the root Vuex store.
          */
         @UserAction(LOGIN)
-        private login: (user: {email: string, password: string}) => object;
+        public login:
+            /**
+             * @param data   User login info with required email and password
+             *               properties.
+             *
+             * @return   User object with authorized user info.
+             */
+            (data: {email: string, password: string}) => object;
 
         /**
          * Email of the user, that is signing in.
          *
          * It binds to the email input, of the sign in form.
          */
-        private email: string = '';
+        public email: string = '';
 
         /**
          * Password of the user, that is signing in.
          *
          * It binds to the password input, of the sign in form.
          */
-        private password: string = '';
+        public password: string = '';
 
         /**
          * Error message, that will be shown if entered user credentials
          * were invalid.
          */
-        private error: string = '';
+        public error: string = '';
 
         /**
          * Sign in form submit event handler.
@@ -90,7 +97,7 @@
          * Executes login function and redirects to the profile page on
          * success. Otherwise, it shows localized error message.
          */
-        private onSubmit(): void {
+        public onSubmit(): void {
             this.error = '';
             this.login({
                 email: this.email,

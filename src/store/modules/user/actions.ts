@@ -30,7 +30,7 @@ export const SIGN_UP: string = 'signUp';
  *
  * @param store     User Vuex store.
  *
- * @returns     Resolved promise with array of fetched users.
+ * @return   Resolved promise with array of fetched users.
  */
 export function fetchAll(
     store: ActionContext<UserState, RootState>
@@ -47,17 +47,17 @@ export function fetchAll(
  * @param store     User Vuex store.
  * @param user      User info with email and password to do login action.
  *
- * @returns     Resolved promise with authorized user object,
- *              or rejected promise with error code:
- *              - 1: if user with given email/password doesn't exist.
+ * @return   Resolved promise with authorized user object,
+ *           or rejected promise with error code:
+ *           - 1: if user with given email/password doesn't exist.
  */
 export function login(
     store: ActionContext<UserState, RootState>,
     user: { email: string, password: string }
 ): Promise<object> {
-    return UsersApi.login(user.email, user.password).then((user) => {
-        store.commit(mutations.SET_AUTHORIZED, user);
-        return user;
+    return UsersApi.login(user.email, user.password).then((authorizedUser) => {
+        store.commit(mutations.SET_AUTHORIZED, authorizedUser);
+        return authorizedUser;
     });
 }
 
@@ -78,9 +78,9 @@ export function resetAuthorization(
  * @param store     User Vuex store.
  * @param user      User object with all required info for registration.
  *
- * @returns     Resolved promise with new created user object,
- *                           or rejected promise with error code:
- *                           - 1: if user with given email is already exists.
+ * @return   Resolved promise with new created user object,
+ *           or rejected promise with error code:
+ *           - 1: if user with given email is already exists.
  */
 export function signUp(
     store: ActionContext<UserState, RootState>, user

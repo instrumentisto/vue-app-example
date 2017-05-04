@@ -16,13 +16,15 @@
          * Specifies name of the page. It must be extended by each page,
          * if we want to show correct page title with i18n support.
          */
-        protected name: string;
+        public name: string;
 
         /**
          * Returns localized page title based on environment
          * and current page name.
+         *
+         * @return   Localized page title, that was calculated.
          */
-        private get title(): string {
+        public get title(): string {
             const title = this.$t(this.name + '.title');
             if (process.browser) {
                 document.title = title;
@@ -37,7 +39,7 @@
          * in somewhere in the component.
          */
         @Watch('title')
-        private titleChanged() {
+        public titleChanged(): void {
             // tslint:disable-line
         }
 
@@ -45,7 +47,7 @@
          * Vue component 'mounted' hook, that executes when component is
          * mounted to the DOM.
          */
-        private mounted(): void {
+        public mounted(): void {
             this.$store.state.loading = false;
         }
 
