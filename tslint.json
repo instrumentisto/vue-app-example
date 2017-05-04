@@ -4,7 +4,6 @@
     ],
     "rules": {
         "quotemark": [true, "single"],
-        "trailing-comma": false,
-        "no-consecutive-blank-lines": [false]
+        "trailing-comma": false
     }
 }

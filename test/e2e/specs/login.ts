@@ -1,7 +1,8 @@
+/* tslint:disable:object-literal-sort-keys */
 import Helper from '../Helper';
 
 const tests = {
-    beforeEach: (browser, done) => {
+    'beforeEach': (browser, done) => {
         Helper.beforeEach(browser, done);
     },
     'Authorization with valid credentials': (client) => {

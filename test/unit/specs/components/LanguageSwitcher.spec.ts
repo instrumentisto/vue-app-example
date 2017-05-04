@@ -16,12 +16,12 @@ describe('components/partial/LanguageSwitcher.vue', () => {
     });
 
     it('should return valid languages list', () => {
-        expect(component.locales)
+        return expect(component.locales)
             .to.be.an('array')
             .and.not.be.empty;
     });
 
     it('active language flag must be true for current language', () => {
-        expect(component.isActive(app.$i18n.locale)).to.be.true;
+        return expect(component.isActive(app.$i18n.locale)).to.be.true;
     });
 });
