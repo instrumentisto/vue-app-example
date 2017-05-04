@@ -1,7 +1,9 @@
+import Vue from 'vue';
 import Component from 'vue-class-component';
 import { Action, namespace } from 'vuex-class';
 
 import ErrorBlock from 'components/error-block/ErrorBlock.vue';
+import HMRApi from 'HMRApi';
 import Page from 'Page';
 import { SIGN_UP } from 'store/modules/user/actions';
 
@@ -94,5 +96,14 @@ export default class SignUp extends Page {
                 this.error = errorMsg;
             });
         });
+    }
+}
+
+if (HMRApi && module.hot) {
+    HMRApi.install(Vue);
+    if (!module.hot.data) {
+        HMRApi.createRecord('SignUp', (SignUp as any).options);
+    } else {
+        HMRApi.reload('SignUp', (SignUp as any).options);
     }
 }

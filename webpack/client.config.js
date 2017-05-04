@@ -3,6 +3,7 @@ const webpack = require('webpack');
 const CopyWebpackPlugin = require('copy-webpack-plugin');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const merge = require('webpack-merge');
+const TypedocWebpackPlugin = require('typedoc-webpack-plugin');
 
 const base = require('./base.config');
 
@@ -30,5 +31,32 @@ module.exports = merge(base, {
         ]),
         new webpack.HotModuleReplacementPlugin(),
         new webpack.NamedModulesPlugin(),
+        // TODO move to if condition (only in production)
+        new TypedocWebpackPlugin({
+            mode: 'modules',
+            module: 'es6',
+            target: 'es6',
+            out: './docs',
+            exclude: '**/{node_modules,entry}/**/*.*',
+            experimentalDecorators: true,
+            excludeExternals: true,
+            ignoreCompilerErrors: true,
+            moduleResolution: "node",
+            includeDeclarations: false,
+            externalPattern: "**/*.d.ts",
+            emitDecoratorMetadata: true,
+            preserveConstEnums: true,
+            stripInternal: true,
+            suppressExcessPropertyErrors: true,
+            suppressImplicitAnyIndexErrors: true,
+            allowSyntheticDefaultImports: true,
+            excludeNotExported: true,
+            paths: {
+                "*": [
+                    "src/*",
+                    "test/*"
+                ]
+            },
+        }, ['./src', './test']),
     ]
 });
