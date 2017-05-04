@@ -1,7 +1,7 @@
 import Vue from 'vue';
 
 import 'class-component/hooks'; // must be imported first
-import App from 'App.vue'; // tslint:disable-line
+import App from 'components/app/App.vue';
 import I18n from 'I18n';
 import params from 'main';
 

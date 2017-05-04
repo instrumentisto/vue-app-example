@@ -2,11 +2,11 @@ import Vue from 'vue';
 import VueRouter from 'vue-router';
 import { RawLocation, Route, RouteConfig, RouterMode, RouterOptions } from 'vue-router/types/router';
 
+import SignIn from 'components/pages/sign-in/SignIn.vue';
+import SignUp from 'components/pages/sign-up/SignUp.vue';
 import store from 'store';
-import SignIn from 'views/SignIn.vue';
-import SignUp from 'views/SignUp.vue';
 
-const Profile = () => System.import('views/Profile.vue');
+const Profile = () => System.import('components/pages/profile/Profile.vue');
 
 /**
  * Describes vue-router configuration.
