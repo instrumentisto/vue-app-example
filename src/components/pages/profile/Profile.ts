@@ -1,7 +1,8 @@
-// import Vue from 'vue';
+import Vue from 'vue';
 import Component from 'vue-class-component';
 import { Action, Getter, namespace } from 'vuex-class';
 
+import HMRApi from 'HMRApi';
 import Page from 'Page';
 import { RESET_AUTHORIZATION } from 'store/modules/user/actions';
 import { AUTHORIZED } from 'store/modules/user/getters';
@@ -56,5 +57,14 @@ export default class Profile extends Page {
     public logout(): void {
         this.resetAuthorization();
         this.$router.push('/login');
+    }
+}
+
+if (HMRApi && module.hot) {
+    HMRApi.install(Vue);
+    if (!module.hot.data) {
+        HMRApi.createRecord('Profile', (Profile as any).options);
+    } else {
+        HMRApi.reload('Profile', (Profile as any).options);
     }
 }
