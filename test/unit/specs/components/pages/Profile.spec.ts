@@ -32,6 +32,6 @@ describe('components/pages/Profile.vue', () => {
     });
 
     it('should render correct user name', () => {
-        expect(app.$el.querySelector('#user_name').textContent).to.equal(testUser.name);
+        expect(app.$el.querySelector('#userName').textContent).to.equal(testUser.name);
     });
 });

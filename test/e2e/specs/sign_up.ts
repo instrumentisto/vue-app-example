@@ -43,12 +43,14 @@ const tests = {
 
         signUpPage
             .setValue('@emailInput', 'wrong_email')
+            .submitForm('@form')
             .assert.containsText(
                 signUpPage.elements.emailError.selector, emailMessage
             );
 
         signUpPage
             .setValue('@passwordInput', '123')
+            .submitForm('@form')
             .assert.containsText(
                 signUpPage.elements.passwordError.selector,
                 minMessage.replace('{value}', '6')
@@ -57,6 +59,7 @@ const tests = {
         signUpPage
             .setValue('@passwordInput', '123456')
             .setValue('@passwordConfirmInput', '1234567')
+            .submitForm('@form')
             .assert.containsText(
                 signUpPage.elements.passwordConfirmError.selector,
                 confirmedMessage
