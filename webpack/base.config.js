@@ -1,5 +1,6 @@
 const path = require('path');
 const webpack = require('webpack');
+const TypedocWebpackPlugin = require('typedoc-webpack-plugin');
 
 module.exports = {
     output: {
@@ -85,6 +86,32 @@ module.exports = {
                 API_URL: JSON.stringify(process.env.API_URL),
             },
         }),
+        new TypedocWebpackPlugin({
+            mode: 'modules',
+            module: 'es6',
+            target: 'es6',
+            out: './docs',
+            exclude: '**/{node_modules,entry}/**/*.*',
+            experimentalDecorators: true,
+            excludeExternals: true,
+            ignoreCompilerErrors: true,
+            moduleResolution: "node",
+            includeDeclarations: false,
+            externalPattern: "**/*.d.ts",
+            emitDecoratorMetadata: true,
+            preserveConstEnums: true,
+            stripInternal: true,
+            suppressExcessPropertyErrors: true,
+            suppressImplicitAnyIndexErrors: true,
+            allowSyntheticDefaultImports: true,
+            excludeNotExported: true,
+            paths: {
+                "*": [
+                    "src/*",
+                    "test/*"
+                ]
+            },
+        }, ['./src']),
     ],
 };
 
