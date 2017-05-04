@@ -17,7 +17,7 @@ export default class Users {
      *
      * @return   AxiosPromise with all users array.
      */
-    public static getAll(): AxiosPromise {
+    public static getAll(): Promise<object[]> {
         return API.get('/users').then((response: AxiosResponse) => {
             return response.data;
         });

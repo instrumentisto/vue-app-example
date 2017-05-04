@@ -8,7 +8,7 @@ import RootState from 'store/root/state';
 /**
  * The name of fetch all action.
  */
-export const FETCH_ALL: string = 'fetchAl';
+export const FETCH_ALL: string = 'fetchAll';
 
 /**
  * The name of login action.
