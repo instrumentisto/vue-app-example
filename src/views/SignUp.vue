@@ -90,10 +90,13 @@
     export default class SignUp extends Page {
 
         /**
-         * Specifies name of the page. It's required if we want to show
-         * correct page title with i18n support.
+         * Returns localized page title.
+         *
+         * @return   Localized page title, that was calculated.
          */
-        public name: string = 'sign_up';
+        public get title(): string {
+            return this.$t('sign_up.title');
+        }
 
         /**
          * Executes user sign up action of the root Vuex store.

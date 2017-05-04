@@ -13,42 +13,35 @@
     export default class Page extends Vue {
 
         /**
-         * Specifies name of the page. It must be extended by each page,
-         * if we want to show correct page title with i18n support.
+         * Title of the page. It must be extended by each page (view).
          */
-        public name: string;
+        public title: string;
 
         /**
-         * Returns localized page title based on environment
-         * and current page name.
-         *
-         * @return   Localized page title, that was calculated.
-         */
-        public get title(): string {
-            const title = this.$t(this.name + '.title');
-            if (process.browser) {
-                document.title = title;
-            }
-            return title;
-        }
-
-        /**
-         * Vue component 'watcher' to use title property.
-         *
-         * Title property will be reactive, only if it's used
-         * in somewhere in the component.
+         * Vue component 'watcher' to watch for "title" property changes.
+         * On each change it's set new title value to the document title.
          */
         @Watch('title')
-        public titleChanged(): void {
-            // tslint:disable-line
+        public titleChanged(newTitle: string): void {
+            if (process.browser) {
+                document.title = newTitle;
+            }
         }
 
         /**
          * Vue component 'mounted' hook, that executes when component is
          * mounted to the DOM.
+         *
+         * It sets application loading state to "false", because mounted event
+         * means that component is already mounted and available for user.
+         *
+         * It also sets document title, based on component "title" property.
          */
         public mounted(): void {
             this.$store.state.loading = false;
+            if (process.browser) {
+                document.title = this.title;
+            }
         }
 
     }
