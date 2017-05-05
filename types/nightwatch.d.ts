@@ -1244,6 +1244,8 @@ export interface NightWatchClient {
      */
     moveToElement: (selector: string, xoffset: number, yoffset: number, callback?: (result: CallbackResult) => void) => NightWatchBrowser;
 
+    page: any;
+
     /**
      * Suspends the test for the given time in milliseconds. If the milliseconds argument is missing it will suspend the test indefinitely
      *
@@ -1804,7 +1806,7 @@ export interface NightWatchClient {
      * @param callback: Callback function to be invoked with the result when the command finishes.
      * @returns {}
      */
-    elements: (using: string, value: string, callback: (result: CallbackResult) => void) => NightWatchBrowser;
+    elements: any;
 
     /**
      * Inject a snippet of JavaScript into the page for execution in the context of the currently selected frame. The executed script is assumed to be synchronous and
@@ -2217,4 +2219,10 @@ export interface NightWatchClient {
     launch_url: string;
 }
 
-export interface NightWatchBrowser extends NightWatchClient/*, NightWatchCustomCommands, NightWatchCustomPageObjects*/ { }
+export interface NightWatchBrowser extends NightWatchClient { }
+
+export interface NightWatchPage extends NightWatchClient {
+    navigate: () => NightWatchPage;
+
+    section: any;
+}
