@@ -31,7 +31,11 @@ module.exports = merge(base, {
         ]),
         new webpack.HotModuleReplacementPlugin(),
         new webpack.NamedModulesPlugin(),
-        // TODO move to if condition (only in production)
+    ]
+});
+
+if (process.env.NODE_ENV === 'production') {
+    module.exports.plugins = (module.exports.plugins || []).concat([
         new TypedocWebpackPlugin({
             mode: 'modules',
             module: 'es6',
@@ -50,7 +54,6 @@ module.exports = merge(base, {
             suppressExcessPropertyErrors: true,
             suppressImplicitAnyIndexErrors: true,
             allowSyntheticDefaultImports: true,
-            excludeNotExported: true,
             paths: {
                 "*": [
                     "src/*",
@@ -58,5 +61,5 @@ module.exports = merge(base, {
                 ]
             },
         }, ['./src', './test']),
-    ]
-});
+    ])
+}
