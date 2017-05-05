@@ -18,7 +18,7 @@ export default class Page extends Vue {
 
     /**
      * Vue component 'watcher' to watch for "title" property changes.
-     * On each change it's set new title value to the document title.
+     * On each change it sets new title value to the document title.
      */
     @Watch('title')
     public titleChanged(newTitle: string): void {
