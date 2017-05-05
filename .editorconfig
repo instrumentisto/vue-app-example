@@ -9,17 +9,9 @@ max_line_length = 80
 
 [*.vue]
 indent_style = space
-indent_size = 4
-
-[*.{js,ts}]
-indent_style = space
-indent_size = 4
-
-[*.styl]
-indent_style = space
 indent_size = 2
 
-[*.css]
+[*.{js,ts}]
 indent_style = space
 indent_size = 4
 
