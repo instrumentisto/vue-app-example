@@ -28,10 +28,12 @@ describe('components/pages/Profile.vue', () => {
     });
 
     it('should render correct section title', () => {
-        expect(app.$el.querySelector('h1.title').textContent).to.equal(app.$i18n.t('profile.title'));
+        expect(app.$el.querySelector('h1.title').textContent)
+            .to.equal(app.$i18n.t('profile.title'));
     });
 
     it('should render correct user name', () => {
-        expect(app.$el.querySelector('#userName').textContent).to.equal(testUser.name);
+        expect(app.$el.querySelector('#userName').textContent)
+            .to.equal(testUser.name);
     });
 });

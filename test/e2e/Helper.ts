@@ -15,17 +15,19 @@ export default class Helper {
      *                  actions were completed.
      */
     public static beforeEach(browser: NightWatchBrowser, done: () => void): void {
-      browser
-        .url(browser.launch_url)
-        .execute((initialStorage) => {
-          for (const key in initialStorage) {
-            if (!initialStorage.hasOwnProperty(key)) {
-              continue;
-            }
-            localStorage.setItem(key, JSON.stringify(initialStorage[key]));
-          }
-        }, [browser.globals.localStorage], (result) => {
-          done();
-        });
+        browser
+            .url(browser.launch_url)
+            .execute((initialStorage) => {
+                for (const key in initialStorage) {
+                    if (!initialStorage.hasOwnProperty(key)) {
+                        continue;
+                    }
+                    localStorage.setItem(
+                        key, JSON.stringify(initialStorage[key])
+                    );
+                }
+            }, [browser.globals.localStorage], (result) => {
+                done();
+            });
     }
 }
