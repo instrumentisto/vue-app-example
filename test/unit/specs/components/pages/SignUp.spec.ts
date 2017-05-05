@@ -20,6 +20,7 @@ describe('components/pages/SignUp.vue', () => {
     });
 
     it('should render correct section title', () => {
-        expect(app.$el.querySelector('h1.title').textContent).to.equal(app.$i18n.t('sign_up.title'));
+        expect(app.$el.querySelector('h1.title').textContent)
+            .to.equal(app.$i18n.t('sign_up.title'));
     });
 });
