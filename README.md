@@ -24,12 +24,14 @@ npm run build:dev
 docker-compose up --build
 ```
 
-4. Open application in browser:
-```bash
-start http://vue-app-example.dev
-```
+Now you can open [http://vue-app-example.dev](http://vue-app-example.dev)
+application in browser.
 
-5. To test Server-Side Rendering, you can do:
+To test Server-Side Rendering, you can emulate search bot request:
+```bash
+curl --header "User-Agent: Googlebot" http://vue-app-example.dev/
+```
+or directly call SSR server:
 ```bash
 curl http://vue-app-example.dev:8080/
 ```
