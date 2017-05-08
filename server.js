@@ -15,7 +15,9 @@ const app = express();
 
 app.use(favicon(resolve('./img/logo.png')));
 
-app.use(express.static('./'));
+app.use(express.static('./', {
+    index: false
+}));
 
 app.get('*', (req, res) => {
     if (!renderer) {
