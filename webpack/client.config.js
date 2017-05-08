@@ -6,6 +6,7 @@ const merge = require('webpack-merge');
 const TypedocWebpackPlugin = require('typedoc-webpack-plugin');
 
 const base = require('./base.config');
+const isProd = (process.env.NODE_ENV === 'production');
 
 module.exports = merge(base, {
     entry: './src/entry/client.ts',
@@ -20,21 +21,28 @@ module.exports = merge(base, {
         new webpack.DefinePlugin({
             'process.env': {
                 VUE_ENV: '"client"',
-                API_URL: JSON.stringify(process.env.CLIENT_API_URL),
-            },
+                API_URL: JSON.stringify(process.env.CLIENT_API_URL)
+            }
         }),
         new HtmlWebpackPlugin({
-            template: 'src/templates/index.html'
+            template: 'src/templates/index.html',
+            minify: isProd
+                ? {
+                    removeComments: true,
+                    collapseWhitespace: true,
+                    removeAttributeQuotes: true
+                }
+                : undefined
         }),
         new CopyWebpackPlugin([
-            { from: 'assets/i18n', to: 'i18n' },
+            { from: 'assets/i18n', to: 'i18n' }
         ]),
         new webpack.HotModuleReplacementPlugin(),
-        new webpack.NamedModulesPlugin(),
+        new webpack.NamedModulesPlugin()
     ]
 });
 
-if (process.env.NODE_ENV === 'production') {
+if (isProd) {
     module.exports.plugins = (module.exports.plugins || []).concat([
         new TypedocWebpackPlugin({
             mode: 'modules',
@@ -57,9 +65,9 @@ if (process.env.NODE_ENV === 'production') {
             paths: {
                 "*": [
                     "src/*",
-                    "test/*"
+                    ".tests/*"
                 ]
-            },
-        }, ['./src', './test']),
+            }
+        }, ['./src', './.tests'])
     ])
 }

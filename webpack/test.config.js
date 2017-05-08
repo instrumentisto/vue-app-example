@@ -9,10 +9,10 @@ module.exports = merge(base, {
     },
     resolve: {
         modules: [
-            path.join(__dirname, '../test'),
+            path.join(__dirname, '../.tests')
         ],
         alias: {
-            'vue$': 'vue/dist/vue.esm.js',
-        },
-    },
+            'vue$': 'vue/dist/vue.esm.js'
+        }
+    }
 });

@@ -4,7 +4,7 @@
     "paths": {
       "*": [
         "src/*",
-        "test/*"
+        ".tests/*"
       ]
     },
     "module": "es6",

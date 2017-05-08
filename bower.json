@@ -7,9 +7,7 @@
   "ignore": [
     "**/.*",
     "node_modules",
-    "bower_components",
-    "test",
-    "tests"
+    "bower_components"
   ],
   "devDependencies": {
     "bootstrap": "^3.3.7"

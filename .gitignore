@@ -2,16 +2,9 @@ bower_components
 node_modules
 
 _build
-_release
 
 .idea
 .DS_Store
 
 npm-debug.log
 selenium-debug.log
-
-test/e2e/**/*.js
-!test/e2e/nightwatch.conf.js
-!test/e2e/pages/*
-
-.data/db.json

@@ -1,0 +1,166 @@
+stages:
+  - deps
+  - lint
+  - build
+  - test
+  - release
+
+image: instrumentisto/gitlab-builder
+variables:
+  GIT_STRATEGY: fetch
+  DOCKER_HOST: 127.0.0.1:2375
+  DOCKER_DRIVER: overlay
+  GITLAB_REGISTRY_HOST: hub.instrumentisto.com
+  TMP_IMAGE_VER: pipeline-$CI_PIPELINE_ID
+  API_URL: http://vue-app-example.dev:3000 # Maybe move to the Gitlab CI global/deployment variables?
+
+deps:
+  stage: deps
+  script:
+    - docker run
+        --rm
+        -v $CI_PROJECT_DIR:/app
+        instrumentisto/node-builder npm install
+    - docker run
+        --rm
+        --net=host
+        -v $CI_PROJECT_DIR:/app
+        instrumentisto/node-builder node_modules/.bin/bower install --allow-root
+  services:
+    - docker:dind
+  artifacts:
+    paths:
+      - bower_components/
+      - node_modules/
+    expire_in: 30 min
+
+lint:
+  stage: lint
+  dependencies:
+    - deps
+  script:
+    - docker run
+        --rm
+        -v $CI_PROJECT_DIR:/app
+        instrumentisto/node-builder npm run lint
+  services:
+    - docker:dind
+
+build:
+  stage: build
+  dependencies:
+    - deps
+  script:
+    - docker run
+        --rm
+        -v $CI_PROJECT_DIR:/app
+        -e CLIENT_API_URL=$API_URL
+        instrumentisto/node-builder npm run build:prod
+    - make docker.image no-cache=yes VERSION=$TMP_IMAGE_VER
+    - make docker.tar VERSION=$TMP_IMAGE_VER
+  services:
+    - docker:dind
+  artifacts:
+    paths:
+      - _build/
+      - _docker/
+    expire_in: 30 min
+
+test.unit:
+  stage: test
+  dependencies:
+    - deps
+  script:
+    - docker run
+        --rm
+        -v $CI_PROJECT_DIR:/usr/src/app
+        -w /usr/src/app
+        node npm run test:unit
+  services:
+    - docker:dind
+
+test.e2e:
+  stage: test
+  dependencies:
+    - deps
+  script:
+    - docker run
+        --rm
+        -v $CI_PROJECT_DIR:/app
+        instrumentisto/node-builder npm run build:dev
+    - apk add --update --no-cache py-pip
+    - pip install docker-compose
+    - docker-compose up -d
+    - docker run
+        -d
+        -p 4444:4444
+        -v /dev/shm:/dev/shm
+        -e DBUS_SESSION_BUS_ADDRESS=/dev/null
+        --net host
+        --add-host vue-app-example.dev:127.0.0.1
+        selenium/standalone-chrome
+    - docker run
+        --rm
+        -v $CI_PROJECT_DIR:/app
+        --net host
+        -e CI=$CI
+        instrumentisto/node-builder npm run test:e2e
+    - docker-compose down
+  services:
+    - docker:dind
+
+test.docker:
+  stage: test
+  dependencies:
+    - deps
+    - build
+  script:
+    - make docker.untar VERSION=$TMP_IMAGE_VER
+    - make docker.test VERSION=$TMP_IMAGE_VER
+  services:
+    - docker:dind
+
+release:
+  stage: release
+  dependencies:
+    - build
+  script:
+    - ls -la _build/
+    - rm -rf _build/docs
+  only:
+    - /^v[0-9]+/
+  except:
+    - branches
+  artifacts:
+    paths:
+      - _build/
+
+release.docs:
+  stage: release
+  dependencies:
+    - build
+  script:
+    - ls -l _build/docs/
+  only:
+    - /^v[0-9]+/
+  except:
+    - branches
+  artifacts:
+    paths:
+      - _build/docs/
+
+release.docker:
+  stage: release
+  dependencies:
+    - build
+  script:
+    - make docker.untar VERSION=$TMP_IMAGE_VER
+    - make docker.tags VERSION=$TMP_IMAGE_VER TAGS=$CI_COMMIT_REF_NAME
+    - docker login -u gitlab-ci-token -p $CI_JOB_TOKEN $GITLAB_REGISTRY_HOST
+    - make docker.push TAGS=$CI_COMMIT_REF_NAME
+  services:
+    - docker:dind
+  only:
+    - /^v[0-9]+/
+  except:
+    - branches
