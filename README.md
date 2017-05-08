@@ -31,7 +31,7 @@ To test Server-Side Rendering, you can emulate search bot request:
 ```bash
 curl --header "User-Agent: Googlebot" http://vue-app-example.dev/
 ```
-or directly call SSR server:
+or directly do request to Express server:
 ```bash
 curl http://vue-app-example.dev:8080/
 ```
