@@ -7,7 +7,6 @@ const express = require('express');
 const acceptLanguageParser = require('accept-language-parser');
 const resolve = file => path.resolve(__dirname, file);
 
-// TODO: add render context along with "template" parameter
 const renderer = require('vue-server-renderer').createBundleRenderer(require('./vue-ssr-bundle.json'), {
     template: fs.readFileSync(resolve('./index.server.html'), 'utf-8')
 });

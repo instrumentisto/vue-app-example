@@ -1,17 +1,15 @@
 const path = require('path');
 const webpack = require('webpack');
 
-const outputDirName = (process.env.NODE_ENV === 'production')
-    ? '_release'
-    : '_build';
+const isProd = (process.env.NODE_ENV === 'production');
 
 module.exports = {
     output: {
         filename: 'build.js',
-        path: path.resolve(__dirname, '../' + outputDirName)
+        path: path.resolve(__dirname, '../_build')
     },
     recordsInputPath: path.resolve(__dirname, '../webpack/records.json'),
-    recordsOutputPath: path.resolve(__dirname, '../' + outputDirName + '/webpack.records.json'),
+    recordsOutputPath: path.resolve(__dirname, '../_build/webpack.records.json'),
     module: {
         rules: [
             {
@@ -28,7 +26,7 @@ module.exports = {
                             transpileOnly: true,
                             isolatedModules: true
                         }
-                    },
+                    }
                 ]
             },
             {
@@ -39,9 +37,9 @@ module.exports = {
                         options: {
                             // esModule: true,
                             loaders: {
-                                ts: 'babel-loader!ts-loader',
-                            },
-                        },
+                                ts: 'babel-loader!ts-loader'
+                            }
+                        }
                     }
                 ]
             },
@@ -55,18 +53,18 @@ module.exports = {
             {
                 test: /\.(eot|svg|ttf|woff|woff2)$/,
                 loader: 'file-loader?name=fonts/[name].[ext]'
-            },
+            }
         ]
     },
     resolve: {
         modules: [
             path.join(__dirname, '../src'),
-            'node_modules',
+            'node_modules'
         ],
         alias: {
             'assets': path.join(__dirname, '../assets'),
             '~assets': path.join(__dirname, '../assets'),
-            '~bower': path.join(__dirname, '../bower_components'),
+            '~bower': path.join(__dirname, '../bower_components')
         },
         extensions: [".tsx", ".ts", ".js"]
     },
@@ -77,20 +75,15 @@ module.exports = {
     plugins: [
         new webpack.DefinePlugin({
             'process.env': {
-                NODE_ENV: JSON.stringify(process.env.NODE_ENV),
-            },
-        }),
-    ],
+                NODE_ENV: JSON.stringify(process.env.NODE_ENV)
+            }
+        })
+    ]
 };
 
-if (process.env.NODE_ENV === 'production') {
+if (isProd) {
     module.exports.devtool = false;
     module.exports.plugins = (module.exports.plugins || []).concat([
-        new webpack.DefinePlugin({
-            'process.env': {
-                NODE_ENV: '"production"'
-            }
-        }),
         new webpack.optimize.UglifyJsPlugin({
             sourceMap: true,
             compress: {
