@@ -2,7 +2,7 @@
 
 PoC app to test [Vue.js](https://vuejs.org/) framework
 
-## Getting Started
+### Getting Started
 
 0. Install project dependencies:
 ```bash
