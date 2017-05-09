@@ -54,10 +54,14 @@ curl http://vue-app-example.dev:8080/
 - http://haml.info/
 - https://ssr.vuejs.org/en/
 - [vue-kindergarten](https://github.com/JiriChara/vue-kindergarten)
-- Nuxt.js
-- [Weex](https://github.com/weexteam/weex-vue-framework)
 - [av-ts](https://github.com/HerringtonDarkholme/av-ts): https://herringtondarkholme.github.io/2016/10/03/vue2-ts2/
 - https://github.com/rowanwins/vue-dropzone
+- Keep eye on Nuxt.js
+- Mobile:
+  - https://habrahabr.ru/post/327494/
+  - https://github.com/quasarframework/quasar
+  - https://github.com/nolimits4web/Framework7
+  - https://github.com/weexteam/weex-vue-framework
 
 ### Known Issues
 
