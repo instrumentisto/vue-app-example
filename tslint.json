@@ -1,9 +1,10 @@
 {
-    "extends": [
-        "tslint:recommended"
-    ],
-    "rules": {
-        "quotemark": [true, "single"],
-        "trailing-comma": false
-    }
+  "extends": [
+    "tslint:recommended"
+  ],
+  "rules": {
+    "quotemark": [true, "single"],
+    "trailing-comma": false,
+    "interface-name": [true, "never-prefix"]
+  }
 }
