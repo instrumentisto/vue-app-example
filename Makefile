@@ -92,7 +92,7 @@ docker.untar:
 #	make docker.test [VERSION=]
 
 docker.test:
-	IMAGE=$(IMAGE_NAME):$(VERSION) node_modules/.bin/bats .tests/docker/suite.bats
+	IMAGE=$(IMAGE_NAME):$(VERSION) node_modules/.bin/bats test/docker/suite.bats
 
 
 
