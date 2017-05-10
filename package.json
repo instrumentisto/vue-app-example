@@ -6,9 +6,9 @@
     "build:client": "webpack --config webpack/client.config.js --progress --hide-modules",
     "build:server": "cross-env SERVER_API_URL=http://json-server:3000 webpack --config webpack/server.config.js --progress --hide-modules",
     "json-server": "cp .data/db.example.json .data/db.json && json-server --watch .data/db.json --delay 500",
-    "test:e2e": "tsc -p .tests/e2e && nightwatch --config .tests/e2e/nightwatch.conf.js",
-    "test:unit": "karma start .tests/unit/karma.conf.js --single-run",
-    "lint": "tslint --config tslint.json '{src,.tests,types}/**/*.ts'"
+    "test:e2e": "tsc -p test/e2e && nightwatch --config test/e2e/nightwatch.conf.js",
+    "test:unit": "karma start test/unit/karma.conf.js --single-run",
+    "lint": "tslint --config tslint.json '{src,test,types}/**/*.ts'"
   },
   "dependencies": {
     "accept-language-parser": "^1.4.0",

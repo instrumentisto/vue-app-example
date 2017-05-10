@@ -65,9 +65,9 @@ if (isProd) {
             paths: {
                 "*": [
                     "src/*",
-                    ".tests/*"
+                    "test/*"
                 ]
             }
-        }, ['./src', './.tests'])
+        }, ['./src', './test'])
     ])
 }
