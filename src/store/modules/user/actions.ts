@@ -33,7 +33,7 @@ export const SIGN_UP: string = 'signUp';
  * @return   Resolved promise with array of fetched users.
  */
 export function fetchAll(
-    store: ActionContext<UserState, RootState>
+    store: ActionContext<UserState, RootState>,
 ): Promise<object[]> {
     return UsersApi.getAll().then((users) => {
         store.commit(mutations.SET_LIST, users);
@@ -53,7 +53,7 @@ export function fetchAll(
  */
 export function login(
     store: ActionContext<UserState, RootState>,
-    user: { email: string, password: string }
+    user: { email: string, password: string },
 ): Promise<object> {
     return UsersApi.login(user.email, user.password).then((authorizedUser) => {
         store.commit(mutations.SET_AUTHORIZED, authorizedUser);
@@ -67,7 +67,7 @@ export function login(
  * @param store     User Vuex store.
  */
 export function resetAuthorization(
-    store: ActionContext<UserState, RootState>
+    store: ActionContext<UserState, RootState>,
 ): void {
     store.commit(mutations.SET_AUTHORIZED, null);
 }
@@ -83,7 +83,7 @@ export function resetAuthorization(
  *           - 1: if user with given email is already exists.
  */
 export function signUp(
-    store: ActionContext<UserState, RootState>, user
+    store: ActionContext<UserState, RootState>, user,
 ): Promise<object> {
     return UsersApi.register(user).then((addedUser) => {
         store.commit(mutations.ADD, addedUser);

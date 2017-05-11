@@ -1,5 +1,5 @@
-interface System {
+interface ISystem {
     import<T>(module: string): Promise<T>;
 }
 
-declare const System: System;
+declare const System: ISystem;

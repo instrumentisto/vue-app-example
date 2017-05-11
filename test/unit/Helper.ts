@@ -25,7 +25,7 @@ export default class Helper {
      * @return   Resolved promise with Vue application instance.
      */
     public static initApp(
-        component, mount: boolean = true, locale: string = 'en'
+        component, mount: boolean = true, locale: string = 'en',
     ): Promise<Vue> {
         params.render = (h) => h(component);
 

@@ -4,7 +4,7 @@
   ],
   "rules": {
     "quotemark": [true, "single"],
-    "trailing-comma": false,
-    "interface-name": [true, "never-prefix"]
+    "trailing-comma": [true, {"multiline": "always", "singleline": "never"}],
+    "interface-name": [true, "always-prefix"]
   }
 }

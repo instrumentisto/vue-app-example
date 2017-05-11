@@ -37,7 +37,7 @@ const tests = {
             .submitForm('@form')
             .waitForElementVisible('@error', 3000)
             .assert.containsText(
-                '@error', client.globals.localeData.errors.email_already_taken
+                '@error', client.globals.localeData.errors.email_already_taken,
             );
 
         client.end();
@@ -67,14 +67,14 @@ const tests = {
             .setValue('@nameInput', '')
             .submitForm('@form')
             .assert.containsText(
-                signUpPage.elements.nameError.selector, requiredMessage
+                signUpPage.elements.nameError.selector, requiredMessage,
             );
 
         signUpPage
             .setValue('@emailInput', 'wrong_email')
             .submitForm('@form')
             .assert.containsText(
-                signUpPage.elements.emailError.selector, emailMessage
+                signUpPage.elements.emailError.selector, emailMessage,
             );
 
         signUpPage
@@ -82,7 +82,7 @@ const tests = {
             .submitForm('@form')
             .assert.containsText(
                 signUpPage.elements.passwordError.selector,
-                minMessage.replace('{value}', '6')
+                minMessage.replace('{value}', '6'),
             );
 
         signUpPage
@@ -91,7 +91,7 @@ const tests = {
             .submitForm('@form')
             .assert.containsText(
                 signUpPage.elements.passwordConfirmError.selector,
-                confirmedMessage
+                confirmedMessage,
             );
 
         client.end();

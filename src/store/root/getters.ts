@@ -19,5 +19,5 @@ export function loading(state: RootState) {
 }
 
 export default {
-    loading
+    loading,
 } as GetterTree<RootState, any>;

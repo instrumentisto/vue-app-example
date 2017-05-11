@@ -73,7 +73,7 @@ export default class Router implements RouterOptions {
     private beforeEach(
         to: Route,
         from: Route,
-        next: (to?: RawLocation | false | ((vm: Vue) => any) | void) => void
+        next: (to?: RawLocation | false | ((vm: Vue) => any) | void) => void,
     ) {
         store.state.loading = true;
 

@@ -37,11 +37,11 @@ const tests = {
             .waitForElementVisible(profilePage.section.main.selector, 3000)
             .assert.containsText(
                 profilePage.section.main.elements.userName.selector,
-                'Test User'
+                'Test User',
             )
             .assert.containsText(
                 profilePage.section.main.elements.userEmail.selector,
-                'test@gmail.com'
+                'test@gmail.com',
             );
 
         client.end();
@@ -62,7 +62,7 @@ const tests = {
             .submitForm('@form')
             .waitForElementVisible('@error', 3000)
             .assert.containsText(
-                '@error', client.globals.localeData.errors.access_denied
+                '@error', client.globals.localeData.errors.access_denied,
             );
 
         client.end();
