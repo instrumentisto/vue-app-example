@@ -34,5 +34,5 @@ export function setLocale(state: RootState, locale: string) {
 
 export default {
     setLoading,
-    setLocale
+    setLocale,
 } as MutationTree<RootState>;

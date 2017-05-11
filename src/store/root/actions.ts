@@ -32,5 +32,5 @@ export function stopLoading(store: ActionContext<RootState, any>) {
 
 export default {
     startLoading,
-    stopLoading
+    stopLoading,
 } as ActionTree<RootState, any>;

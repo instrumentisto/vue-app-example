@@ -23,7 +23,7 @@ export default class Helper {
                         continue;
                     }
                     localStorage.setItem(
-                        key, JSON.stringify(initialStorage[key])
+                        key, JSON.stringify(initialStorage[key]),
                     );
                 }
             }, [browser.globals.localStorage], (result) => {

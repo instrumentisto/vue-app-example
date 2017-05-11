@@ -56,5 +56,5 @@ export function setList(state: UserState, users) {
 export default {
     add,
     setAuthorized,
-    setList
+    setList,
 } as MutationTree<UserState>;

@@ -37,5 +37,5 @@ export function totalCount(state: UserState) {
 
 export default {
     authorized,
-    totalCount
+    totalCount,
 } as GetterTree<UserState, RootState>;
