@@ -82,6 +82,7 @@ module.exports = {
 };
 
 if (isProd) {
+    delete module.exports.recordsOutputPath;
     module.exports.devtool = false;
     module.exports.plugins = (module.exports.plugins || []).concat([
         new webpack.optimize.UglifyJsPlugin({
