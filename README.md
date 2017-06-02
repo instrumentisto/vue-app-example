@@ -57,11 +57,12 @@ curl http://vue-app-example.dev:8080/
 ### TODO
 - [Stylus](http://stylus-lang.com/)
 - [Pug](https://pugjs.org/language/attributes.html)
-- https://ssr.vuejs.org/en/
-- JS Linting
-- Makefile
-- npm-shrinkwrap
-- Improve typings
+- Improve SSR by new guidelines from https://ssr.vuejs.org/en/
+- ESLint for `.js` files and improve TSLint settings
+- Improve TypeScript typings
+- npm > Yarn
+- Makefile + Travis CI
+- Remove base view `Page` component
 
 ### Future Roadmap
 
