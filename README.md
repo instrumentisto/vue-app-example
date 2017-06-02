@@ -38,13 +38,21 @@ curl http://vue-app-example.dev:8080/
 
 ### Useful Resources for Beginners
 
+- Core documentation: [Vue](https://vuejs.org/v2/guide/),
+  [vue-router](https://router.vuejs.org/en/),
+  [Vuex](https://vuex.vuejs.org/en/)
 - [Vue components style guide](https://pablohpsilva.github.io/vuejs-component-style-guide)
-- Vue plugins catalog: https://github.com/vuejs/awesome-vue
+- Vue + TS: [vue-class-component](https://github.com/vuejs/vue-class-component),
+  [vue-property-decorator](https://github.com/kaorun343/vue-property-decorator),
+  [vuex-class](https://github.com/ktsn/vuex-class/)
+- TypeScript modules: http://www.typescriptlang.org/docs/handbook/modules.html
+- Yarn: https://yarnpkg.com/en/docs/usage
+- Pug: https://pugjs.org/language/attributes.html
 - Chai BDD: http://chaijs.com/api/bdd/
-- Form validation plugin: http://vee-validate.logaretm.com/
-- Mocking Ajax requests in Unit-tests: http://matthiashager.com/blog/mocking-http-requests-with-vuejs
+- VeeValidate plugin: http://vee-validate.logaretm.com/
+- vue-i18n plugin: https://kazupon.github.io/vue-i18n/en/
+- All Vue plugins catalog: https://github.com/vuejs/awesome-vue
 - Vue dev tools Chrome extension: https://github.com/vuejs/vue-devtools
-- https://pugjs.org/language/attributes.html
 
 ### TODO
 - [Stylus](http://stylus-lang.com/)
