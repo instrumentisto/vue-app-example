@@ -22,13 +22,4 @@
 
 <script lang="ts" src="./Navbar.ts"></script>
 
-<style scoped>
-  .navbar-brand {
-    padding: 5px;
-  }
-
-  .navbar-brand img {
-    height: 40px;
-    display: inline-block;
-  }
-</style>
+<style lang="stylus" src="./navbar.styl" scoped></style>

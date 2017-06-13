@@ -1,5 +1,6 @@
 const path = require('path');
 const webpack = require('webpack');
+const stylusLoader = require('stylus-loader');
 
 const isProd = (process.env.NODE_ENV === 'production');
 
@@ -77,7 +78,12 @@ module.exports = {
             'process.env': {
                 NODE_ENV: JSON.stringify(process.env.NODE_ENV)
             }
-        })
+        }),
+        new stylusLoader.OptionsPlugin({
+            default: {
+                preferPathResolver: 'webpack',
+          },
+        }),
     ]
 };
 
