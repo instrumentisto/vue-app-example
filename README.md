@@ -55,7 +55,7 @@ curl http://vue-app-example.dev:8080/
 - Vue dev tools Chrome extension: https://github.com/vuejs/vue-devtools
 
 ### TODO
-- [Stylus](http://stylus-lang.com/)
+- ~~[Stylus](http://stylus-lang.com/)~~
 - [Pug](https://pugjs.org/language/attributes.html)
 - Improve SSR by new guidelines from https://ssr.vuejs.org/en/
 - ESLint for `.js` files and improve TSLint settings
