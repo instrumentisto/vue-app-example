@@ -10,8 +10,4 @@
 
 <script lang="ts" src="./LanguageSwitcher.ts"></script>
 
-<style scoped>
-  ul > li > a {
-    text-transform: uppercase;
-  }
-</style>
+<style lang="stylus" src="./language-switcher.styl" scoped></style>
