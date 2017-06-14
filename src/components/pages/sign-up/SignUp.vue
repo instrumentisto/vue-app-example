@@ -1,71 +1,79 @@
-<template>
-  <section id="signUp">
-    <h1 class="title">{{ $t('sign_up.title') }}</h1>
+<template lang="pug">
+  section#signUp
+    h1.title {{ $t('sign_up.title') }}
 
-    <form id="signUpForm" method="post" v-on:submit.prevent="onSubmit">
-      <div class="form-group"
-           :class="{'has-error': validationErrors.has('name') }">
-        <input v-model="user.name" v-validate.disable="'required'"
-               :placeholder="$t('validation.attributes.name')"
-               name="name" type="text" class="form-control">
-          <span id="nameError" v-show="validationErrors.has('name')"
-                class="help-block">
-            {{ validationErrors.first('name') }}
-          </span>
-      </div>
-      <div class="form-group"
-           :class="{'has-error': validationErrors.has('email') }">
-        <input v-model="user.email" v-validate.disable="'required|email'"
-               :placeholder="$t('validation.attributes.email')"
-               name="email" type="email" class="form-control">
-          <span id="emailError" v-show="validationErrors.has('email')"
-                class="help-block">
-            {{ validationErrors.first('email') }}
-          </span>
-      </div>
-      <div class="form-group"
-           :class="{'has-error': validationErrors.has('password') }">
-        <input v-model="user.password" v-validate.disable="'required|min:6'"
-               :placeholder="$t('validation.attributes.password')"
-               name="password" type="password" class="form-control">
-          <span id="passwordError" v-show="validationErrors.has('password')"
-                class="help-block">
-            {{ validationErrors.first('password') }}
-          </span>
-      </div>
-      <div class="form-group"
-           :class="{'has-error': validationErrors.has('password_confirm') }">
-        <input v-model="user.password_confirm"
-               v-validate.disable="'required|min:6|confirmed:password'"
-               :placeholder="$t('validation.attributes.password_confirm')"
-               name="password_confirm" type="password" class="form-control">
-          <span id="passwordConfirmError"
-                v-show="validationErrors.has('password_confirm')"
-                class="help-block">
-            {{ validationErrors.first('password_confirm') }}
-          </span>
-      </div>
-      <div class="form-group"
-           :class="{'has-error': validationErrors.has('image') }">
-        <input v-on:change="onImageChange"
-               v-validate="'ext:jpg,png|mimes:image/jpeg,image/png|size:2048'"
-               name="image" type="file" class="form-control">
-          <span id="imageError" v-show="validationErrors.has('image')"
-                class="help-block">
-            {{ validationErrors.first('image') }}
-          </span>
-      </div>
-      <button type="submit" class="btn btn-default">
-        {{ $t('sign_up.sign_up_button') }}
-      </button>
-    </form>
+    form#signUpForm(
+      v-on:submit.prevent="onSubmit"
+      method="post"
+    )
+      .form-group(v-bind:class="{'has-error': validationErrors.has('name') }")
+        input.form-control(
+          v-bind:placeholder="$t('validation.attributes.name')"
+          v-model="user.name"
+          v-validate.disable="'required'"
+          name="name"
+          type="text"
+        )
+        span#nameError.help-block(
+          v-show="validationErrors.has('name')"
+        ) {{ validationErrors.first('name') }}
 
-    <error-block :error="error"></error-block>
+      .form-group(v-bind:class="{'has-error': validationErrors.has('email') }")
+        input.form-control(
+          v-bind:placeholder="$t('validation.attributes.email')"
+          v-model="user.email"
+          v-validate.disable="'required|email'"
+          name="email"
+          type="email"
+        )
+        span#emailError.help-block(
+          v-show="validationErrors.has('email')"
+        ) {{ validationErrors.first('email') }}
 
-    <router-link to="/login">
-      {{ $t('sign_up.already_have_account') }}
-    </router-link>
-  </section>
+      .form-group(
+        v-bind:class="{'has-error': validationErrors.has('password') }"
+      )
+        input.form-control(
+          v-bind:placeholder="$t('validation.attributes.password')"
+          v-model="user.password"
+          v-validate.disable="'required|min:6'"
+          name="password"
+          type="password"
+        )
+        span#passwordError.help-block(
+          v-show="validationErrors.has('password')"
+        ) {{ validationErrors.first('password') }}
+
+      .form-group(
+        v-bind:class="{'has-error': validationErrors.has('password_confirm') }"
+      )
+        input.form-control(
+          v-bind:placeholder="$t('validation.attributes.password_confirm')"
+          v-model="user.password_confirm"
+          v-validate.disable="'required|min:6|confirmed:password'"
+          name="password_confirm"
+          type="password"
+        )
+        span#passwordConfirmError.help-block(
+          v-show="validationErrors.has('password_confirm')"
+        ) {{ validationErrors.first('password_confirm') }}
+
+      .form-group(v-bind:class="{'has-error': validationErrors.has('image') }")
+        input.form-control(
+          v-on:change="onImageChange"
+          v-validate="'ext:jpg,png|mimes:image/jpeg,image/png|size:2048'"
+          name="image"
+          type="file"
+        )
+        span#imageError.help-block(
+          v-show="validationErrors.has('image')"
+        ) {{ validationErrors.first('image') }}
+
+      button.btn.btn-default(type="submit") {{ $t('sign_up.sign_up_button') }}
+
+    error-block(v-bind:error="error")
+
+    router-link(to="/login") {{ $t('sign_up.already_have_account') }}
 </template>
 
 <script lang="ts" src="./SignUp.ts"></script>

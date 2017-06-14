@@ -1,5 +1,5 @@
-<template>
-  <p v-show="error" class="error">{{ error }}</p>
+<template lang="pug">
+  p.error(v-show="error") {{ error }}
 </template>
 
 <script lang="ts" src="./ErrorBlock.ts"></script>

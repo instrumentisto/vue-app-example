@@ -56,7 +56,7 @@ curl http://vue-app-example.dev:8080/
 
 ### TODO
 - ~~[Stylus](http://stylus-lang.com/)~~
-- [Pug](https://pugjs.org/language/attributes.html)
+- ~~[Pug](https://pugjs.org/language/attributes.html)~~
 - Improve SSR by new guidelines from https://ssr.vuejs.org/en/
 - ESLint for `.js` files and improve TSLint settings
 - Improve TypeScript typings
