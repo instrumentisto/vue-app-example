@@ -1,23 +1,16 @@
-<template>
-  <nav class="navbar navbar-default navbar-fixed-top">
-    <div class="container-fluid">
-      <div class="navbar-header">
-        <a class="navbar-brand" href="/">
-          <img src="~assets/img/logo.png"/>
-          {{ $t('general.title') }}
-        </a>
-        <button type="button" class="btn btn-default navbar-btn"
-                @click="checkHotUpdates()">
-          {{ $t('general.check_for_updates') }}
-        </button>
-        <loading-spinner></loading-spinner>
-      </div>
-      <div class="collapse navbar-collapse">
-        <language-switcher
-            container-class="nav navbar-nav navbar-right"></language-switcher>
-      </div>
-    </div>
-  </nav>
+<template lang="pug">
+  nav.navbar.navbar-default.navbar-fixed-top: .container-fluid
+    .navbar-header
+      a.navbar-brand(href="/")
+        img(src="~assets/img/logo.png")
+        | {{ $t('general.title') }}
+      button.btn.btn-default.navbar-btn(
+        v-on:click="checkHotUpdates()"
+        type="button"
+      ) {{ $t('general.check_for_updates') }}
+      loading-spinner
+    .collapse.navbar-collapse
+      language-switcher(container-class="nav navbar-nav navbar-right")
 </template>
 
 <script lang="ts" src="./Navbar.ts"></script>

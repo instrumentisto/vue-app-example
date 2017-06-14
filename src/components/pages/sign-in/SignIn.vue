@@ -1,29 +1,30 @@
-<template>
-  <section id="signIn">
-    <h1 class="title">{{ $t('sign_in.title') }}</h1>
+<template lang="pug">
+  section#signIn
+    h1.title {{ $t('sign_in.title') }}
 
-    <form id="signInForm" method="post" v-on:submit.prevent="onSubmit">
-      <div class="form-group">
-          <input v-model="email"
-                 :placeholder="$t('validation.attributes.email')"
-                 name="email" type="text" class="form-control">
-      </div>
-      <div class="form-group">
-        <input v-model="password"
-               :placeholder="$t('validation.attributes.password')"
-               name="password" type="password" class="form-control">
-      </div>
-      <button type="submit" class="btn btn-default">
-        {{ $t('sign_in.login') }}
-      </button>
-    </form>
+    form#signInForm(
+      v-on:submit.prevent="onSubmit"
+      method="post"
+    )
+      .form-group
+        input.form-control(
+          v-bind:placeholder="$t('validation.attributes.email')"
+          v-model="email"
+          name="email"
+          type="text"
+        )
+      .form-group
+        input.form-control(
+          v-bind:placeholder="$t('validation.attributes.password')"
+          v-model="password"
+          name="password"
+          type="password"
+        )
+      button.btn.btn-default(type="submit") {{ $t('sign_in.login') }}
 
-    <error-block :error="error"></error-block>
+    error-block(v-bind:error="error")
 
-    <router-link to="/sign_up">
-      {{ $t('sign_in.do_not_have_account') }}
-    </router-link>
-  </section>
+    router-link(to="/sign_up") {{ $t('sign_in.do_not_have_account') }}
 </template>
 
 <script lang="ts" src="./SignIn.ts"></script>
