@@ -63,6 +63,7 @@ curl http://vue-app-example.dev:8080/
 - npm > Yarn
 - Makefile + Travis CI
 - ~~Remove base view `Page` component~~
+- Improve E2E specs
 
 ### Future Roadmap
 
