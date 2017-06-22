@@ -3,7 +3,6 @@ import Component from 'vue-class-component';
 import { Action, Getter, namespace } from 'vuex-class';
 
 import HMRApi from 'HMRApi';
-import Page from 'Page';
 import { RESET_AUTHORIZATION } from 'store/modules/user/actions';
 import { AUTHORIZED } from 'store/modules/user/getters';
 
@@ -14,15 +13,16 @@ const UserAction = namespace('user', Action);
  * Describes user profile page.
  */
 @Component
-export default class Profile extends Page {
+export default class Profile extends Vue {
 
     /**
-     * Returns localized page title.
+     * Returns meta information of page, such as:
+     * title, meta tags content etc.
      *
-     * @return   Localized page title, that was calculated.
+     * @return    Object, that contains page meta info.
      */
-    public get title(): string {
-        return this.$t('profile.title').toString();
+    public metaInfo(): any {
+        return {title: this.$t('profile.title')};
     }
 
     /**

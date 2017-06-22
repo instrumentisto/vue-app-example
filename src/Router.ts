@@ -1,4 +1,5 @@
 import Vue from 'vue';
+import VueMeta from 'vue-meta';
 import VueRouter from 'vue-router';
 import { RawLocation, Route, RouteConfig, RouterMode, RouterOptions } from 'vue-router/types/router';
 
@@ -48,10 +49,12 @@ export default class Router implements RouterOptions {
      */
     public constructor() {
         Vue.use(VueRouter);
+        Vue.use(VueMeta);
 
         this.router = new VueRouter(this);
 
         this.router.beforeEach(this.beforeEach);
+        this.router.afterEach(this.afterEach);
         this.router.onReady(this.onReady);
     }
 
@@ -63,7 +66,7 @@ export default class Router implements RouterOptions {
     }
 
     /**
-     * Function, that will be executed before each page navigation
+     * Function, that will be executed before each page navigation.
      *
      * @param to     Route, to which navigation is performed.
      * @param from   Route, from which navigation is performed.
@@ -89,6 +92,16 @@ export default class Router implements RouterOptions {
         } else {
             next();
         }
+    }
+
+    /**
+     * Function, that will be executed after each page navigation.
+     *
+     * @param to     Route, to which navigation was performed.
+     * @param from   Route, from which navigation was performed.
+     */
+    private afterEach(to: Route, from: Route) {
+        store.state.loading = false;
     }
 
     /**

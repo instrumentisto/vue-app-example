@@ -4,7 +4,6 @@ import { Action, namespace } from 'vuex-class';
 
 import ErrorBlock from 'components/error-block/ErrorBlock.vue';
 import HMRApi from 'HMRApi';
-import Page from 'Page';
 import { LOGIN } from 'store/modules/user/actions';
 
 const UserAction = namespace('user', Action);
@@ -17,15 +16,16 @@ const UserAction = namespace('user', Action);
         ErrorBlock,
     },
 })
-export default class SignIn extends Page {
+export default class SignIn extends Vue {
 
     /**
-     * Returns localized page title.
+     * Returns meta information of page, such as:
+     * title, meta tags content etc.
      *
-     * @return   Localized page title, that was calculated.
+     * @return    Object, that contains page meta info.
      */
-    public get title(): string {
-        return this.$t('sign_in.title').toString();
+    public metaInfo(): any {
+        return {title: this.$t('sign_in.title')};
     }
 
     /**
