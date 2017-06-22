@@ -5,6 +5,7 @@ import Component from 'vue-class-component';
  */
 export const supportedHooks: string[] = [
     'preFetch',
+    'metaInfo',
 ];
 
 Component.registerHooks(supportedHooks);

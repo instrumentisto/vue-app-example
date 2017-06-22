@@ -4,6 +4,7 @@ const path = require('path');
 const VueSSRPlugin = require('vue-ssr-webpack-plugin');
 const webpack = require('webpack');
 const merge = require('webpack-merge');
+const nodeExternals = require('webpack-node-externals');
 
 const base = require('./base.config');
 const isProd = (process.env.NODE_ENV === 'production');
@@ -14,7 +15,7 @@ module.exports = merge(base, {
     output: {
         libraryTarget: 'commonjs2'
     },
-    externals: Object.keys(require('../package.json').dependencies),
+    externals: nodeExternals({}),
     plugins: [
         new webpack.DefinePlugin({
             'process.env': {
