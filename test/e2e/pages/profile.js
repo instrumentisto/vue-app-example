@@ -2,10 +2,10 @@ module.exports = {
     sections: {
         main: {
             selector: '#profile',
-            elements:  {
+            elements: {
                 userName: 'p#userName',
-                userEmail: 'p#userEmail'
-            }
-        }
-    }
+                userEmail: 'p#userEmail',
+            },
+        },
+    },
 };

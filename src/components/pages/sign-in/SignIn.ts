@@ -2,9 +2,11 @@ import Vue from 'vue';
 import Component from 'vue-class-component';
 import { Action, namespace } from 'vuex-class';
 
-import ErrorBlock from 'components/error-block/ErrorBlock.vue';
 import HMRApi from 'HMRApi';
 import { LOGIN } from 'store/modules/user/actions';
+
+import ErrorBlock from 'components/error-block/ErrorBlock.vue';
+
 
 const UserAction = namespace('user', Action);
 
@@ -17,16 +19,6 @@ const UserAction = namespace('user', Action);
     },
 })
 export default class SignIn extends Vue {
-
-    /**
-     * Returns meta information of page, such as:
-     * title, meta tags content etc.
-     *
-     * @return    Object, that contains page meta info.
-     */
-    public metaInfo(): any {
-        return {title: this.$t('sign_in.title')};
-    }
 
     /**
      * Executes user login action of the root Vuex store.
@@ -60,6 +52,16 @@ export default class SignIn extends Vue {
      * were invalid.
      */
     public error: string = '';
+
+    /**
+     * Returns meta information of page, such as:
+     * title, meta tags content etc.
+     *
+     * @return    Object, that contains page meta info.
+     */
+    public metaInfo(): any {
+        return {title: this.$t('sign_in.title')};
+    }
 
     /**
      * Sign in form submit event handler.

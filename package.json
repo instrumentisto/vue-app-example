@@ -8,7 +8,7 @@
     "json-server": "cp .data/db.example.json .data/db.json && json-server --watch .data/db.json --delay 500",
     "test:e2e": "tsc -p test/e2e && nightwatch --config test/e2e/nightwatch.conf.js",
     "test:unit": "karma start test/unit/karma.conf.js --single-run",
-    "lint": "tslint --config tslint.json '{src,test,types}/**/*.ts'"
+    "lint": "eslint './**/*.js' && tslint --config tslint.json '{src,test,types}/**/*.ts'"
   },
   "dependencies": {
     "accept-language-parser": "^1.4.0",
@@ -42,6 +42,8 @@
     "copy-webpack-plugin": "^4.0.1",
     "cross-env": "^4.0.0",
     "css-loader": "^0.28.0",
+    "eslint": "^3.19.0",
+    "eslint-config-google": "^0.7.1",
     "file-loader": "^0.11.1",
     "html-webpack-plugin": "^2.28.0",
     "json-server": "^0.10.0",

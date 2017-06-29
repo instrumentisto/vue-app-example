@@ -1,31 +1,22 @@
 /* tslint:disable:object-literal-sort-keys */
-import { NightWatchBrowser, NightWatchClient, NightWatchPage } from '../../../types/nightwatch';
+import { NightWatchBrowser, NightWatchClient, NightWatchPage } from '../../../types/nightwatch'; // tslint:disable-line
 import Helper from '../Helper';
+
 
 /**
  * Contains all e2e test specs of the "/sign_up" page.
  */
 const tests = {
-    /**
-     * Executes before each spec and does required things of initiating
-     * local storage etc.
-     *
-     * @param browser   NightWatch browser instance, that future tests
-     *                  would work with.
-     * @param done      Callback, that must be called after all required
-     *                  actions were completed.
-     */
+
+
     'beforeEach': (browser: NightWatchBrowser, done: () => void): void => {
         Helper.beforeEach(browser, done);
     },
-    /**
-     * Tests user registration with email, which is already taken.
-     * It submits form with such email and waits for correct error message
-     * to be displayed.
-     *
-     * @param client    NightWatch client instance to execute tests.
-     */
-    'Registration with already taken email': (client: NightWatchClient): void => {
+
+
+    'Registration with already taken email': (
+        client: NightWatchClient,
+    ): void => {
         const signUpPage: NightWatchPage = client.page.sign_up();
 
         signUpPage.navigate()
@@ -42,13 +33,8 @@ const tests = {
 
         client.end();
     },
-    /**
-     * Tests user registration form for correct inputs validation.
-     * It fills input one by one with wrong values, submits the form, and
-     * checks for right validation message to be displayed.
-     *
-     * @param client    NightWatch client instance to execute tests.
-     */
+
+
     'Validation during registration': (client: NightWatchClient): void => {
         const signUpPage: NightWatchPage = client.page.sign_up();
         const requiredMessage: string =
@@ -96,6 +82,8 @@ const tests = {
 
         client.end();
     },
+
+
 };
 
 export default tests;

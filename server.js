@@ -6,14 +6,14 @@ const path = require('path');
 const express = require('express');
 const onDeath = require('death')({SIGHUP: true});
 const acceptLanguageParser = require('accept-language-parser');
-const resolve = file => path.resolve(__dirname, file);
+const resolve = (file) => path.resolve(__dirname, file);
 
 const renderer = require('vue-server-renderer')
     .createBundleRenderer(require('./vue-ssr-bundle.json'), {
         runInNewContext: false,
         template: fs.readFileSync(
             resolve('./index.server.html'), 'utf-8'
-        )
+        ),
     });
 
 const app = express();
@@ -21,7 +21,7 @@ const app = express();
 app.use(favicon(resolve('./img/logo.png')));
 
 app.use(express.static('./', {
-    index: false
+    index: false,
 }));
 
 app.get('*', (req, res) => {
@@ -31,19 +31,6 @@ app.get('*', (req, res) => {
         ) {
         acceptLanguages.push(lang.code);
     }
-
-    res.setHeader('Content-Type', 'text/html');
-
-    const errorHandler = err => {
-        if (err && err.code === 404) {
-            res.status(404).end('404 | Page Not Found');
-        } else {
-            res.status(500).end('500 | Internal Server Error');
-            console.error(`error during render : ${req.url}`);
-            console.error(err);
-        }
-    };
-
     res.setHeader('Content-Type', 'text/html');
 
     const context = {url: req.url, accept_languages: acceptLanguages};

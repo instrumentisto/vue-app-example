@@ -1,30 +1,19 @@
 /* tslint:disable:object-literal-sort-keys */
-import { NightWatchBrowser, NightWatchClient, NightWatchPage } from '../../../types/nightwatch';
+import { NightWatchBrowser, NightWatchClient, NightWatchPage } from '../../../types/nightwatch'; // tslint:disable-line
 import Helper from '../Helper';
+
 
 /**
  * Contains all e2e test specs of the "/login" page.
  */
 const tests = {
-    /**
-     * Executes before each spec and does required things of initiating
-     * local storage etc.
-     *
-     * @param browser   NightWatch browser instance, that future tests
-     *                  would work with.
-     * @param done      Callback, that must be called after all required
-     *                  actions were completed.
-     */
+
+
     'beforeEach': (browser: NightWatchBrowser, done: () => void) => {
         Helper.beforeEach(browser, done);
     },
-    /**
-     * Tests user authorization form for correct sign in behaviour.
-     * It fills the form with correct user credentials, submits it,
-     * and checks for profile page to be displayed with correct user info.
-     *
-     * @param client    NightWatch client instance to execute tests.
-     */
+
+
     'Authorization with valid credentials': (client: NightWatchClient) => {
         const loginPage: NightWatchPage = client.page.login();
         const profilePage: NightWatchPage = client.page.profile();
@@ -46,12 +35,8 @@ const tests = {
 
         client.end();
     },
-    /**
-     * Tests user authorization form for correct behaviour when user enters
-     * wrong credentials.
-     *
-     * @param client    NightWatch client instance to execute tests.
-     */
+
+
     'Authorization with wrong credentials': (client: NightWatchClient) => {
         const loginPage: NightWatchPage = client.page.login();
 
@@ -67,6 +52,8 @@ const tests = {
 
         client.end();
     },
+
+
 };
 
 export default tests;

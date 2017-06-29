@@ -6,6 +6,7 @@ import mutations from 'store/modules/user/mutations';
 import UserState from 'store/modules/user/state';
 import RootState from 'store/root/state';
 
+
 /**
  * Represents user Vuex store module and implements its own state, getters,
  * actions and mutations.

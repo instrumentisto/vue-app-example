@@ -4,6 +4,7 @@ import { Getter } from 'vuex-class';
 
 import { LOADING } from 'store/root/getters';
 
+
 /**
  * Describes component, that shows loading indicator, when global
  * application loading state is activated.

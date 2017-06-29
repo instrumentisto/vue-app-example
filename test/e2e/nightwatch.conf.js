@@ -9,8 +9,8 @@ module.exports = {
         server_path: require('selenium-server').path,
         port: 4444,
         cli_args: {
-            'webdriver.chrome.driver': require('chromedriver').path
-        }
+            'webdriver.chrome.driver': require('chromedriver').path,
+        },
     },
     test_settings: {
         default: {
@@ -22,17 +22,17 @@ module.exports = {
                 localeData: require('../../assets/i18n/en.json'),
                 localStorage: {
                     'vue-app-example-vuex': {
-                        locale: 'en'
-                    }
-                }
+                        locale: 'en',
+                    },
+                },
             },
             desiredCapabilities: {
                 browserName: 'chrome',
                 javascriptEnabled: true,
-                acceptSslCerts: true
-            }
-        }
-    }
+                acceptSslCerts: true,
+            },
+        },
+    },
 };
 
 if (process.env.CI) {

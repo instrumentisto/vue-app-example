@@ -5,6 +5,7 @@ import { Mutation } from 'vuex-class';
 import I18n from 'I18n';
 import { SET_LOCALE } from 'store/root/mutations';
 
+
 /**
  * Describes component, that displays language switcher bar.
  * Properties:

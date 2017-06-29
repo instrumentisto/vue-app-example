@@ -1,6 +1,5 @@
 const CopyWebpackPlugin = require('copy-webpack-plugin');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
-const path = require('path');
 const VueSSRPlugin = require('vue-ssr-webpack-plugin');
 const webpack = require('webpack');
 const merge = require('webpack-merge');
@@ -13,15 +12,15 @@ module.exports = merge(base, {
     target: 'node',
     entry: './src/entry/server.ts',
     output: {
-        libraryTarget: 'commonjs2'
+        libraryTarget: 'commonjs2',
     },
     externals: nodeExternals({}),
     plugins: [
         new webpack.DefinePlugin({
             'process.env': {
                 VUE_ENV: '"server"',
-                API_URL: JSON.stringify(process.env.SERVER_API_URL)
-            }
+                API_URL: JSON.stringify(process.env.SERVER_API_URL),
+            },
         }),
         new VueSSRPlugin(),
         new HtmlWebpackPlugin({
@@ -29,15 +28,15 @@ module.exports = merge(base, {
             filename: 'index.server.html',
             minify: isProd
                 ? {
-                    removeComments: true,
+                    removeComments: false,
                     collapseWhitespace: true,
-                    removeAttributeQuotes: true
+                    removeAttributeQuotes: true,
                 }
-                : undefined
+                : undefined,
         }),
         new CopyWebpackPlugin([
-            { from: 'assets/img', to: 'img' },
-            { from: 'server.js', to: 'server.js' }
-        ])
-    ]
+            {from: 'assets/img', to: 'img'},
+            {from: 'server.js', to: 'server.js'},
+        ]),
+    ],
 });

@@ -5,6 +5,7 @@
   "rules": {
     "quotemark": [true, "single"],
     "interface-name": [true, "never-prefix"],
-    "max-line-length": [true, 80]
+    "max-line-length": [true, 80],
+    "no-consecutive-blank-lines": [true, 2]
   }
 }

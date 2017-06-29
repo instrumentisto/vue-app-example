@@ -5,14 +5,14 @@ const base = require('./base.config');
 
 module.exports = merge(base, {
     node: {
-        fs: 'empty'
+        fs: 'empty',
     },
     resolve: {
         modules: [
-            path.join(__dirname, '../test')
+            path.join(__dirname, '../test'),
         ],
         alias: {
-            'vue$': 'vue/dist/vue.esm.js'
-        }
-    }
+            'vue$': 'vue/dist/vue.esm.js',
+        },
+    },
 });

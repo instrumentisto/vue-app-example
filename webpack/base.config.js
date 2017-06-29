@@ -7,10 +7,11 @@ const isProd = (process.env.NODE_ENV === 'production');
 module.exports = {
     output: {
         filename: 'build.js',
-        path: path.resolve(__dirname, '../_build')
+        path: path.resolve(__dirname, '../_build'),
     },
     recordsInputPath: path.resolve(__dirname, '../webpack/records.json'),
-    recordsOutputPath: path.resolve(__dirname, '../_build/webpack.records.json'),
+    recordsOutputPath:
+        path.resolve(__dirname, '../_build/webpack.records.json'),
     module: {
         rules: [
             {
@@ -25,10 +26,10 @@ module.exports = {
                         options: {
                             appendTsSuffixTo: [/\.vue$/],
                             transpileOnly: true,
-                            isolatedModules: true
-                        }
-                    }
-                ]
+                            isolatedModules: true,
+                        },
+                    },
+                ],
             },
             {
                 test: /\.vue$/,
@@ -38,53 +39,53 @@ module.exports = {
                         options: {
                             // esModule: true,
                             loaders: {
-                                ts: 'babel-loader!ts-loader'
-                            }
-                        }
-                    }
-                ]
+                                ts: 'babel-loader!ts-loader',
+                            },
+                        },
+                    },
+                ],
             },
             {
                 test: /\.(png|jpg|gif|svg)$/,
                 loader: 'file-loader',
                 options: {
-                    name: 'img/[name].[ext]?[hash]'
-                }
+                    name: 'img/[name].[ext]?[hash]',
+                },
             },
             {
                 test: /\.(eot|svg|ttf|woff|woff2)$/,
-                loader: 'file-loader?name=fonts/[name].[ext]'
-            }
-        ]
+                loader: 'file-loader?name=fonts/[name].[ext]',
+            },
+        ],
     },
     resolve: {
         modules: [
             path.join(__dirname, '../src'),
-            'node_modules'
+            'node_modules',
         ],
         alias: {
             'assets': path.join(__dirname, '../assets'),
             '~assets': path.join(__dirname, '../assets'),
-            '~bower': path.join(__dirname, '../bower_components')
+            '~bower': path.join(__dirname, '../bower_components'),
         },
-        extensions: [".tsx", ".ts", ".js"]
+        extensions: ['.tsx', '.ts', '.js'],
     },
     performance: {
-        hints: false
+        hints: false,
     },
     devtool: '#cheap-module-eval-source-map',
     plugins: [
         new webpack.DefinePlugin({
             'process.env': {
-                NODE_ENV: JSON.stringify(process.env.NODE_ENV)
-            }
+                NODE_ENV: JSON.stringify(process.env.NODE_ENV),
+            },
         }),
         new stylusLoader.OptionsPlugin({
             default: {
                 preferPathResolver: 'webpack',
           },
         }),
-    ]
+    ],
 };
 
 if (isProd) {
@@ -94,11 +95,11 @@ if (isProd) {
         new webpack.optimize.UglifyJsPlugin({
             sourceMap: true,
             compress: {
-                warnings: false
-            }
+                warnings: false,
+            },
         }),
         new webpack.LoaderOptionsPlugin({
-            minimize: true
-        })
-    ])
+            minimize: true,
+        }),
+    ]);
 }

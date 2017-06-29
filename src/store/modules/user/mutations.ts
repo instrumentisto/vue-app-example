@@ -2,6 +2,7 @@ import { MutationTree } from 'vuex';
 
 import UserState from 'store/modules/user/state';
 
+
 /**
  * The name of add user mutation.
  */

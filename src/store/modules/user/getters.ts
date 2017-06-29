@@ -3,6 +3,7 @@ import { GetterTree } from 'vuex';
 import UserState from 'store/modules/user/state';
 import RootState from 'store/root/state';
 
+
 /**
  * The name of authorized getter.
  */

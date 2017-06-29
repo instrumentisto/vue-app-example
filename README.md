@@ -58,12 +58,13 @@ curl http://vue-app-example.dev:8080/
 - ~~[Stylus](http://stylus-lang.com/)~~
 - ~~[Pug](https://pugjs.org/language/attributes.html)~~
 - ~~Improve SSR by new guidelines from https://ssr.vuejs.org/en/~~
-- ESLint for `.js` files and improve TSLint settings
+- ~~ESLint for `.js` files and improve TSLint settings~~
 - Improve TypeScript typings
 - npm > Yarn
 - Makefile + Travis CI
 - ~~Remove base view `Page` component~~
 - Improve E2E specs
+- Fix eslint hanging with v4.0 
 
 ### Future Roadmap
 
