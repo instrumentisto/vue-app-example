@@ -1,9 +1,11 @@
 import Vue from 'vue';
 import Component from 'vue-class-component';
 
-import LanguageSwitcher from 'components/language-switcher/LanguageSwitcher.vue';
-import LoadingSpinner from 'components/loading-spinner/LoadingSpinner.vue';
 import HMRApi from 'HMRApi';
+
+import LanguageSwitcher from 'components/language-switcher/LanguageSwitcher.vue'; // tslint:disable-line
+import LoadingSpinner from 'components/loading-spinner/LoadingSpinner.vue';
+
 
 /**
  * Describes Bootstrap navigation bar.

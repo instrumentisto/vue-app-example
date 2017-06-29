@@ -2,9 +2,11 @@ import Vue from 'vue';
 import Component from 'vue-class-component';
 import { Action, namespace } from 'vuex-class';
 
-import ErrorBlock from 'components/error-block/ErrorBlock.vue';
 import HMRApi from 'HMRApi';
 import { SIGN_UP } from 'store/modules/user/actions';
+
+import ErrorBlock from 'components/error-block/ErrorBlock.vue';
+
 
 const UserAction = namespace('user', Action);
 
@@ -17,16 +19,6 @@ const UserAction = namespace('user', Action);
     },
 })
 export default class SignUp extends Vue {
-
-    /**
-     * Returns meta information of page, such as:
-     * title, meta tags content etc.
-     *
-     * @return    Object, that contains page meta info.
-     */
-    public metaInfo(): any {
-        return {title: this.$t('sign_up.title')};
-    }
 
     /**
      * Executes user sign up action of the root Vuex store.
@@ -50,6 +42,16 @@ export default class SignUp extends Vue {
      * already exists.
      */
     public error: string = '';
+
+    /**
+     * Returns meta information of page, such as:
+     * title, meta tags content etc.
+     *
+     * @return    Object, that contains page meta info.
+     */
+    public metaInfo(): any {
+        return {title: this.$t('sign_up.title')};
+    }
 
     /**
      * Sign up form user image change event handler.

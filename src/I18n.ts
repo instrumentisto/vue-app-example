@@ -4,6 +4,7 @@ import VueI18n from 'vue-i18n';
 
 import store from 'store';
 
+
 /**
  * Describes internationalization logic of the application.
  * Uses vue-i18n plugin with external locale resources under the hood.
@@ -84,10 +85,10 @@ export default class I18n {
                         validationDictionary[locale].messages[rule] =
                             (field, value) => {
                                 switch (rule) {
-                                  case 'min':
+                                case 'min':
                                     return data.validation.messages[rule]
                                         .replace('{value}', value);
-                                  default:
+                                default:
                                     return data.validation.messages[rule];
                                 }
                             };

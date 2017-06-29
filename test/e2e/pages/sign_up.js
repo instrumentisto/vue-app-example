@@ -9,10 +9,10 @@ module.exports = {
         passwordError: '#passwordError',
         passwordConfirmInput: 'input[name=password_confirm]',
         passwordConfirmError: '#passwordConfirmError',
-        error: 'p.error'
+        error: 'p.error',
     },
     url: function() {
         console.log('sign up url' + this.api.launchUrl + '/sign_up');
         return this.api.launchUrl + '/sign_up';
-    }
+    },
 };

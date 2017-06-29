@@ -3,10 +3,12 @@ import Component from 'vue-class-component';
 import { Store } from 'vuex';
 import { Action, Getter, namespace } from 'vuex-class';
 
-import Navbar from 'components/navbar/Navbar.vue';
 import { FETCH_ALL } from 'store/modules/user/actions';
 import { TOTAL_COUNT } from 'store/modules/user/getters';
 import RootState from 'store/root/state';
+
+import Navbar from 'components/navbar/Navbar.vue';
+
 
 const UserGetter = namespace('user', Getter);
 const UserAction = namespace('user', Action);

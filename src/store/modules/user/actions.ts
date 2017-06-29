@@ -5,6 +5,7 @@ import * as mutations from 'store/modules/user/mutations';
 import UserState from 'store/modules/user/state';
 import RootState from 'store/root/state';
 
+
 /**
  * The name of fetch all action.
  */
@@ -83,7 +84,8 @@ export function resetAuthorization(
  *           - 1: if user with given email is already exists.
  */
 export function signUp(
-    store: ActionContext<UserState, RootState>, user,
+    store: ActionContext<UserState, RootState>,
+    user,
 ): Promise<object> {
     return UsersApi.register(user).then((addedUser) => {
         store.commit(mutations.ADD, addedUser);

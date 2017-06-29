@@ -1,5 +1,6 @@
 import { NightWatchBrowser } from '../../types/nightwatch';
 
+
 /**
  * Helper class for e2e tests.
  */
@@ -14,7 +15,10 @@ export default class Helper {
      * @param done      Callback, that must be called after all required
      *                  actions were completed.
      */
-    public static beforeEach(browser: NightWatchBrowser, done: () => void): void {
+    public static beforeEach(
+        browser: NightWatchBrowser,
+        done: () => void,
+    ): void {
         browser
             .url(browser.launch_url)
             .execute((initialStorage) => {

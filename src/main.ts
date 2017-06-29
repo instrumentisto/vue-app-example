@@ -1,10 +1,12 @@
 import Vue, {ComponentOptions} from 'vue';
 
 import 'class-component/hooks'; // must be imported first
-import App from 'components/app/App.vue';
 import Router from 'Router';
 import store from 'store';
 import Validation from 'Validation';
+
+import App from 'components/app/App.vue';
+
 
 Validation.init();
 

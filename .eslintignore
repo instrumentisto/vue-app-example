@@ -1,0 +1,5 @@
+/test/e2e/specs/*.js
+/test/e2e/Helper.js
+
+/_build
+/_docker

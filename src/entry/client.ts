@@ -4,6 +4,7 @@ import I18n from 'I18n';
 import params from 'main';
 import store from 'store';
 
+
 I18n.init([
     store.state.locale,
     navigator.language,

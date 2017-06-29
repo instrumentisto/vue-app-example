@@ -2,6 +2,7 @@ import { MutationTree } from 'vuex';
 
 import RootState from 'store/root/state';
 
+
 /**
  * The name of set loading mutation.
  */

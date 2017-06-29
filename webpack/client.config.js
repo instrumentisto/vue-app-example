@@ -1,4 +1,3 @@
-const path = require('path');
 const webpack = require('webpack');
 const CopyWebpackPlugin = require('copy-webpack-plugin');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
@@ -12,17 +11,17 @@ module.exports = merge(base, {
     entry: './src/entry/client.ts',
     output: {
         hotUpdateChunkFilename: 'hot/[id].[hash].hot-update.js',
-        hotUpdateMainFilename: 'hot/[hash].hot-update.json'
+        hotUpdateMainFilename: 'hot/[hash].hot-update.json',
     },
     node: {
-        fs: 'empty'
+        fs: 'empty',
     },
     plugins: [
         new webpack.DefinePlugin({
             'process.env': {
                 VUE_ENV: '"client"',
-                API_URL: JSON.stringify(process.env.CLIENT_API_URL)
-            }
+                API_URL: JSON.stringify(process.env.CLIENT_API_URL),
+            },
         }),
         new HtmlWebpackPlugin({
             template: 'src/templates/index.html',
@@ -30,16 +29,16 @@ module.exports = merge(base, {
                 ? {
                     removeComments: true,
                     collapseWhitespace: true,
-                    removeAttributeQuotes: true
+                    removeAttributeQuotes: true,
                 }
-                : undefined
+                : undefined,
         }),
         new CopyWebpackPlugin([
-            { from: 'assets/i18n', to: 'i18n' }
+            {from: 'assets/i18n', to: 'i18n'},
         ]),
         new webpack.HotModuleReplacementPlugin(),
-        new webpack.NamedModulesPlugin()
-    ]
+        new webpack.NamedModulesPlugin(),
+    ],
 });
 
 if (isProd) {
@@ -53,9 +52,9 @@ if (isProd) {
             experimentalDecorators: true,
             excludeExternals: true,
             ignoreCompilerErrors: true,
-            moduleResolution: "node",
+            moduleResolution: 'node',
             includeDeclarations: false,
-            externalPattern: "**/*.d.ts",
+            externalPattern: '**/*.d.ts',
             emitDecoratorMetadata: true,
             preserveConstEnums: true,
             stripInternal: true,
@@ -63,11 +62,11 @@ if (isProd) {
             suppressImplicitAnyIndexErrors: true,
             allowSyntheticDefaultImports: true,
             paths: {
-                "*": [
-                    "src/*",
-                    "test/*"
-                ]
-            }
-        }, ['./src', './test'])
-    ])
+                '*': [
+                    'src/*',
+                    'test/*',
+                ],
+            },
+        }, ['./src', './test']),
+    ]);
 }

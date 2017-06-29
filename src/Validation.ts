@@ -1,6 +1,7 @@
 import VeeValidate from 'vee-validate';
 import Vue from 'vue';
 
+
 /**
  * Describes vee-validate plugin configuration.
  */

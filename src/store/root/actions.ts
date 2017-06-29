@@ -3,6 +3,7 @@ import { ActionContext, ActionTree } from 'vuex';
 import * as mutations from 'store/root/mutations';
 import RootState from 'store/root/state';
 
+
 /**
  * The name of start loading action.
  */

@@ -6,6 +6,7 @@ import HMRApi from 'HMRApi';
 import { RESET_AUTHORIZATION } from 'store/modules/user/actions';
 import { AUTHORIZED } from 'store/modules/user/getters';
 
+
 const UserGetter = namespace('user', Getter);
 const UserAction = namespace('user', Action);
 
@@ -14,16 +15,6 @@ const UserAction = namespace('user', Action);
  */
 @Component
 export default class Profile extends Vue {
-
-    /**
-     * Returns meta information of page, such as:
-     * title, meta tags content etc.
-     *
-     * @return    Object, that contains page meta info.
-     */
-    public metaInfo(): any {
-        return {title: this.$t('profile.title')};
-    }
 
     /**
      * Returns global application authorization state.
@@ -40,6 +31,16 @@ export default class Profile extends Vue {
      */
     @UserAction(RESET_AUTHORIZATION)
     public resetAuthorization: () => void;
+
+    /**
+     * Returns meta information of page, such as:
+     * title, meta tags content etc.
+     *
+     * @return    Object, that contains page meta info.
+     */
+    public metaInfo(): any {
+        return {title: this.$t('profile.title')};
+    }
 
     /**
      * Vue component 'created' hook, that executes when component instance

@@ -2,6 +2,7 @@ import axios, { AxiosInstance } from 'axios';
 
 import store from 'store';
 
+
 /**
  * Axios instance with pre-configured base API url,
  * that will make requests to the API server.

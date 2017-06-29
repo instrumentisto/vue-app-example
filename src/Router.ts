@@ -1,11 +1,13 @@
 import Vue from 'vue';
 import VueMeta from 'vue-meta';
 import VueRouter from 'vue-router';
-import { RawLocation, Route, RouteConfig, RouterMode, RouterOptions } from 'vue-router/types/router';
+import { RawLocation, Route, RouteConfig, RouterMode, RouterOptions } from 'vue-router/types/router'; // tslint:disable-line
+
+import store from 'store';
 
 import SignIn from 'components/pages/sign-in/SignIn.vue';
 import SignUp from 'components/pages/sign-up/SignUp.vue';
-import store from 'store';
+
 
 const Profile = () => System.import('components/pages/profile/Profile.vue');
 
