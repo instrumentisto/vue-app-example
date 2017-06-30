@@ -1,4 +1,4 @@
-import Vue, {ComputedOptions} from 'vue';
+import Vue, { ComponentOptions, ComputedOptions } from 'vue';
 import { createDecorator } from 'vue-class-component';
 
 
@@ -12,6 +12,12 @@ import { createDecorator } from 'vue-class-component';
  * More info about caching computed properties:
  *   https://vuejs.org/v2/guide/computed.html#Computed-Caching-vs-Methods
  */
-export const NoCache = createDecorator((options, key) => {
+export const NoCache = createDecorator((
+    options: ComponentOptions<Vue>,
+    key: string,
+) => {
+    if (!options.computed) {
+        return;
+    }
     (options.computed[key] as ComputedOptions<Vue>).cache = false;
 });

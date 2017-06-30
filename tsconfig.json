@@ -3,10 +3,14 @@
     "baseUrl": ".",
     "paths": {
       "*": [
+        "*",
         "src/*",
         "test/*"
       ]
     },
+    "noImplicitAny": false,
+    "strict": true,
+    "noImplicitReturns": true,
     "module": "es6",
     "moduleResolution": "node",
     "allowSyntheticDefaultImports": true,
@@ -20,9 +24,6 @@
       "es2016"
     ]
   },
-  "include": [
-    "./**/*.ts"
-  ],
   "exclude": [
     "node_modules"
   ]
