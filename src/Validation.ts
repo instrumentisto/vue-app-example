@@ -11,7 +11,7 @@ export default class Validation {
      * Initialize vee-validate plugin with predefined configuration.
      */
     public static init() {
-        Vue.use(VeeValidate, this.config);
+        Vue.use(VeeValidate, this.config as any);
     }
 
     /**

@@ -1,4 +1,5 @@
-﻿// tslint:disable
+﻿/* tslint:disable */
+
 // Type definitions for nightwatchjs
 // Project: http://nightwatchjs.org/api
 // Definitions by: Rahul Kavalapara
@@ -170,8 +171,8 @@ export interface NightWatchOptions {
     test_settings: NightWatchTestSettings;
 
     /**
-    * Whether or not to buffer the output in case of parallel running. See below for details.
-    */
+     * Whether or not to buffer the output in case of parallel running. See below for details.
+     */
     live_output?: boolean;
 
     /**

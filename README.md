@@ -59,7 +59,7 @@ curl http://vue-app-example.dev:8080/
 - ~~[Pug](https://pugjs.org/language/attributes.html)~~
 - ~~Improve SSR by new guidelines from https://ssr.vuejs.org/en/~~
 - ~~ESLint for `.js` files and improve TSLint settings~~
-- Improve TypeScript typings
+- ~~Improve TypeScript typings~~
 - npm > Yarn
 - Makefile + Travis CI
 - ~~Remove base view `Page` component~~

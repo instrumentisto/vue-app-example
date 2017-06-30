@@ -11,7 +11,7 @@ export default class UserState {
     /**
      * User authorization state.
      */
-    public authorized: object;
+    public authorized: object | null;
 
     /**
      * Creates initial user module state.

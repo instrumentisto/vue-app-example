@@ -1,4 +1,8 @@
-declare module '*.vue' {
-    import Vue from 'vue';
-    export default typeof Vue;
+import Vue = require('vue');
+
+declare module 'vue/types/vue' {
+    interface Vue {
+        $ssrContext: any;
+        $meta(): any;
+    }
 }

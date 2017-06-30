@@ -105,5 +105,5 @@ export default class I18n {
     /**
      * Instance of initialized vue-i18n plugin.
      */
-    private static i18n: VueI18n = null;
+    private static i18n: VueI18n;
 }

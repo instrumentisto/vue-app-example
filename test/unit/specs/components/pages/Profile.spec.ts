@@ -39,13 +39,13 @@ describe('components/pages/Profile.vue', () => {
 
 
     it('renders correct section title', () => {
-        expect(app.$el.querySelector('h1.title').textContent)
+        expect((app.$el.querySelector('h1.title') as any).textContent)
             .to.equal(app.$i18n.t('profile.title'));
     });
 
 
     it('renders correct user name', () => {
-        expect(app.$el.querySelector('#userName').textContent)
+        expect((app.$el.querySelector('#userName') as any).textContent)
             .to.equal(testUser.name);
     });
 

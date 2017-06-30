@@ -31,7 +31,7 @@ describe('components/pages/SignUp.vue', () => {
 
 
     it('renders correct section title', () => {
-        expect(app.$el.querySelector('h1.title').textContent)
+        expect((app.$el.querySelector('h1.title') as any).textContent)
             .to.equal(app.$i18n.t('sign_up.title'));
     });
 
