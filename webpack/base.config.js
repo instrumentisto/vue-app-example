@@ -56,6 +56,10 @@ module.exports = {
                 test: /\.(eot|svg|ttf|woff|woff2)$/,
                 loader: 'file-loader?name=fonts/[name].[ext]',
             },
+            {
+                test: /\.css$/,
+                use: ['vue-style-loader', 'css-loader'],
+            },
         ],
     },
     resolve: {
@@ -66,7 +70,6 @@ module.exports = {
         alias: {
             'assets': path.join(__dirname, '../assets'),
             '~assets': path.join(__dirname, '../assets'),
-            '~bower': path.join(__dirname, '../bower_components'),
         },
         extensions: ['.tsx', '.ts', '.js'],
     },

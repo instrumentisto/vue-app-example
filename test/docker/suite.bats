@@ -12,17 +12,6 @@
 }
 
 
-@test "contains npm" {
-  run docker run --rm $IMAGE which npm
-  [ "$status" -eq 0 ]
-}
-
-@test "npm runs ok" {
-  run docker run --rm $IMAGE npm -v
-  [ "$status" -eq 0 ]
-}
-
-
 @test "contains java" {
   run docker run --rm $IMAGE which java
   [ "$status" -eq 0 ]
