@@ -15,6 +15,6 @@
 
 <script lang="ts" src="./App.ts"></script>
 
-<style src="~bower/bootstrap/dist/css/bootstrap.css"></style>
+<style lang="css" src="bootstrap/dist/css/bootstrap.css"></style>
 
 <style lang="stylus" src="./app.styl"></style>

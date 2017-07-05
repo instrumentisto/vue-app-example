@@ -6,7 +6,7 @@ PoC app to test [Vue.js](https://vuejs.org/) framework
 
 0. Install project dependencies:
 ```bash
-npm install && bower install
+yarn install
 ```
 
 1. Add this line to your `hosts` file:
@@ -16,7 +16,7 @@ npm install && bower install
 
 2. Build project for both client & server environments:
 ```bash
-npm run build:dev
+yarn build:dev
 ```
 
 3. Build & run docker image using Docker Compose:
@@ -60,8 +60,8 @@ curl http://vue-app-example.dev:8080/
 - ~~Improve SSR by new guidelines from https://ssr.vuejs.org/en/~~
 - ~~ESLint for `.js` files and improve TSLint settings~~
 - ~~Improve TypeScript typings~~
-- npm > Yarn
-- Makefile + Travis CI
+- ~~Change npm to Yarn, remove Bower~~
+- Docker + Makefile + Travis CI
 - ~~Remove base view `Page` component~~
 - Improve E2E specs
 - Fix eslint hanging with v4.0 
