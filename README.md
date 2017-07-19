@@ -1,6 +1,11 @@
-# vue-app-example
+vue-app-example
+=====================
+
+[![Build Status](https://travis-ci.org/instrumentisto/vue-app-example.svg?branch=master)](https://travis-ci.org/instrumentisto/vue-app-example)
 
 PoC app to test [Vue.js](https://vuejs.org/) framework
+
+
 
 ## How to dev
 
