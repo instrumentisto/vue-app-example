@@ -1,8 +1,8 @@
 version: '3'
 
 services:
-  node:
-    container_name: vue-app-example-node
+  node-frontend:
+    container_name: "${COMPOSE_PROJECT_NAME}-node-frontend"
     image: instrumentisto/vue-app-example:dev
     depends_on:
       - json-server
@@ -14,24 +14,21 @@ services:
     volumes:
       - ./:/app
   nginx:
-    container_name: vue-app-example-nginx
+    container_name: "${COMPOSE_PROJECT_NAME}-nginx"
     image: nginx:stable-alpine
     depends_on:
-      - node
+      - node-frontend
       - json-server
-    command: /bin/sh -c "sed -i -r 's/^user .*$$/user nobody;/g'
-                             /etc/nginx/nginx.conf
-                         && nginx -g 'daemon off;'"
     ports:
       - "80:80"       # http
     volumes:
-      - ./_build/:/var/www/public:ro
-      - ./.dev/nginx/vhost.conf:/etc/nginx/conf.d/default.conf:ro
+      - ./public:/var/www/public:ro
+      - ./.dev/nginx/frontend.vhost.conf:/etc/nginx/conf.d/default.conf:ro
   json-server:
-    container_name: vue-app-example-json-server
-    image: instrumentisto/node-builder
+    container_name: "${COMPOSE_PROJECT_NAME}-json-server"
+    image: node:alpine
     working_dir: /app
-    command: /bin/sh -c "npm run json-server"
+    command: /bin/sh -c "yarn json-server"
     expose:
       - "3000"
     ports:

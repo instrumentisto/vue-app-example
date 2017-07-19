@@ -2,30 +2,84 @@
 
 PoC app to test [Vue.js](https://vuejs.org/) framework
 
-### Getting Started
+## How to dev
 
-0. Install project dependencies:
+Use `docker-compose` to boot up [dockerized environment](docker-compose.yml)
+for development:
 ```bash
+docker-compose up
+
+# or with Yarn
+yarn start
+```
+
+To resolve all project dependencies use docker-wrapped command
+from [`Makefile`][1].
+```bash
+make deps
+
+# or with Yarn
 yarn install
 ```
 
-1. Add this line to your `hosts` file:
+To build both client and server bundles use docker-wrapped command
+from [`Makefile`][1]:
+```bash
+make build
+
+# or specify concrete target
+make build target=client
+make build target=server
+
+# or produce production-ready bundles with minified assets
+make build env=production
+
+# or with Yarn
+yarn build:client
+yarn build:server
+yarn build:all
+yarn build:all --production
+```
+
+To lint TypeScript/JavaScript sources you should use docker-wrapped command
+from [`Makefile`][1]:
+```bash
+make lint
+
+# or with Yarn
+yarn lint
+```
+
+To run tests or generate project documentation use docker-wrapped commands
+from [`Makefile`][1]:
+```bash
+make test
+make docs
+
+# or concrete tests
+make test.unit
+make test.e2e start-app=yes
+make test.docker
+
+# or with Yarn
+yarn test:unit
+yarn test:e2e
+yarn test
+yarn docs
+```
+
+To make docker image (from project distribution) use docker-wrapped commands 
+from [`Makefile`][1]: 
+```bash
+make dist && make docker.image
+```
+
+To open [http://vue-app-example.dev](http://vue-app-example.dev)
+application in browser add line to your `hosts` file:
 ```
 127.0.0.1	vue-app-example.dev
+127.0.0.1	json-server
 ```
-
-2. Build project for both client & server environments:
-```bash
-yarn build:dev
-```
-
-3. Build & run docker image using Docker Compose:
-```bash
-docker-compose up --build
-```
-
-Now you can open [http://vue-app-example.dev](http://vue-app-example.dev)
-application in browser.
 
 To test Server-Side Rendering, you can emulate search bot request:
 ```bash
@@ -35,6 +89,20 @@ or directly do request to Express server:
 ```bash
 curl http://vue-app-example.dev:8080/
 ```
+
+#### Notable moments
+
+- If you change project files layout, make sure that project builds as expected
+  via `make build` and project distribution is formed correctly via `make dist`.
+- All project dependencies should be declared with [Yarn][3]. In other words,
+  using [NPM][4] or [Bower][5] is __not allowed__.
+- All project TypeScript and JavaScript sources must be written accordingly with
+  [ECMAScript 2016 language specifications][6]. You can easily configure
+  WebStorm to support it by following [this guide][7].
+- If you don't use docker-wrapped commands, make sure that tools you use have
+  the same version as in docker-wrapped commands. It's latest version, mainly.
+
+
 
 ### Useful Resources for Beginners
 
@@ -61,7 +129,7 @@ curl http://vue-app-example.dev:8080/
 - ~~ESLint for `.js` files and improve TSLint settings~~
 - ~~Improve TypeScript typings~~
 - ~~Change npm to Yarn, remove Bower~~
-- Docker + Makefile + Travis CI
+- ~~Docker + Makefile + Travis CI~~
 - ~~Remove base view `Page` component~~
 - Improve E2E specs
 - Fix eslint hanging with v4.0 
@@ -82,3 +150,15 @@ curl http://vue-app-example.dev:8080/
 ### Known Issues
 
 - Rolling back HMR updates (**temporarily postponed**)
+
+
+
+
+
+[1]: Makefile
+[2]: package.json
+[3]: https://yarnpkg.com/lang/en/
+[4]: https://www.npmjs.com/
+[5]: https://bower.io/
+[6]: https://www.ecma-international.org/publications/standards/Ecma-262.htm
+[7]: https://medium.com/@brandonaaskov/enabling-es6-syntax-support-in-webstorm-48e22956ecfd

@@ -1,0 +1,23 @@
+sudo: false
+
+language: bash
+
+dist: trusty
+
+services:
+  - docker
+
+before_script:
+  - make clean
+  - make deps dev=yes
+  - make build dev=no
+  - sudo rm -rf node_modules/
+  - make deps dev=no
+  - make dist
+  - make docker.image no-cache=yes VERSION=test
+  - sudo rm -rf node_modules/
+  - make deps dev=yes
+
+script:
+  - make lint
+  - make test start-app=yes VERSION=test

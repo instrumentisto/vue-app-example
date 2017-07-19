@@ -1,4 +1,4 @@
-const CopyWebpackPlugin = require('copy-webpack-plugin');
+const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const VueSSRPlugin = require('vue-ssr-webpack-plugin');
 const webpack = require('webpack');
@@ -12,6 +12,7 @@ module.exports = merge(base, {
     target: 'node',
     entry: './src/entry/server.ts',
     output: {
+        path: path.resolve(__dirname, '../'),
         libraryTarget: 'commonjs2',
     },
     externals: nodeExternals({}),
@@ -34,9 +35,5 @@ module.exports = merge(base, {
                 }
                 : undefined,
         }),
-        new CopyWebpackPlugin([
-            {from: 'assets/img', to: 'img'},
-            {from: 'server.js', to: 'server.js'},
-        ]),
     ],
 });

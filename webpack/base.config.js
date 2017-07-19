@@ -7,11 +7,10 @@ const isProd = (process.env.NODE_ENV === 'production');
 module.exports = {
     output: {
         filename: 'build.js',
-        path: path.resolve(__dirname, '../_build'),
     },
     recordsInputPath: path.resolve(__dirname, '../webpack/records.json'),
     recordsOutputPath:
-        path.resolve(__dirname, '../_build/webpack.records.json'),
+        path.resolve(__dirname, '../webpack.records.json'),
     module: {
         rules: [
             {

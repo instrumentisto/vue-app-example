@@ -1,9 +1,16 @@
-bower_components
-node_modules
-
-_build
-
 .idea
 .DS_Store
 
-selenium-debug.log
+/_cache
+/_dist
+/_docs
+
+/public
+/index.server.html
+/vue-ssr-bundle.json
+/webpack.records.json
+
+/node_modules
+
+/selenium-debug.log
+/yarn-error.log

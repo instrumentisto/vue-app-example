@@ -2,4 +2,10 @@
 /test/e2e/Helper.js
 
 /_build
-/_docker
+/_cache
+/_dist
+/_docs
+
+/public
+
+/node_modules

@@ -18,9 +18,9 @@ const renderer = require('vue-server-renderer')
 
 const app = express();
 
-app.use(favicon(resolve('./img/logo.png')));
+app.use(favicon(resolve('./public/img/logo.png')));
 
-app.use(express.static('./', {
+app.use(express.static('./public', {
     index: false,
 }));
 
