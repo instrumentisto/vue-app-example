@@ -137,7 +137,7 @@ curl http://vue-app-example.dev:8080/
 - ~~Docker + Makefile + Travis CI~~
 - ~~Remove base view `Page` component~~
 - Improve E2E specs
-- Fix eslint hanging with v4.0 
+- ~~Fix eslint hanging with v4.0~~ 
 
 ### Future Roadmap
 
