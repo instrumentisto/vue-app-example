@@ -1,3 +1,4 @@
+import gql from 'graphql-tag';
 import Vue from 'vue';
 import Component from 'vue-class-component';
 import { Action, namespace } from 'vuex-class';
@@ -14,6 +15,18 @@ const UserAction = namespace('user', Action);
  * Describes user authorization page.
  */
 @Component({
+    apollo: {
+        users: {
+            query: gql`
+              query allUsers {
+                user {
+                  id
+                  email
+                }
+              }
+            `,
+        },
+    },
     components: {
         ErrorBlock,
     },
@@ -52,6 +65,11 @@ export default class SignIn extends Vue {
      * were invalid.
      */
     public error: string = '';
+
+    /**
+     * TODO docs
+     */
+    public users: any[] = [];
 
     /**
      * Returns meta information of page, such as:
