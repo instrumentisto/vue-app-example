@@ -11,6 +11,17 @@ import RootState from 'store/root/state';
 
 Vue.use(Vuex);
 
+const plugins: any[] = [];
+
+if (process.browser) {
+    plugins.push(createPersistedState({
+        paths: [
+            'locale',
+            'user.authorized',
+        ],
+    }));
+}
+
 /**
  * Vuex store instance, initialized with required root store,
  * modules and plugins.
@@ -22,13 +33,7 @@ export const store: Store<any> = new Store({
         user: new UserModule(),
     },
     mutations,
-    plugins: [createPersistedState({
-        key: 'vue-app-example-vuex',
-        paths: [
-            'user.authorized',
-            'locale',
-        ],
-    })],
+    plugins,
     state: new RootState(),
 });
 

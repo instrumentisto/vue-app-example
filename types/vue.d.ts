@@ -1,4 +1,4 @@
-import Vue = require('vue');
+import 'vue';
 
 declare module 'vue/types/vue' {
     interface Vue {

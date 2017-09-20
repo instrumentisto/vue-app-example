@@ -24,8 +24,10 @@ module.exports = {
                         loader: 'ts-loader',
                         options: {
                             appendTsSuffixTo: [/\.vue$/],
+                            compilerOptions: {
+                                isolatedModules: true,
+                            },
                             transpileOnly: true,
-                            isolatedModules: true,
                         },
                     },
                 ],

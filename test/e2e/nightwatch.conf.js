@@ -14,14 +14,14 @@ module.exports = {
     },
     test_settings: {
         default: {
-            launch_url: 'http://localhost',
+            launch_url: 'http://vue-app-example.dev',
             selenium_port: 4444,
             selenium_host: 'localhost',
             silent: true,
             globals: {
                 localeData: require('../../assets/i18n/en.json'),
                 localStorage: {
-                    'vue-app-example-vuex': {
+                    'vuex': {
                         locale: 'en',
                     },
                 },

@@ -116,7 +116,10 @@ ifeq ($(start-app),yes)
 endif
 	-@docker stop $(selenium-cont-name)
 	-@docker rm $(selenium-cont-name)
-	docker run -d --name=$(selenium-cont-name) --net=host -p 4444:4444 \
+	docker run -d --name=$(selenium-cont-name) -p 4444:4444 \
+	   	--net=vueappexample_default \
+		--link=vue-app-example-nginx:vue-app-example.dev \
+		--link=vue-app-example-json-server:api.vue-app-example.dev \
 		-v /dev/shm:/dev/shm \
 		-e DBUS_SESSION_BUS_ADDRESS=/dev/null \
 			selenium/standalone-chrome

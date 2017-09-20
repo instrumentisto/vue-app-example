@@ -80,10 +80,10 @@ make dist && make docker.image
 ```
 
 To open [http://vue-app-example.dev](http://vue-app-example.dev)
-application in browser add line to your `hosts` file:
+application in browser add lines to your `hosts` file:
 ```
 127.0.0.1	vue-app-example.dev
-127.0.0.1	json-server
+127.0.0.1	api.vue-app-example.dev
 ```
 
 To test Server-Side Rendering, you can emulate search bot request:
@@ -138,6 +138,7 @@ curl http://vue-app-example.dev:8080/
 - ~~Remove base view `Page` component~~
 - Improve E2E specs
 - ~~Fix eslint hanging with v4.0~~ 
+- ~~Test remove json-server from hosts~~ 
 
 ### Future Roadmap
 

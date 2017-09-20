@@ -6,7 +6,6 @@ COPY .docker/rootfs /
 COPY _dist/ /app/
 
 RUN chmod +x /entrypoint.sh \
-
  && chown -R node:node /app
 
 ENV SHARE_APP=0
