@@ -1,10 +1,12 @@
-module.exports = {
+/* tslint:disable:object-literal-sort-keys */
+
+export = {
     sections: {
         main: {
             selector: '#profile',
             elements: {
-                userName: 'p#userName',
                 userEmail: 'p#userEmail',
+                userName: 'p#userName',
             },
         },
     },

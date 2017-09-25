@@ -1,16 +1,6 @@
 {
   "compilerOptions": {
-    "module": "es6",
-    "moduleResolution": "node",
-    "allowSyntheticDefaultImports": true,
-    "experimentalDecorators": true,
-    "target": "es6",
-    "lib": [
-      "dom",
-      "es5",
-      "es6",
-      "es2015",
-      "es2016"
-    ]
+    "removeComments": true,
+    "outDir": "./_build"
   }
 }

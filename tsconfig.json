@@ -25,6 +25,8 @@
     ]
   },
   "exclude": [
-    "node_modules"
+    "node_modules",
+    "_cache",
+    "_dist"
   ]
 }

@@ -1,13 +1,12 @@
 /* tslint:disable:object-literal-sort-keys */
-import { NightWatchBrowser, NightWatchClient, NightWatchPage } from '../../../types/nightwatch'; // tslint:disable-line
-import Helper from '../Helper';
+import { NightWatchBrowser, NightWatchClient, NightWatchPage } from '../../../../../types/nightwatch'; // tslint:disable-line
+import Helper from '../../../Helper';
 
 
-/**
- * Contains all e2e test specs of the "/sign_up" page.
- */
-const tests = {
+export = {
 
+
+    '@tags': ['pages'],
 
     'beforeEach': (browser: NightWatchBrowser, done: () => void): void => {
         Helper.beforeEach(browser, done);
@@ -20,13 +19,13 @@ const tests = {
         const signUpPage: NightWatchPage = client.page.sign_up();
 
         signUpPage.navigate()
-            .waitForElementVisible('#app', 3000)
+            .waitForElementVisible('#app', Helper.maxLoadingTime)
             .setValue('@nameInput', 'Test User')
             .setValue('@emailInput', 'test@gmail.com')
             .setValue('@passwordInput', '123123')
             .setValue('@passwordConfirmInput', '123123')
             .submitForm('@form')
-            .waitForElementVisible('@error', 3000)
+            .waitForElementVisible('@error', Helper.maxLoadingTime)
             .assert.containsText(
                 '@error', client.globals.localeData.errors.email_already_taken,
             );
@@ -47,7 +46,7 @@ const tests = {
             client.globals.localeData.validation.messages.confirmed;
 
         signUpPage.navigate()
-            .waitForElementVisible('#app', 3000);
+            .waitForElementVisible('#app', Helper.maxLoadingTime);
 
         signUpPage
             .setValue('@nameInput', '')
@@ -85,5 +84,3 @@ const tests = {
 
 
 };
-
-export default tests;

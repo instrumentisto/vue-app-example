@@ -2,7 +2,7 @@ import 'vue';
 
 declare module 'vue/types/vue' {
     interface Vue {
-        $ssrContext: any;
+        validationErrors: any;
         $meta(): any;
     }
 }

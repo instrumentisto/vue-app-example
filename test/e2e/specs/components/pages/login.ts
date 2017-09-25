@@ -1,13 +1,12 @@
 /* tslint:disable:object-literal-sort-keys */
-import { NightWatchBrowser, NightWatchClient, NightWatchPage } from '../../../types/nightwatch'; // tslint:disable-line
-import Helper from '../Helper';
+import { NightWatchBrowser, NightWatchClient, NightWatchPage } from '../../../../../types/nightwatch'; // tslint:disable-line
+import Helper from '../../../Helper';
 
 
-/**
- * Contains all e2e test specs of the "/login" page.
- */
-const tests = {
+export = {
 
+
+    '@tags': ['pages'],
 
     'beforeEach': (browser: NightWatchBrowser, done: () => void) => {
         Helper.beforeEach(browser, done);
@@ -19,11 +18,14 @@ const tests = {
         const profilePage: NightWatchPage = client.page.profile();
 
         loginPage.navigate()
-            .waitForElementVisible('#app', 3000)
+            .waitForElementVisible('#app', Helper.maxLoadingTime)
             .setValue('@emailInput', 'test@gmail.com')
             .setValue('@passwordInput', '123123')
             .submitForm('@form')
-            .waitForElementVisible(profilePage.section.main.selector, 3000)
+            .waitForElementVisible(
+                profilePage.section.main.selector,
+                Helper.maxLoadingTime,
+            )
             .assert.containsText(
                 profilePage.section.main.elements.userName.selector,
                 'Test User',
@@ -41,11 +43,11 @@ const tests = {
         const loginPage: NightWatchPage = client.page.login();
 
         loginPage.navigate()
-            .waitForElementVisible('#app', 3000)
+            .waitForElementVisible('#app', Helper.maxLoadingTime)
             .setValue('@emailInput', 'wronguser@gmail.com')
             .setValue('@passwordInput', '123123')
             .submitForm('@form')
-            .waitForElementVisible('@error', 3000)
+            .waitForElementVisible('@error', Helper.maxLoadingTime)
             .assert.containsText(
                 '@error', client.globals.localeData.errors.access_denied,
             );
@@ -55,5 +57,3 @@ const tests = {
 
 
 };
-
-export default tests;

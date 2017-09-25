@@ -3,6 +3,11 @@ VERSION ?= 1.0.0
 
 IMAGE_NAME := instrumentisto/vue-app-example
 
+NODE_VERSION := latest
+NODE_ALPINE_VERSION := alpine
+SELENIUM_CHROME_VERSION := latest
+SELENIUM_FIREFOX_VERSION := 3.4.0
+
 DIST_DIR := _dist
 
 MAINLINE_BRANCH := dev
@@ -31,8 +36,9 @@ env ?= $(if $(call eq,$(dev),yes),development,production)
 target ?= all
 
 build:
-	docker run --rm -v $(PWD):/app -w /app -e NODE_ENV=$(env) node:alpine \
-		yarn build:$(target)
+	docker run --rm -v $(PWD):/app -w /app -e NODE_ENV=$(env) \
+		node:$(NODE_ALPINE_VERSION) \
+			yarn build:$(target)
 
 
 
@@ -41,7 +47,7 @@ build:
 # Usage:
 #	make deps [dev=(yes|no)]
 
-deps: deps.yarn
+deps: deps.yarn deps.docker
 ifeq ($(wildcard $(DIST_DIR)),)
 	mkdir -p $(DIST_DIR)
 endif
@@ -65,8 +71,21 @@ yarn-args-full = $(yarn-args) \
 deps.yarn:
 	docker run --rm -v $(PWD):/app -w /app \
 		-e YARN_CACHE_FOLDER=/app/_cache/yarn \
-		node:alpine \
+		node:$(NODE_ALPINE_VERSION) \
 			yarn $(yarn-args-full)
+
+
+
+# Resolve project Docker dependencies.
+#
+# Usage:
+#	make deps.docker
+
+deps.docker:
+	docker pull node:$(NODE_VERSION)
+	docker pull node:$(NODE_ALPINE_VERSION)
+	docker pull selenium/standalone-chrome:$(SELENIUM_CHROME_VERSION)
+	docker pull selenium/standalone-firefox:$(SELENIUM_FIREFOX_VERSION)
 
 
 
@@ -76,8 +95,9 @@ deps.yarn:
 #	make lint
 
 lint:
-	docker run --rm -v $(PWD):/app -w /app node:alpine \
-		yarn lint
+	docker run --rm -v $(PWD):/app -w /app \
+		node:$(NODE_ALPINE_VERSION) \
+			yarn lint
 
 
 
@@ -93,11 +113,13 @@ test: test.unit test.e2e test.docker
 # Run unit tests for project with Karma.
 #
 # Usage:
-#	make test.unit
+#	make test.unit [watch=(no|yes)]
+
+unit-watch-prefix = $(if $(call eq,$(watch),yes),watch:,)
 
 test.unit:
-	docker run --rm -v $(PWD):/app -w /app node \
-		yarn test:unit
+	docker run --rm -v $(PWD):/app -w /app node:$(NODE_VERSION) \
+		yarn $(unit-watch-prefix)test:unit
 
 
 
@@ -105,32 +127,57 @@ test.unit:
 #
 # Usage:
 #	make test.e2e [start-app=(no|yes)]
+#	              [browsers=chrome,firefox]
+#	              [watch=(no|yes)]
 
-selenium-cont-name := selenium-chrome
 start-app ?= no
+browsers ?= chrome,firefox
+selenium-chrome-port := 4444
+selenium-firefox-port := 4445
+e2e-watch-prefix = $(if $(call eq,$(watch),yes),watch:,)
 
 test.e2e:
 ifeq ($(start-app),yes)
 	-@docker-compose down
 	docker-compose up -d
 endif
-	-@docker stop $(selenium-cont-name)
-	-@docker rm $(selenium-cont-name)
-	docker run -d --name=$(selenium-cont-name) -p 4444:4444 \
-	   	--net=vueappexample_default \
-		--link=vue-app-example-nginx:vue-app-example.dev \
-		--link=vue-app-example-json-server:api.vue-app-example.dev \
-		-v /dev/shm:/dev/shm \
-		-e DBUS_SESSION_BUS_ADDRESS=/dev/null \
-			selenium/standalone-chrome
-	docker run --rm --net=host -e NOT_START_SELENIUM=1 -v $(PWD):/app -w /app \
-		node:alpine \
-			yarn test:e2e
-	docker stop $(selenium-cont-name)
-	docker rm $(selenium-cont-name)
+	$(foreach browser,$(subst $(comma), ,$(browsers)), \
+		$(call checkSeleniumStarted,$(browser)))
+	$(foreach browser,$(subst $(comma), ,$(browsers)), \
+		$(if $(call eq,$(run-selenium-$(browser)),yes), \
+			$(call startSelenium,$(browser)),))
+	docker run --rm --net=host -v $(PWD):/app -w /app \
+	           -e NOT_START_SELENIUM=1 \
+	           -e E2E_BROWSERS=$(browsers) \
+		node:$(NODE_ALPINE_VERSION) \
+			yarn $(e2e-watch-prefix)test:e2e
+	$(foreach browser,$(subst $(comma), ,$(browsers)), \
+		$(if $(call eq,$(run-selenium-$(browser)),yes), \
+			$(call stopSelenium,$(browser)),))
 ifeq ($(start-app),yes)
 	docker-compose down
 endif
+define checkSeleniumStarted
+	$(eval run-selenium-$(1) := \
+		$(if $(call eq,$(shell docker ps -q -f name=selenium-$(1)),),yes,))
+endef
+define startSelenium
+	$()
+	-@docker stop selenium-$(1)
+	-@docker rm selenium-$(1)
+	docker run -d --name=selenium-$(1) -p $(selenium-$(1)-port):4444 \
+	           --net=vueappexample_default \
+	           --link=vue-app-example-nginx:vue-app-example.dev \
+			   --link=vue-app-example-json-server:api.vue-app-example.dev \
+	           -e DBUS_SESSION_BUS_ADDRESS=/dev/null \
+		selenium/standalone-$(1):$(SELENIUM_$(shell echo $(1) | tr a-z A-Z)_VERSION)
+	$(eval selenium-$(1)-started := yes)
+endef
+define stopSelenium
+	$()
+	docker stop selenium-$(1)
+	docker rm selenium-$(1)
+endef
 
 
 
@@ -153,7 +200,7 @@ test.docker:
 #	make docs
 
 docs:
-	docker run --rm -v $(PWD):/app -w /app node:alpine \
+	docker run --rm -v $(PWD):/app -w /app node:$(NODE_ALPINE_VERSION) \
 		yarn docs
 
 
@@ -222,6 +269,6 @@ clean:
 
 
 .PHONY: build lint docs \
-        deps deps.yarn \
+        deps deps.yarn deps.docker \
         test test.unit test.e2e test.docker \
         docker.image dist squash clean

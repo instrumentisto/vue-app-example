@@ -1,7 +1,5 @@
-/test/e2e/specs/*.js
-/test/e2e/Helper.js
+/test/e2e/_build
 
-/_build
 /_cache
 /_dist
 /_docs

@@ -7,6 +7,12 @@ import { NightWatchBrowser } from '../../types/nightwatch';
 export default class Helper {
 
     /**
+     * The maximum number of milliseconds to wait, until application is loaded.
+     * After timeout, Nightwatch returns an error.
+     */
+    public static readonly maxLoadingTime = 3000;
+
+    /**
      * Executes before each spec and does required things of initiating
      * local storage etc.
      *
@@ -30,7 +36,7 @@ export default class Helper {
                         key, JSON.stringify(initialStorage[key]),
                     );
                 }
-            }, [browser.globals.localStorage], (result) => {
+            }, [browser.globals.localStorage], () => {
                 done();
             });
     }

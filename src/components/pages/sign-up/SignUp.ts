@@ -86,17 +86,20 @@ export default class SignUp extends Vue {
     public onSubmit(): void {
         this.error = '';
         this.$validator.validateAll().then(() => {
-            this.signUp(this.user).then(() => {
-                this.$router.push('/profile');
-            }).catch((error) => {
-                let errorMsg: string = this.$t('errors.common').toString();
-                switch (error) {
-                  case 1:
-                    errorMsg = this.$t('errors.email_already_taken').toString();
-                    break;
-                }
-                this.error = errorMsg;
-            });
+            if (!this.validationErrors.count()) {
+                this.signUp(this.user).then(() => {
+                    this.$router.push('/profile');
+                }).catch((error) => {
+                    let errorMsg: string = this.$t('errors.common').toString();
+                    switch (error) {
+                    case 1:
+                        errorMsg = this.$t('errors.email_already_taken')
+                            .toString();
+                        break;
+                    }
+                    this.error = errorMsg;
+                });
+            }
         });
     }
 }

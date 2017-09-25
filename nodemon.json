@@ -1,0 +1,13 @@
+{
+  "watch": [
+    "src",
+    "test",
+    "webpack"
+  ],
+  "ext": "js ts json vue styl",
+  "ignore": [
+    "test/e2e/_build"
+  ],
+  "runOnChangeOnly": true,
+  "verbose": true
+}

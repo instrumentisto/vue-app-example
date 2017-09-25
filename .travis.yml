@@ -12,11 +12,11 @@ before_script:
   - make deps dev=yes
   - make build dev=no
   - sudo rm -rf node_modules/
-  - make deps dev=no
+  - make deps.yarn dev=no
   - make dist
   - make docker.image no-cache=yes VERSION=test
   - sudo rm -rf node_modules/
-  - make deps dev=yes
+  - make deps.yarn dev=yes
 
 script:
   - make lint

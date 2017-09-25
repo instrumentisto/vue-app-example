@@ -136,7 +136,7 @@ curl http://vue-app-example.dev:8080/
 - ~~Change npm to Yarn, remove Bower~~
 - ~~Docker + Makefile + Travis CI~~
 - ~~Remove base view `Page` component~~
-- Improve E2E specs
+- ~~Improve E2E specs~~
 - ~~Fix eslint hanging with v4.0~~ 
 - ~~Test remove json-server from hosts~~ 
 

@@ -1,15 +1,17 @@
 require('babel-register');
 
 module.exports = {
-    src_folders: ['test/e2e/specs'],
+    src_folders: ['test/e2e/_build/specs'],
     output_folder: false,
-    page_objects_path: 'test/e2e/pages',
+    page_objects_path: 'test/e2e/_build/pages',
+    detailed_output: false,
     selenium: {
         start_process: true,
         server_path: require('selenium-server').path,
         port: 4444,
         cli_args: {
             'webdriver.chrome.driver': require('chromedriver').path,
+            'webdriver.gecko.driver': require('geckodriver').path,
         },
     },
     test_settings: {
@@ -28,8 +30,15 @@ module.exports = {
             },
             desiredCapabilities: {
                 browserName: 'chrome',
-                javascriptEnabled: true,
-                acceptSslCerts: true,
+            },
+        },
+        chrome: {},
+        firefox: {
+            // If Selenium server is not started by Nightwatch, then we assume
+            // that Firefox Selenium is listening on another port.
+            selenium_port: process.env.NOT_START_SELENIUM ? 4445 : 4444,
+            desiredCapabilities: {
+                browserName: 'firefox',
             },
         },
     },
