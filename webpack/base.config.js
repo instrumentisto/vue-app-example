@@ -61,6 +61,10 @@ module.exports = {
                 test: /\.css$/,
                 use: ['vue-style-loader', 'css-loader'],
             },
+            {
+                test: /\.styl/,
+                use: ['vue-style-loader', 'stylus-loader'],
+            },
         ],
     },
     resolve: {
