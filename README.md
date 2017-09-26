@@ -128,21 +128,20 @@ curl http://vue-app-example.dev:8080/
 - Vue dev tools Chrome extension: https://github.com/vuejs/vue-devtools
 
 ### TODO
-- ~~[Stylus](http://stylus-lang.com/)~~
-- ~~[Pug](https://pugjs.org/language/attributes.html)~~
-- ~~Improve SSR by new guidelines from https://ssr.vuejs.org/en/~~
-- ~~ESLint for `.js` files and improve TSLint settings~~
-- ~~Improve TypeScript typings~~
-- ~~Change npm to Yarn, remove Bower~~
-- ~~Docker + Makefile + Travis CI~~
-- ~~Remove base view `Page` component~~
-- ~~Improve E2E specs~~
-- ~~Fix eslint hanging with v4.0~~ 
-- ~~Test remove json-server from hosts~~ 
+- ~~[Stylus](http://stylus-lang.com/)~~ (#2)
+- ~~[Pug](https://pugjs.org/language/attributes.html)~~ (#3)
+- ~~Improve SSR by new guidelines from https://ssr.vuejs.org/en/~~ (#4)
+- ~~ESLint for `.js` files and improve TSLint settings~~ (#5)
+- ~~Improve TypeScript typings~~ (#6)
+- ~~Change npm to Yarn, remove Bower~~ (#7)
+- ~~Docker + Makefile + Travis CI~~ (#8)
+- ~~Improve E2E specs~~ (#9)
+- ~~Fix eslint hanging with v4.0~~ (#10)
+- ~~Test remove json-server from hosts~~ (#11)
 
 ### Future Roadmap
 
-- GraphQL
+- GraphQL (#12)
 - [vue-kindergarten](https://github.com/JiriChara/vue-kindergarten)
 - [av-ts](https://github.com/HerringtonDarkholme/av-ts): https://herringtondarkholme.github.io/2016/10/03/vue2-ts2/
 - https://github.com/rowanwins/vue-dropzone
