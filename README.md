@@ -130,7 +130,7 @@ curl http://vue-app-example.dev:8080/
 ### TODO
 - ~~[Stylus](http://stylus-lang.com/)~~ (#2)
 - ~~[Pug](https://pugjs.org/language/attributes.html)~~ (#3)
-- ~~Improve SSR by new guidelines from https://ssr.vuejs.org/en/~~ (#4)
+- ~~Improve SSR by new guidelines from https://ssr.vuejs.org/en/~~ (#4, GH-4, instrumentisto/vue-app-example#4, https://github.com/instrumentisto/vue-app-example/pull/4)
 - ~~ESLint for `.js` files and improve TSLint settings~~ (#5)
 - ~~Improve TypeScript typings~~ (#6)
 - ~~Change npm to Yarn, remove Bower~~ (#7)
