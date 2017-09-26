@@ -128,20 +128,20 @@ curl http://vue-app-example.dev:8080/
 - Vue dev tools Chrome extension: https://github.com/vuejs/vue-devtools
 
 ### TODO
-- ~~[Stylus](http://stylus-lang.com/)~~ (#2)
-- ~~[Pug](https://pugjs.org/language/attributes.html)~~ (#3)
-- ~~Improve SSR by new guidelines from https://ssr.vuejs.org/en/~~ (#4, GH-4, instrumentisto/vue-app-example#4, https://github.com/instrumentisto/vue-app-example/pull/4)
-- ~~ESLint for `.js` files and improve TSLint settings~~ (#5)
-- ~~Improve TypeScript typings~~ (#6)
-- ~~Change npm to Yarn, remove Bower~~ (#7)
-- ~~Docker + Makefile + Travis CI~~ (#8)
-- ~~Improve E2E specs~~ (#9)
-- ~~Fix eslint hanging with v4.0~~ (#10)
-- ~~Test remove json-server from hosts~~ (#11)
+- ~~[Stylus](http://stylus-lang.com/)~~ (([#2](https://github.com/instrumentisto/vue-app-example/pull/2))
+- ~~[Pug](https://pugjs.org/language/attributes.html)~~ (([#3](https://github.com/instrumentisto/vue-app-example/pull/3))
+- ~~Improve SSR by new guidelines from https://ssr.vuejs.org/en/~~ ([#4](https://github.com/instrumentisto/vue-app-example/pull/4))
+- ~~ESLint for `.js` files and improve TSLint settings~~ (([#5](https://github.com/instrumentisto/vue-app-example/pull/5))
+- ~~Improve TypeScript typings~~ (([#6](https://github.com/instrumentisto/vue-app-example/pull/6))
+- ~~Change npm to Yarn, remove Bower~~ (([#7](https://github.com/instrumentisto/vue-app-example/pull/7))
+- ~~Docker + Makefile + Travis CI~~ (([#8](https://github.com/instrumentisto/vue-app-example/pull/8))
+- ~~Improve E2E specs~~ (([#9](https://github.com/instrumentisto/vue-app-example/pull/9))
+- ~~Fix eslint hanging with v4.0~~ (([#10](https://github.com/instrumentisto/vue-app-example/pull/10))
+- ~~Test remove json-server from hosts~~ (([#11](https://github.com/instrumentisto/vue-app-example/pull/11))
 
 ### Future Roadmap
 
-- GraphQL (#12)
+- GraphQL (([#12](https://github.com/instrumentisto/vue-app-example/pull/12))
 - [vue-kindergarten](https://github.com/JiriChara/vue-kindergarten)
 - [av-ts](https://github.com/HerringtonDarkholme/av-ts): https://herringtondarkholme.github.io/2016/10/03/vue2-ts2/
 - https://github.com/rowanwins/vue-dropzone
