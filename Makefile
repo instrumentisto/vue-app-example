@@ -6,7 +6,7 @@ IMAGE_NAME := instrumentisto/vue-app-example
 NODE_VERSION := latest
 NODE_ALPINE_VERSION := alpine
 SELENIUM_CHROME_VERSION := latest
-SELENIUM_FIREFOX_VERSION := 3.4.0
+SELENIUM_FIREFOX_VERSION := 3.5.0
 
 DIST_DIR := _dist
 

@@ -40,6 +40,7 @@ module.exports = {
             desiredCapabilities: {
                 browserName: 'firefox',
             },
+            silent: false,
         },
     },
 };

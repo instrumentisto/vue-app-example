@@ -20,4 +20,4 @@ before_script:
 
 script:
   - make lint
-  - make test start-app=yes VERSION=test
+  - make test.e2e start-app=yes browsers=firefox VERSION=test
