@@ -19,5 +19,4 @@ before_script:
   - make deps.yarn dev=yes
 
 script:
-  - make lint
   - make test.e2e start-app=yes browsers=firefox VERSION=test

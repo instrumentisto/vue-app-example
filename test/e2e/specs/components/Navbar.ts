@@ -8,7 +8,7 @@ import Sizes from '../../Sizes';
 export = {
 
 
-    '@tags': ['components'],
+    '@tags': ['components2'],
 
     'beforeEach': (browser: NightWatchBrowser, done: () => void) => {
         Helper.beforeEach(browser, done);
