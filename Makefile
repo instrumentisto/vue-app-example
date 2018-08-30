@@ -166,9 +166,9 @@ define startSelenium
 	-@docker stop selenium-$(1)
 	-@docker rm selenium-$(1)
 	docker run -d --name=selenium-$(1) -p $(selenium-$(1)-port):4444 \
-	           --net=vueappexample_default \
-	           --link=vue-app-example-nginx:vue-app-example.dev \
-			   --link=vue-app-example-json-server:api.vue-app-example.dev \
+	           --net=vue-app-example_default \
+	           --link=vue-app-example-nginx:vue-app-example.localhost \
+			   --link=vue-app-example-json-server:api.vue-app-example.localhost \
 	           -e DBUS_SESSION_BUS_ADDRESS=/dev/null \
 		selenium/standalone-$(1):$(SELENIUM_$(shell echo $(1) | tr a-z A-Z)_VERSION)
 	$(eval selenium-$(1)-started := yes)

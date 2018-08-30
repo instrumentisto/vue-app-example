@@ -79,20 +79,20 @@ from [`Makefile`][1]:
 make dist && make docker.image
 ```
 
-To open [http://vue-app-example.dev](http://vue-app-example.dev)
+To open [http://vue-app-example.localhost](http://vue-app-example.localhost)
 application in browser add lines to your `hosts` file:
 ```
-127.0.0.1	vue-app-example.dev
-127.0.0.1	api.vue-app-example.dev
+127.0.0.1	vue-app-example.localhost
+127.0.0.1	api.vue-app-example.localhost
 ```
 
 To test Server-Side Rendering, you can emulate search bot request:
 ```bash
-curl --header "User-Agent: Googlebot" http://vue-app-example.dev/
+curl --header "User-Agent: Googlebot" http://vue-app-example.localhost/
 ```
 or directly do request to Express server:
 ```bash
-curl http://vue-app-example.dev:8080/
+curl http://vue-app-example.localhost:8080/
 ```
 
 #### Notable moments

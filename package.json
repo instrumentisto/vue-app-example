@@ -2,7 +2,7 @@
   "name": "vue-app-example",
   "scripts": {
     "build:all": "yarn run build:client && yarn run build:server",
-    "build:client": "cross-env CLIENT_API_URL=http://api.vue-app-example.dev:3000 webpack --config webpack/client.config.js",
+    "build:client": "cross-env CLIENT_API_URL=http://api.vue-app-example.localhost:3000 webpack --config webpack/client.config.js",
     "build:server": "cross-env SERVER_API_URL=http://json-server:3000 webpack --config webpack/server.config.js",
     "docs": "webpack --config webpack/docs.config.js && rm _docs/*.js && rm -r _docs/img",
     "json-server": "cp .data/db.example.json .data/db.json && json-server --watch .data/db.json --delay 500",
